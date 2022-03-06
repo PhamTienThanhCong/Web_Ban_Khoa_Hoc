@@ -1,4 +1,4 @@
-[Tài liệu mô tả]: https://github.com/PhamTienThanhCong/Quan_Ly_CLB/blob/master/Tai%20Lieu/T%C3%A0i%20li%E1%BB%87u%20m%C3%B4%20t%E1%BA%A3/TaiLieuMoTa.pdf
+[Tài liệu mô tả]: https://github.com/PhamTienThanhCong/Quan_Ly_CLB/tree/master/Tai%20Lieu/T%C3%A0i%20li%E1%BB%87u%20m%C3%B4%20t%E1%BA%A3
 ## Quản lý câu lạc bộ
 - Bài tập lớn môn kĩ thuật phần mền.
 
@@ -15,7 +15,7 @@
 
 ## Về đồ án
 - Công Nghệ sử dụng:
-  - FrontEnd: HTML5, CSS, Javascript 6.
+  - FrontEnd: HTML5, CSS, Javascript 6, bootstrap 5
   - BackEnd: PHP 8.
   - Database: MySQL.
 - Tài liệu
