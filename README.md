@@ -15,7 +15,7 @@
 
 ## Về đồ án
 - Công Nghệ sử dụng:
-  - FrontEnd: HTML5, CSS, Javascript 6, bootstrap 5
+  - FrontEnd: HTML5, CSS, Javascript 6, bootstrap 5.
   - BackEnd: PHP 8.
   - Database: MySQL.
 - Tài liệu
