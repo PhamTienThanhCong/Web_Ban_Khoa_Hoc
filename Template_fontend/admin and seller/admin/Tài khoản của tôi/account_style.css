@@ -1,0 +1,99 @@
+#my-account {
+    background: #081D45;
+}
+
+.user-detail {
+    width: 100%;
+    display: flex;
+}
+
+.avata {
+    width: 200px;
+}
+
+#user-in4 {
+    width: 470px;
+}
+
+#user-in4 label {
+    margin-left: 30px;
+    margin-right: 10px;
+    display: inline-block;
+    width: 106px;
+}
+
+#user-in4 input {
+    width: 310px;
+    outline: none;
+    border: none;
+    height: 30px;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+#btn,.btn {
+    /* transform: translateY(7px); */
+    margin-left: 30px;
+    padding: 7px 20px;
+    border: none;
+    background-color: #0066cc;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+#btn:hover {
+    background-color: #004080;
+}
+.btn{
+    margin-top: 20px;
+    background-color: #0066cc;
+    margin-left: 0px;
+}
+#my-password{
+    /* transform: translateY(-170px); */
+    width: 330px;
+    height: 200px;
+    display: inline-block;
+    display: none;
+}
+#change-danger{
+    margin-top: 0px;
+    margin-left: 30px;
+    background-color:#004080
+}
+.input-in4{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #004080;
+    width: 180px;
+    height: 30px;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+#my-password label {
+    margin-right: 10px;
+    display: inline-block;
+    width: 135px;
+}
+.hidden-lable{
+    display: none;
+}
+textarea{
+    width: calc(100% - 40px); 
+    height: 82px;
+    resize: none;
+    resize: vertical;
+    outline: none;
+    margin-left: 30px;
+    padding-left: 10px;
+    border: none;
+}
+.textarea-view{
+    border: none;
+}
+.textarea-edit{
+    border: 1px solid rgb(190, 188, 188);
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="account_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>font admin</title>
+  </head>
+
+  <body>
+    <!-- slider chức năng -->
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="bx bxl-c-plus-plus"></i>
+        <span class="logo_name">Be Cong</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="links_name">Tổng quan chung</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-book-bookmark"></i>
+            <span class="links_name">Quản lý khóa học</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bxs-user-detail"></i>
+            <span class="links_name">Quản lý seller</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-user"></i>
+            <span class="links_name">Quản lý user</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="active">
+            <i class="bx bx-cog"></i>
+            <span class="links_name">Tài khoản</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="#">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Đăng xuất</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- slider chức năng -->
+
+    <section class="home-section">
+      <!-- header chức năng -->
+      <nav>
+        <div class="sidebar-button">
+          <i class="bx bx-menu sidebarBtn"></i>
+          <span class="dashboard">Chức năng</span>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+          <i class="bx bx-search"></i>
+        </div>
+        <!-- Tài khoản -->
+        <div class="profile-details">
+          <img
+            src="https://thethao99.com/wp-content/uploads/2021/03/nguyen-thuy-duong.jpg"
+            alt=""
+          />
+          <span class="admin_name">Cong nè</span>
+          <i class="bx bx-chevron-down"></i>
+        </div>
+        <!-- Tài khoản -->
+      </nav>
+      <!-- header chức năng -->
+
+      <!-- Content -->
+      <div class="home-content">
+        <div class="sales-boxes">
+          <div class="recent-sales box" style="width: 100%; display: block">
+            <div class="title">Khoản của tôi</div>
+            <br/>
+            <div class="sales-details">
+              <div class="user-detail">
+                <div class="avata">
+                  <img
+                    id="output"
+                    width="100%"
+                    src="https://thethao99.com/wp-content/uploads/2021/03/nguyen-thuy-duong.jpg"
+                    alt=""
+                  />
+                </div>
+
+                <form
+                  id="user-in4"
+                  method="post"
+                  action="./processing/employee_edit.php"
+                  enctype="multipart/form-data"
+                >
+                  <label for="name">Tên: </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name_admin"
+                    value="Cong be"
+                    readonly
+                  />
+                  <br />
+                  <label for="email">Email: </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email_admin"
+                    value="Cong123@gmail.com"
+                    readonly
+                  />
+                  <br />
+                  <label style="width: 300px;" for="email" >Thông tin của bạn: </label>
+                  <!-- <br> -->
+                  <textarea class="textarea-view" name="infor" id="" cols="30" rows="6" readonly
+                  >- 10 tuổi bẻ gãy sừng trâu 
+- lên 20 tuổi thì mọc sừng
+- đại học chúng ta đó
+                  </textarea>
+                  <br />
+                  <input type="hidden" id="img" name="image" />
+                  <div class="hidden-lable">
+                    <label for="phone_number">password</label>
+                    <input
+                      style="border-bottom: 1px solid #004080"
+                      type="password"
+                      id="password"
+                      name="password"
+                      readonly
+                      required
+                    />
+                  </div>
+                  <br />
+                  <button id="btn" type="button" onclick="edit()">Sửa</button>
+                  <button
+                    id="change-danger"
+                    class="btn btn-danger"
+                    type="button"
+                  >
+                    Thay đổi mất khẩu
+                  </button>
+                </form>
+                <form
+                  id="my-password"
+                  method="post"
+                  action="./processing/my_account_change_password.php"
+                >
+                  <h3 style="display: inline">Đổi mật khẩu</h3>
+                  <br /><br />
+                  <label for="">Mật khẩu cũ:</label>
+                  <input
+                    id="old-password"
+                    class="input-in4"
+                    type="password"
+                    name="password"
+                  />
+                  <br />
+                  <label for="">Mật khẩu mới</label>
+                  <input
+                    id="new-password"
+                    class="input-in4"
+                    type="password"
+                    name="new_password"
+                  />
+                  <br />
+                  <label for="">Nhập lại mật khẩu:</label>
+                  <input
+                    id="confirm-password"
+                    class="input-in4"
+                    type="password"
+                    name="new_password"
+                  />
+                  <br />
+                  <button class="btn btn-danger">Lưu mật khẩu mới</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div class="sales-boxes" style="margin-top: 25px">
+          <div class="recent-sales box" style="width: 100%; display: block">
+            <div class="title">Chân trang</div>
+            <div class="sales-details">Nội dung</div>
+          </div>
+        </div>
+        <!-- footer -->
+      </div>
+      <!-- Content -->
+    </section>
+
+    <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./change_account.js"></script>
+  </body>
+</html>
