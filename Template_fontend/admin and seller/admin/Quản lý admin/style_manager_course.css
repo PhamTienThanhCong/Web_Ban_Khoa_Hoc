@@ -70,16 +70,16 @@
       position: absolute;
     }
     td:nth-child(2):before {
-      content: "Name:";
+      content: "Tên:";
     }
     td:nth-child(3):before {
       content: "Email:";
     }
     td:nth-child(4):before {
-      content: "Phone:";
+      content: "Hành động:";
     }
     td:nth-child(5):before {
-      content: "Comments:";
+      content: "Thông tin:";
     }
   
     tr {
