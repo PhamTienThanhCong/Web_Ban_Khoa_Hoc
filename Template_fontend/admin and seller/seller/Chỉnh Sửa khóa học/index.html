@@ -7,7 +7,8 @@
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="create_course.css" />
+    <link rel="stylesheet" href="./create_course.css" />
+    <link rel="stylesheet" href="./edit_course.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>font admin</title>
   </head>
@@ -87,7 +88,7 @@
         <!-- footer -->
         <div class="sales-boxes">
           <div class="recent-sales box" style="width: 100%; display: block">
-            <div class="title">Tạo khóa học mới</div>
+            <div class="title">Chỉnh sửa khóa học</div>
 
             <form
               class="new-couse"
@@ -120,10 +121,47 @@
               />
               <br />
               <textarea name="description" id="myTextarea"></textarea>
-              <button id="btn">Tạo khóa học mới</button>
+              <button id="btn">Chỉnh sửa khóa học</button>
             </form>
           </div>
         </div>
+        <!-- Chỉnh sửa khóa học -->
+
+        <!-- Thêm bài học -->
+        <div class="sales-boxes" style="margin-top: 25px">
+          <div class="recent-sales box" style="width: 100%; display: block">
+            <div class="title">Tạo bài học mới</div>
+            <div class="sales-details">
+              <form class="new-couse">
+                <label style="width: 100%;" for="">Tên bài học:</label>
+                <input
+                  name="name_course"
+                  type="text"
+                  placeholder="Nhập tên của khóa học"
+                />
+                <br />
+                <label for="">Link của bài học</label>
+                <input type="text" name="link" placeholder="Nhập link bài học">
+                <br />
+                <label style="display:inline-block; width: 100px" for="">Thể loại link</label>
+                <select name="typeLink" id="">
+                  <option value="1">You Tube</option>
+                  <option value="2">Drive</option>
+                  <option value="3">Link trực tiếp</option>
+                </select>
+                <br />
+                <label style="width: 100%;" for="">Mô tả</label>
+                <br />
+                <textarea name="description" id="myTextareaLesson"></textarea>
+                <button class="btnCreate">Thêm bài học mới</button>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+        <!-- Thêm bài học -->
+
+        <!-- Xem trước khóa học -->
         <div class="sales-boxes" style="margin-top: 25px">
           <div class="recent-sales box" style="width: 100%; display: block">
             <div class="title">Xem trước khóa học mới</div>
@@ -174,5 +212,6 @@
     </section>
     <script src="./create_course.js"></script>
     <script src="./script.js"></script>
+    <script src="./edit_course.js"></script>
   </body>
 </html>
