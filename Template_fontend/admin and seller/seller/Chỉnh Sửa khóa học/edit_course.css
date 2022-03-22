@@ -4,3 +4,19 @@
 #myTextarea{
     height: 300px;
 }
+.video-preview{
+    width: 100%;
+    display: block;
+}
+iframe{
+    width: 100%;
+}
+#description-lesson-preview{
+    width: 100%;
+}
+#previewLesson{
+    display: none;
+}
+#btnShowPreview{
+    margin-left: 30px;
+}

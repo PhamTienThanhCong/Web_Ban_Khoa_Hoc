@@ -93,7 +93,7 @@
             <form
               class="new-couse"
               method="post"
-              action="./processing/course_add.php"
+              action="course_add.php"
               enctype="multipart/form-data"
             >
               <label for="">Tên của khóa học</label>
@@ -132,34 +132,76 @@
           <div class="recent-sales box" style="width: 100%; display: block">
             <div class="title">Tạo bài học mới</div>
             <div class="sales-details">
-              <form class="new-couse">
-                <label style="width: 100%;" for="">Tên bài học:</label>
+              <form id="edit-lesson" method="POST" action="#" class="new-couse">
+                <input type="hidden" id="id_lesson">
+                <label style="width: 100%" for="">Tên bài học:</label>
                 <input
-                  name="name_course"
+                  name="name_lesson"
                   type="text"
                   placeholder="Nhập tên của khóa học"
+                  onchange="changeTitleLesson(event)"
                 />
                 <br />
                 <label for="">Link của bài học</label>
-                <input type="text" name="link" placeholder="Nhập link bài học">
+                <input
+                  id="link-lesson"
+                  type="text"
+                  name="link"
+                  placeholder="Nhập link bài học"
+                  onchange="changeLink()"
+                />
                 <br />
-                <label style="display:inline-block; width: 100px" for="">Thể loại link</label>
-                <select name="typeLink" id="">
+                <label style="display: inline-block; width: 100px" for=""
+                  >Thể loại link</label
+                >
+                <select onchange="changeTypeLink(event)" name="typeLink" id="">
                   <option value="1">You Tube</option>
                   <option value="2">Drive</option>
                   <option value="3">Link trực tiếp</option>
                 </select>
                 <br />
-                <label style="width: 100%;" for="">Mô tả</label>
+                <label style="width: 100%" for="">Mô tả</label>
                 <br />
-                <textarea name="description" id="myTextareaLesson"></textarea>
+                <textarea
+                  name="description-lesson"
+                  id="myTextareaLesson"
+                ></textarea>
                 <button class="btnCreate">Thêm bài học mới</button>
+                <button
+                  type="button"
+                  id="btnShowPreview"
+                  class="btnCreate"
+                  onclick="ShowPreviewLesson(event)"
+                >
+                  Xem bản demo
+                </button>
               </form>
-              
             </div>
           </div>
         </div>
         <!-- Thêm bài học -->
+
+        <!-- Xem trực tiếp bài học -->
+        <div id="previewLesson" class="sales-boxes" style="margin-top: 25px">
+          <div class="recent-sales box" style="width: 100%; display: block">
+            <div class="title">Xem trước bài học</div>
+            <div class="sales-details" style="display: block">
+              <div class="video-preview">
+                <iframe
+                  id="video-lesson-preview"
+                  height="420"
+                  src="https://www.youtube.com/embed/X57xjcih8Hk"
+                ></iframe>
+              </div>
+              <h3 id="title-lesson-preview">
+                Bài học về tính chủ động trong kinh doanh
+              </h3>
+              <h4>Bình luận</h4>
+              <div id="description-lesson-preview"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Xem trực tiếp bài học -->
 
         <!-- Xem trước khóa học -->
         <div class="sales-boxes" style="margin-top: 25px">
