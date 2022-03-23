@@ -4,7 +4,8 @@
             require_once "./src/models/". $model .".php";
             return new $model;
         }
-        protected function view($template,$view,$data=[]){
+        protected function view($template,$name_page,$view,$data=[]){
+            $link_sever = "http://$_SERVER[HTTP_HOST]";
             require_once "./src/views/template/". $template .".php";
         }
     }

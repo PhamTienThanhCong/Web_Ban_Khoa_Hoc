@@ -1,7 +1,7 @@
 <?php
 class App{
     private $url = [];
-    private $controller = "Home";
+    private $controller = "home";
     private $action = "default";
     private $route = [];
     function __construct() {
@@ -20,12 +20,14 @@ class App{
 
     public function getController(){
         if (isset($this->url[0])){
-            if (file_exists("./src/controllers/". $this->url[0] .".php")){
+            if (file_exists("./src/controllers/". $this->url[0] ."Controller.php")){
                 $this->controller = $this->url[0];
+            }else{
+                $this->controller = "error_page";
             }
             unset($this->url[0]);
         }
-        require_once "./src/controllers/". $this->controller .".php";
+        require_once "./src/controllers/". $this->controller ."Controller.php";
         $this->controller = new $this->controller;
     }
 
