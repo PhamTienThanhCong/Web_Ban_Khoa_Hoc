@@ -20,12 +20,41 @@
                 echo 2;
                 exit();
             }
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo 0;
+                exit();
+            }
 
             $secure_pass = password_hash($password, PASSWORD_BCRYPT);
             $save = $this->model('admin');
 
             echo $save->createSeller($name, $email, $description, $secure_pass);
         }
-        
+        public function login_admin(){
+            $this->CheckWasLogin();
+            if (!isset($_POST['email']) || !isset($_POST['password'])){
+                echo 0;
+                exit();
+            }
+
+            $email = addslashes($_POST["email"]);
+            $password = addslashes($_POST["password"]);
+            $remember = 0;
+            if (isset($_POST["remember"])){
+                $remember = 1;
+            }
+            if ($email == "" || $password == ""){
+                echo 0;
+                exit();
+            }
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo 0;
+                exit();
+            }
+            
+            // $login_account = $this->model('admin');
+            // $login_account->checkLogin($email, $password);
+
+        }
     }
 ?>

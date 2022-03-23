@@ -8,7 +8,7 @@
   <body>
     <div class="wrapper">
       <div class="title">Login Trouvaille</div>
-      <form action="#">
+      <form method="post" action="<?php echo $link_sever ?>/account/login_admin">
         <div class="field">
           <input type="email" name="email" required>
           <label>Email</label>
