@@ -12,7 +12,19 @@
             $this->view("register_admin","","",[]);
         }
         public function overview(){
-            echo "admin";
+            $this->view("admin","Tổng quan","overView",[]);
+        }
+        public function manage_courses(){
+            $this->view("admin","Quản lý khóa học","managerCourse",[]);
+        }
+        public function manage_seller(){
+            $this->view("admin","Quản lý seller","managerSeller",[]);
+        }
+        public function manage_user(){
+            $this->view("admin","Quản lý người dùng","managerUser",[]);
+        }
+        public function manage_account(){
+            $this->view("admin","Quản lý tài khoản","managerAccount",[]);
         }
     }
 ?>
