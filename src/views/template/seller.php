@@ -2,15 +2,21 @@
 <html lang="vi" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="<?php echo $link_sever ?>/public/images/system/Logo.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>font admin</title>
+    <title> <?php echo $name_page?> </title>
   </head>
-
+  <style>
+    <?php echo "#".$view?>{
+        background: #081D45;
+    }
+</style>
   <body>
     <!-- slider chức năng -->
     <div class="sidebar">
@@ -20,31 +26,31 @@
       </div>
       <ul class="nav-links">
         <li>
-          <a href="#" class="active">
+          <a href="<?php echo $link_sever ?>/seller/overview" id="overViewSeller">
             <i class="bx bx-pie-chart-alt-2"></i>
             <span class="links_name">Tổng quan chung</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo $link_sever ?>/seller/create_course" id="createCourse">
             <i class="bx bx-book-add"></i>
             <span class="links_name">Tạo khóa học mới</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo $link_sever ?>/seller/my_course" id="myCourse">
             <i class="bx bx-book-bookmark"></i>
             <span class="links_name">Quản lý khóa học</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="<?php echo $link_sever ?>/seller/manage_account" id = "managerAccount">
             <i class="bx bx-cog"></i>
             <span class="links_name">Tài khoản</span>
           </a>
         </li>
         <li class="log_out">
-          <a href="#">
+          <a href="<?php echo $link_sever ?>/seller/overview"">
             <i class="bx bx-log-out"></i>
             <span class="links_name">Đăng xuất</span>
           </a>
@@ -79,12 +85,7 @@
 
       <!-- Content -->
       <div class="home-content">
-        <div class="sales-boxes">
-          <div class="recent-sales box" style="width: 100%; display: block">
-            <div class="title">Recent Sales</div>
-            <div class="sales-details">Nội dung</div>
-          </div>
-        </div>
+        <?php require_once "./src/views/content/".$view.".php" ?>
 
         <!-- footer -->
         <div class="sales-boxes" style="margin-top: 25px">
@@ -99,4 +100,5 @@
     </section>
 
   </body>
+  <script src="<?php echo $link_sever ?>/public/javascript/admin.js"></script>
 </html>
