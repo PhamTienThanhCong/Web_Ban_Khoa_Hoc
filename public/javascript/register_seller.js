@@ -32,32 +32,51 @@ $(document).ready(function () {
       check = false;
     }
     if ($("#password").val() != $("#confirm-password").val()) {
-        check = false;
-        toastr["error"]("Mật khẩu không khớp");
+      check = false;
+      toastr["error"]("Mật khẩu không khớp");
     }
-    if ((document.getElementById("description").value).trim() == ""){
-        check = false;
-        toastr["error"]("Mô tả không thể để trống");
+    if (document.getElementById("description").value.trim() == "") {
+      check = false;
+      toastr["error"]("Mô tả không thể để trống");
     }
     if (check) {
-        var currentLocation = window.location;
-        currentLocationHome =
-            currentLocation.protocol + "//" + currentLocation.host + "/home/overview";
-        currentLocation =
-            currentLocation.protocol +
-            "//" +
-            currentLocation.host +
-            "/account/create_seller";
+      var currentLocation = window.location;
+      currentLocationHome =
+        currentLocation.protocol +
+        "//" +
+        currentLocation.host +
+        "/home/overview";
+      currentLocation =
+        currentLocation.protocol +
+        "//" +
+        currentLocation.host +
+        "/account/create_seller";
 
-        $.ajax({
-            type: "POST",
-            url: currentLocation,
-            data: $(this).serializeArray(),
-            dataType: "html",
-            success: function (response) {
-            console.log(response);
-            },
-        });
+      $.ajax({
+        type: "POST",
+        url: currentLocation,
+        data: $(this).serializeArray(),
+        dataType: "html",
+        success: function (response) {
+          if (response == 1){
+            toastr["success"]("Tạo tài khoản thành công");
+            registerDone();
+          }else if (response == 2){
+            toastr["warning"]("Tài khoản bạn tạo bị lỗi. Vui lòng thử lại sau");
+          }else{
+            toastr["error"]("Email không hợp lệ hoặc đã bị trùng");
+          }
+        },
+      });
     }
   });
 });
+function registerDone() {
+  document.getElementById("register_account").innerHTML = `
+    <div>
+        <p>Bạn đã đăng kí tài khoản thành công.</p>
+        <p>vui long chờ một khoảng thời gian để admin duyệt.</p>
+        <p>Chúng thôi sẽ thông báo lại cho bạn sau</p>
+        <a href="<?php echo $link_sever ?>/admin/login">Đăng nhập tại đây</a>
+    </div>`;
+}
