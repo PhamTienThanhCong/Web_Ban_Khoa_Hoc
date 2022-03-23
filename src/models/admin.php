@@ -43,11 +43,30 @@
                 return 0;
             }
         }
-        function checkLogin($email, $password){
+        function checkLogin($email, $password, $remember){
             $sql = "SELECT * FROM `admin` WHERE `email_admin` = '$email'";
             $account = mysqli_query($this->connection, $sql);
             $account = mysqli_fetch_array($account);
-            die($sql);
+            if (isset($account['password'])){
+                $verify = password_verify($password, $account['password']);
+                if($account['lever'] != '0'){
+                    if ($verify){
+                        $_SESSION['id_admin'] = $account['id_admin'];
+                        $_SESSION['name_admin'] = $account['name_admin'];
+                        if ($remember == 1){
+                            setcookie("token", $account['token_admin'], time() + (86400 * 30), "/");
+                        }
+                        if($account['lever'] == '1'){
+                            die("1");
+                        }else if($account['lever'] == '2'){
+                            die("2");
+                        }
+                    }
+                }else if($account['lever'] == '0'){
+                    die("3");
+                }
+            }
+            die("0");
         }
     }
 ?>

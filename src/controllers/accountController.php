@@ -33,27 +33,24 @@
         public function login_admin(){
             $this->CheckWasLogin();
             if (!isset($_POST['email']) || !isset($_POST['password'])){
-                echo 0;
-                exit();
+                die("0");
             }
 
             $email = addslashes($_POST["email"]);
             $password = addslashes($_POST["password"]);
-            $remember = 0;
+            $remember = "0";
             if (isset($_POST["remember"])){
                 $remember = 1;
             }
             if ($email == "" || $password == ""){
-                echo 0;
-                exit();
+                die("0");
             }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                echo 0;
-                exit();
+                die("0");
             }
             
-            // $login_account = $this->model('admin');
-            // $login_account->checkLogin($email, $password);
+            $login_account = $this->model('admin');
+            $login_account->checkLogin($email, $password, $remember);
 
         }
     }

@@ -75,6 +75,6 @@ function registerDone() {
         <p>Bạn đã đăng kí tài khoản thành công.</p>
         <p>vui long chờ một khoảng thời gian để admin duyệt.</p>
         <p>Chúng thôi sẽ thông báo lại cho bạn sau</p>
-        <a href="/admin/login">Đăng nhập tại đây</a>
+        <a href="`+currentLocation+`">Đăng nhập tại đây</a>
     </div>`;
 }

@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/login_admin.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <title>Đăng nhập Trouvaille</title>
   </head>
   <body>
     <div class="wrapper">
       <div class="title">Login Trouvaille</div>
-      <form method="post" action="<?php echo $link_sever ?>/account/login_admin">
+      <form id="admin_login" method="post" action="<?php echo $link_sever ?>/account/login_admin">
         <div class="field">
           <input type="email" name="email" required>
           <label>Email</label>
@@ -31,4 +32,7 @@
       </form>
     </div>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="<?php echo $link_sever ?>/public/javascript/login_admin.js"></script>
 </html>
