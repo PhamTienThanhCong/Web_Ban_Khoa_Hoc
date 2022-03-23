@@ -26,6 +26,6 @@
 
             echo $save->createSeller($name, $email, $description, $secure_pass);
         }
-
+        
     }
 ?>

@@ -41,11 +41,6 @@ $(document).ready(function () {
     }
     if (check) {
       var currentLocation = window.location;
-      currentLocationHome =
-        currentLocation.protocol +
-        "//" +
-        currentLocation.host +
-        "/home/overview";
       currentLocation =
         currentLocation.protocol +
         "//" +
@@ -58,12 +53,12 @@ $(document).ready(function () {
         data: $(this).serializeArray(),
         dataType: "html",
         success: function (response) {
-          if (response == 1){
+          if (response == 1) {
             toastr["success"]("Tạo tài khoản thành công");
             registerDone();
-          }else if (response == 2){
+          } else if (response == 2) {
             toastr["warning"]("Tài khoản bạn tạo bị lỗi. Vui lòng thử lại sau");
-          }else{
+          } else {
             toastr["error"]("Email không hợp lệ hoặc đã bị trùng");
           }
         },
@@ -72,11 +67,14 @@ $(document).ready(function () {
   });
 });
 function registerDone() {
+  var currentLocation = window.location;
+  currentLocation =
+    currentLocation.protocol + "//" + currentLocation.host + "/admin/login";
   document.getElementById("register_account").innerHTML = `
     <div>
         <p>Bạn đã đăng kí tài khoản thành công.</p>
         <p>vui long chờ một khoảng thời gian để admin duyệt.</p>
         <p>Chúng thôi sẽ thông báo lại cho bạn sau</p>
-        <a href="<?php echo $link_sever ?>/admin/login">Đăng nhập tại đây</a>
+        <a href="/admin/login">Đăng nhập tại đây</a>
     </div>`;
 }
