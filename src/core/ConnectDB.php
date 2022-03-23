@@ -1,6 +1,6 @@
 <?php
     class ConnectDB{
-        private $connection;
+        protected $connection;
         private $hostname = 'localhost';
         private $user = 'root';
         private $password = '';
@@ -12,13 +12,6 @@
                 die ('Failed to connect with server');
             }  
             mysqli_set_charset($this->connection,'utf8');
-        }
-        protected function getValues($sql){
-            $data = mysqli_connect($this->connection,$sql);
-            return $data;
-        }
-        protected function pushValue($sql){
-            mysqli_connect($this->connection,$sql);
         }
     }
 ?>

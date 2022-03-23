@@ -8,5 +8,10 @@
             $link_sever = "http://$_SERVER[HTTP_HOST]";
             require_once "./src/views/template/". $template .".php";
         }
+        protected function CheckWasLogin(){
+            if (isset($_SESSION['lever'])){
+                header('Location: /');
+            }
+        }
     }
 ?>

@@ -11,10 +11,5 @@
             $this->CheckWasLogin();
             $this->view("register_admin","","",[]);
         }
-        private function CheckWasLogin(){
-            if (isset($_SESSION['lever'])){
-                header('Location: /');
-            }
-        }
     }
 ?>
