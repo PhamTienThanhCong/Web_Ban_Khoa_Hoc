@@ -11,7 +11,7 @@
             $this->CheckWasLogin();
             $this->view("register_admin","","",[]);
         }
-        public function over_view(){
+        public function overview(){
             echo "admin";
         }
     }
