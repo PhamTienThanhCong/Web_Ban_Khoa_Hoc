@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/admin.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="shortcut icon" href="<?php echo $link_sever ?>/public/images/system/Logo.ico" type="image/x-icon">
-  <title> <?php echo $name_page?> </title>
+  <title> <?php echo $name_page ?> </title>
 </head>
 <style>
-    <?php echo "#".$view?>{
-        background: #081D45;
-    }
+  <?php echo "#" . $view ?> {
+    background: #081D45;
+  }
 </style>
 
 <body>
@@ -93,23 +93,23 @@
 
     <!-- Content -->
     <div class="home-content">
-        <?php require_once "./src/views/content/".$view.".php" ?>
-    <!-- Content -->
+      <?php require_once "./src/views/content/" . $view . ".php" ?>
+      <!-- Content -->
       <!-- footer -->
       <div class="sales-boxes" style="margin-top: 25px">
         <div class="recent-sales box" style="width:100%; display: block;">
           <div class="title">Chân trang</div>
           <div class="sales-details">
-            Nội dung 
+            Nội dung
           </div>
         </div>
       </div>
       <!-- footer -->
-      
+
     </div>
     <!-- Content -->
   </section>
-<script src="<?php echo $link_sever ?>/public/javascript/admin.js"></script>
+  <script src="<?php echo $link_sever ?>/public/javascript/admin.js"></script>
 </body>
 
 </html>

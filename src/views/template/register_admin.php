@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <script src="https://kit.fontawesome.com/c71231073e.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div class="wrapper">
     <header>Đăng kí làm Seller in Trouvaille</header>
@@ -51,4 +53,5 @@
   <script src="<?php echo $link_sever ?>/public/javascript/register_seller.js"></script>
 
 </body>
+
 </html>

@@ -55,18 +55,18 @@ var tiny = tinymce.init({
 });
 // Mô tả
 
-function resetForm(){
-    var newForm = document.getElementById('edit-lesson');
-    newForm.reset();
+function resetForm() {
+  var newForm = document.getElementById("edit-lesson");
+  newForm.reset();
 }
 
 var ShowPreviewLesson = function (event) {
-    var nameBtn = event.target.innerText;
-    if (nameBtn == "Ẩn bản Demo"){
-        event.target.innerText = "Xem bản demo";
-        document.getElementById("previewLesson").style.display = "none";
-    }else if (nameBtn == "Xem bản demo"){
-        event.target.innerText = "Ẩn bản Demo";
-        document.getElementById("previewLesson").style.display = "block";
-    }
+  var nameBtn = event.target.innerText;
+  if (nameBtn == "Ẩn bản Demo") {
+    event.target.innerText = "Xem bản demo";
+    document.getElementById("previewLesson").style.display = "none";
+  } else if (nameBtn == "Xem bản demo") {
+    event.target.innerText = "Ẩn bản Demo";
+    document.getElementById("previewLesson").style.display = "block";
+  }
 };

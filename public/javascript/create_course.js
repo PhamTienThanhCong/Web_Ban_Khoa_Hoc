@@ -21,15 +21,16 @@ var ChangePrice = function (event) {
   output.innerHTML = "<i class='bx bxs-credit-card'></i> Giá thành: " + x;
 };
 
-function changeDescription(){
-    document.getElementById("description-preview").innerHTML = tinyMCE.activeEditor.getContent();
+function changeDescription() {
+  document.getElementById("description-preview").innerHTML =
+    tinyMCE.activeEditor.getContent();
 }
 
 tinymce.init({
-    selector: '#myTextarea',
-    init_instance_callback: function (editor) {
-      editor.on('Change', function (e) {
-        changeDescription()
-      });
-    }
-  });
+  selector: "#myTextarea",
+  init_instance_callback: function (editor) {
+    editor.on("Change", function (e) {
+      changeDescription();
+    });
+  },
+});
