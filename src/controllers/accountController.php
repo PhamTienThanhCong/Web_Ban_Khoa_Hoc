@@ -48,10 +48,30 @@
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 die("0");
             }
-            
             $login_account = $this->model('admin');
             $login_account->checkLogin($email, $password, $remember);
-
+        }
+        public function logout(){
+            $actual_link = "http://$_SERVER[HTTP_HOST]";
+            if (isset($_SESSION['lever'])) {
+                if ($_SESSION['lever'] == "2"){
+                    $actual_link = $actual_link."/seller/login";
+                }else if ($_SESSION['lever'] == "1"){
+                    $actual_link = $actual_link."/seller/admin";
+                }else{
+                    $actual_link = $actual_link."/home";
+                }
+            }
+            session_destroy();
+            if (isset($_COOKIE['token'])) {
+                unset($_COOKIE['token']); 
+                setcookie('token', null, -1, '/'); 
+            }
+            if (isset($_COOKIE['token_user'])) {
+                unset($_COOKIE['token_user']); 
+                setcookie('token_user', null, -1, '/'); 
+            }
+            header ("Location: $actual_link");
         }
     }
 ?>

@@ -6,6 +6,7 @@
    <meta charset="utf-8">
    <title>404 Error Page</title>
    <link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/error_page.css">
+   <link rel="shortcut icon" href="<?php echo $link_sever ?>/public/images/system/Logo.ico" type="image/x-icon">
 </head>
 
 <body>

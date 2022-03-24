@@ -20,8 +20,10 @@
     <!-- slider chức năng -->
     <div class="sidebar">
         <div class="logo-details">
-            <i class="bx bxl-c-plus-plus"></i>
-            <span class="logo_name">Be Cong</span>
+            <div id="image-logo">
+                <img src="<?php echo $link_sever ?>/public/images/system/Course_Logo.png" alt="">
+            </div>
+            <span class="logo_name">Trouvaille</span>
         </div>
         <ul class="nav-links">
             <li>
@@ -49,8 +51,8 @@
                 </a>
             </li>
             <li class="log_out">
-                <a href="<?php echo $link_sever ?>/seller/overview"">
-            <i class=" bx bx-log-out"></i>
+                <a href="<?php echo $link_sever ?>/account/logout">
+                    <i class=" bx bx-log-out"></i>
                     <span class="links_name">Đăng xuất</span>
                 </a>
             </li>
@@ -71,8 +73,8 @@
             </div>
             <!-- Tài khoản -->
             <div class="profile-details">
-                <img src="https://i.pinimg.com/originals/56/cd/60/56cd60a92382795af872481783fbe06d.jpg" alt="" />
-                <span class="admin_name">Cong nè</span>
+                <img src="<?php echo $link_sever ?>/public/images/avatar/<?php echo $_SESSION['image_admin'] ?>" alt="" />
+                <span class="admin_name"><?php echo $_SESSION['name_admin'] ?></span>
                 <i class="bx bx-chevron-down"></i>
             </div>
             <!-- Tài khoản -->

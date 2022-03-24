@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/login_admin.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <title>Đăng nhập Trouvaille</title>
+  <link rel="shortcut icon" href="<?php echo $link_sever ?>/public/images/system/Logo.ico" type="image/x-icon">
 </head>
 
 <body>

@@ -53,6 +53,8 @@
                     if ($verify){
                         $_SESSION['id_admin'] = $account['id_admin'];
                         $_SESSION['name_admin'] = $account['name_admin'];
+                        $_SESSION['lever'] = $account['lever'];
+                        $_SESSION['image_admin'] = $account['image_admin'];
                         if ($remember == 1){
                             setcookie("token", $account['token_admin'], time() + (86400 * 30), "/");
                         }
@@ -69,4 +71,3 @@
             die("0");
         }
     }
-?>
