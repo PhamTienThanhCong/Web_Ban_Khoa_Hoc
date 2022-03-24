@@ -70,4 +70,20 @@
             }
             die("0");
         }
+        function getSeller($page, $type){
+            $sql = "SELECT * FROM `admin` WHERE `lever` = '$type' LIMIT 5 OFFSET $page";
+            $account = mysqli_query($this->connection, $sql);
+            $data = [];
+            foreach($account as $seller){
+                $data[] = [
+                    "id"=>$seller["id_admin"],
+                    "name"=>$seller["name_admin"],
+                    "email"=>$seller["email_admin"],
+                    "image"=>$seller["image_admin"],
+                    "description"=>$seller["description_admin"]
+                ];
+            }
+            return json_encode($data);
+        }
+
     }

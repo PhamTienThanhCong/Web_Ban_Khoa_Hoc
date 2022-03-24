@@ -8,7 +8,7 @@
             $this->view("login_admin","","",[]);
         }
         public function register($title = []){
-            $this->CheckLoginAdmin();
+            $this->CheckWasLogin();
             $this->view("register_admin","","",[]);
         }
         public function overview(){

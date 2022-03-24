@@ -5,30 +5,22 @@
     <div class="sales-details">
       <div class="table-users">
         <table cellspacing="0">
+          <tbody id="wait-seller">
           <tr>
             <th>avatar</th>
             <th>Tên</th>
             <th>Email</th>
             <th>Trạng thái</th>
+            <th width="250">Thông tin</th>
           </tr>
-
-          <tr>
-            <td><img class="img-user-admin" src="https://toigingiuvedep.vn/wp-content/uploads/2022/01/anh-meo-cute.jpg" alt="" /></td>
-            <td>Jane Smith</td>
-            <td>jane.smith@foo.com</td>
-            <td style="text-align:center">
-              <a href="">Duyệt</a>
-              <br>
-              <a href="">Từ chối</a>
-            </td>
-          </tr>
+          </tbody>
 
 
         </table>
       </div>
     </div>
     <div class="button">
-      <a href="#">See All</a>
+      <a style="cursor: pointer" type="btn" id = "see-more-wait-seller">Xem thêm</a>
     </div>
   </div>
 </div>
@@ -38,35 +30,23 @@
     <div class="sales-details">
       <div class="table-users">
         <table cellspacing="0">
-          <tr>
-            <th>avatar</th>
-            <th>Tên</th>
-            <th>Email</th>
-            <th>Active</th>
-            <th width="250">Thông tin</th>
-          </tr>
+          <tbody id="done-seller">
+            <tr>
+              <th>avatar</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th>Active</th>
+              <th width="250">Thông tin</th>
+            </tr>
+          </tbody>
 
-          <tr>
-            <td><img class="img-user-admin" src="https://toigingiuvedep.vn/wp-content/uploads/2022/01/anh-meo-cute.jpg" alt="" /></td>
-            <td>Jane Smith</td>
-            <td>jane.smith@foo.com</td>
-            <td>
-              <a href="">
-                Chặn
-              </a>
-            </td>
-            <td>
-              - số khóa học hiện có : 25 <br>
-              - số lượng đã bán : 150 <br>
-              - Thu nhập: 125.200.000 đ <br>
-            </td>
-          </tr>
 
         </table>
       </div>
     </div>
     <div class="button">
-      <a href="#">See All</a>
+      <a style="cursor: pointer" type="btn" id = "see-more-done-seller">Xem thêm</a>
     </div>
   </div>
 </div>
+<script src="<?php echo $link_sever ?>/public/javascript/admin/managerSeller.js"></script>
