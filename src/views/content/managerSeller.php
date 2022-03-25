@@ -49,4 +49,31 @@
     </div>
   </div>
 </div>
+<!-- Modal -->
+<link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/modal.css" />
+<div class="modal-wrapper">
+  <div class="modal">
+    <div class="head">
+      Thông báo xác nhận
+      <a class="btn-close trigger" href="javascript:;"></a>
+    </div>
+    <div id="content-modal">
+      <div id="modal-name">
+      </div>
+      <div id="modal-info">
+        <p>Tên: Bé Công</p>
+        <p>Email: test@gmail.com</p>
+        <p>Mô tả bản thân: đệp trai</p>
+      </div>
+      <form id="submit-modal" action="post" class="btn-modal">
+        <input id="id-seller" name="id" type="hidden">
+        <input id="id-type" type="hidden">
+        <button type="submit" class="button">Xác nhận</button>
+        <button type="button" class="button trigger">Quay lại</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
 <script src="<?php echo $link_sever ?>/public/javascript/admin/managerSeller.js"></script>

@@ -85,5 +85,30 @@
             }
             return json_encode($data);
         }
-
+        function updateSeller($id,$type){
+            $sql = "SELECT * FROM `admin` WHERE `id_admin` = '$id'";
+            $account = mysqli_query($this->connection, $sql);
+            $account = mysqli_fetch_array($account);
+            $sql = "UPDATE
+                        `admin`
+                    SET
+                        `lever` = '$type'
+                    WHERE
+                        `id_admin` = '$id'
+                    ";
+            $sqlDelete = "DELETE FROM `admin` WHERE `id_admin` = '$id'";
+            if (isset($account['lever'])){
+                if (($account['lever'] == "0") && ($type == "0")){
+                    mysqli_query($this->connection, $sqlDelete);
+                }else if (($account['lever'] == "0") && ($type == "2")){
+                    mysqli_query($this->connection, $sql);
+                }else if (($account['lever'] == "2") && ($type == "-1")){
+                    mysqli_query($this->connection, $sql);
+                }else if (($account['lever'] == "-1") && ($type == "2")){
+                    mysqli_query($this->connection, $sql);
+                }
+                return "1";
+            }
+            
     }
+}

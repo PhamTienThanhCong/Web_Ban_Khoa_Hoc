@@ -18,7 +18,7 @@ function waitSeller(page) {
         offBtn("see-more-wait-seller");
       } else {
         PageSellerWait += response.length;
-        printSeller("wait-seller", response);
+        printSeller("wait-seller", response, "wait");
         if (response.length < 5) {
           offBtn("see-more-wait-seller");
         }
@@ -36,7 +36,7 @@ function doneSeller(page) {
         offBtn("see-more-done-seller");
       } else {
         PageSellerDone += response.length;
-        printSeller("done-seller", response);
+        printSeller("done-seller", response, "done");
         if (response.length < 5) {
           offBtn("see-more-done-seller");
         }
@@ -45,7 +45,16 @@ function doneSeller(page) {
   });
 }
 // In thông tin
-function printSeller(id, data) {
+function printSeller(id, data, type) {
+    if (type == "wait"){
+        type = `
+        <a class="trigger" data-type="accept" href="javascript:;">Duyệt</a>
+        <br>
+        <a class="trigger" data-type="delete" href="javascript:;">Từ chối</a>`;
+    }else if (type == "done"){
+        type = `
+        <a class="trigger" data-type="block" href="javascript:;">Chặn</a>`;
+    }
   for (let i = data.length - 1; i >= 0; i--) {
     document.getElementById(id).innerHTML +=
       `
@@ -63,10 +72,20 @@ function printSeller(id, data) {
             <td>` +
       data[i]["email"] +
       `</td>
-            <td style="text-align:center">
-            <a href="">Duyệt</a>
-            <br>
-            <a href="">Từ chối</a>
+            <td data-name="` +
+      data[i]["name"] +
+      `"
+            data-email="` +
+      data[i]["email"] +
+      `"
+            data-id="` +
+      data[i]["id"] +
+      `"
+            data-description="` +
+      data[i]["description"] +
+      `"
+            "style="text-align:center">
+                `+ type +`
             </td>
             <td>` +
       data[i]["description"] +
@@ -74,8 +93,8 @@ function printSeller(id, data) {
         </tr>
         `;
   }
+  readyAction();
 }
-
 // Tương tác các nút
 function offBtn(id) {
   id = "#" + id;
@@ -90,3 +109,48 @@ $("#see-more-wait-seller").on("click", function () {
   waitSeller(PageSellerWait);
 });
 // Tương tác các nút
+function readyAction() {
+  $(".trigger").off("click");
+  $(".body").off("click");
+  $(".trigger").on("click", function () {
+    var value = this.parentNode;
+    var alert = `Bạn có muốn ` + this.innerHTML + ` Tài khoản: ` + value.dataset.name + ``;
+    $('#modal-name').html(alert);
+    $('#modal-info').html(`
+        <p>Tên: `+ value.dataset.name +`</p>
+        <p>Email: `+ value.dataset.email +`</p>
+        <p>Mô tả bản thân: `+ value.dataset.description +`</p>
+    `);
+    $('#id-seller').val(value.dataset.id);
+    $('#id-type').val(this.dataset.type);
+    $(".modal-wrapper").toggleClass("open");
+    $(".page-wrapper").toggleClass("blur");
+    return false;
+  });
+}
+$('#submit-modal').on('submit', function(e) {
+    e.preventDefault();
+    var type= $('#id-type').val();
+    var id = $('#id-seller').val();
+    var link = currentLocation + "/api_admin/updateSeller/"+type;
+    var selector = "#wait-seller-" + id + "";
+    var html = "";
+    $(".modal-wrapper").toggleClass("open");
+    $.ajax({
+      type: "POST",
+      url: link,
+      data: $(this).serializeArray(),
+      dataType: "html",
+      success: function (response) {
+        console.log(response);
+        html = $(selector).html();
+        $(selector).remove();
+        if (type == "accept")
+          document.getElementById('done-seller').innerHTML += `
+          <tr id="wait-seller-`+ id +`" >
+          `+ html +`
+          </tr>
+          `;
+        }
+    });
+})
