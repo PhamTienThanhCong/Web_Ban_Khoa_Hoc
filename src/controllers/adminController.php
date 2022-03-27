@@ -31,8 +31,11 @@
             $this->CheckLoginAdmin();
             $id = $_SESSION['id_admin'];
             $myAccount = $this->model('admin_fix');
-            echo $myAccount->getMyAccount($id);
-            // $this->view("admin","Quản lý tài khoản","managerAccount",[]);
+            $myAccount = $myAccount->getMyAccount($id);
+            $email = $myAccount['email_admin'];
+            $description = $myAccount['description_admin'];
+
+            $this->view("admin","Quản lý tài khoản","managerAccount",["email"=>$email,"description"=>$description]);
         }
     }
 ?>

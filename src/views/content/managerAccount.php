@@ -14,14 +14,11 @@
           <input type="text" id="name" name="name_admin" value="Cong be" readonly />
           <br />
           <label for="email">Email: </label>
-          <input type="email" id="email" name="email_admin" value="Cong123@gmail.com" readonly />
+          <input type="email" id="email" name="email_admin" value="<?php echo $data['email']?>" readonly />
           <br />
           <label style="width: 300px;" for="email">Thông tin của bạn: </label>
           <!-- <br> -->
-          <textarea class="textarea-view" name="infor" id="" cols="30" rows="6" readonly>-Phần mô tả thông tin cá nhân
-- mô tả làm sao cho chân thật nhất
-- mô tả làm sao cho ngta tin tưởng nhất
-                  </textarea>
+          <textarea class="textarea-view" name="infor" id="" cols="30" rows="6" readonly><?php echo $data['description']?></textarea>
           <br />
           <input type="hidden" id="img" name="image" />
           <div class="hidden-lable">
