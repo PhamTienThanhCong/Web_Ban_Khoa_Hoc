@@ -73,5 +73,17 @@
             }
             header ("Location: $actual_link");
         }
+        public function update_account_password(){
+            if (isset($_POST['password'])) {
+                echo "0";
+                exit();
+            }
+            $id = $_SESSION['id_admin'];
+            $password = addslashes($_POST["password"]);
+            $secure_pass = password_hash($password, PASSWORD_BCRYPT);
+            $change_Password = $this->model('admin');
+           echo $change_Password->updatePassWord($id, $secure_pass);
+        }
+
     }
 ?>

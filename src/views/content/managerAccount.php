@@ -6,10 +6,10 @@
     <div class="sales-details">
       <div class="user-detail">
         <div class="avata">
-          <img id="output" width="100%" src="https://thethao99.com/wp-content/uploads/2021/03/nguyen-thuy-duong.jpg" alt="" />
+          <img id="output" width="100%" src="<?php echo $link_sever ?>/public/images/avatar/<?php echo $_SESSION['image_admin'] ?>" alt="" />
         </div>
 
-        <form id="user-in4" method="post" action="./processing/employee_edit.php" enctype="multipart/form-data">
+        <form id="user-in4" method="post" action="<?php echo $link_sever ?>account/update_account_admin" enctype="multipart/form-data">
           <label for="name">Tên: </label>
           <input type="text" id="name" name="name_admin" value="Cong be" readonly />
           <br />
@@ -34,7 +34,7 @@
             Thay đổi mất khẩu
           </button>
         </form>
-        <form id="my-password" method="post" action="./processing/my_account_change_password.php">
+        <form id="my-password" method="post" action="">
           <h3 style="display: inline">Đổi mật khẩu</h3>
           <br /><br />
           <label for="">Mật khẩu cũ:</label>

@@ -23,4 +23,5 @@ $(document).ready(function () {
         document.getElementById('my-password').style.display = 'inline-block';
         document.getElementById('change-danger').style.display = 'none';
     })
+    
 });

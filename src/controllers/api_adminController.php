@@ -16,6 +16,8 @@ class api_admin extends Controllers{
             $typeSeller = "2";
         }else if (strcmp($data[0], "wait") == 0){
             $typeSeller = "0";
+        }else if (strcmp($data[0], "block") == 0){
+            $typeSeller = "-1";
         }else{
             $this->view("error_page","","",[]);
             exit();

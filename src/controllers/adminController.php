@@ -29,7 +29,10 @@
         }
         public function manage_account(){
             $this->CheckLoginAdmin();
-            $this->view("admin","Quản lý tài khoản","managerAccount",[]);
+            $id = $_SESSION['id_admin'];
+            $myAccount = $this->model('admin_fix');
+            echo $myAccount->getMyAccount($id);
+            // $this->view("admin","Quản lý tài khoản","managerAccount",[]);
         }
     }
 ?>

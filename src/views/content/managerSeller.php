@@ -49,6 +49,32 @@
     </div>
   </div>
 </div>
+
+<div class="sales-boxes" style="margin-top: 25px">
+  <div class="recent-sales box" style="width:100%">
+    <div class="title">Quản lý seller đã chặn</div>
+    <div class="sales-details">
+      <div class="table-users">
+        <table cellspacing="0">
+          <tbody id="block-seller">
+            <tr>
+              <th>avatar</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th>Active</th>
+              <th width="250">Thông tin</th>
+            </tr>
+          </tbody>
+
+
+        </table>
+      </div>
+    </div>
+    <div class="button">
+      <a style="cursor: pointer" type="btn" id = "see-more-block-seller">Xem thêm</a>
+    </div>
+  </div>
+</div>
 <!-- Modal -->
 <link rel="stylesheet" href="<?php echo $link_sever ?>/public/css/modal.css" />
 <div class="modal-wrapper">

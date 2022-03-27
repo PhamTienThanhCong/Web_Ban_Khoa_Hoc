@@ -1,4 +1,6 @@
-
+  .trigger-none{
+    display: none;
+  }
   
   .img-user-admin {
     border-radius: 50%;

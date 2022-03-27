@@ -2,10 +2,12 @@ var currentLocation = window.location;
 currentLocation = currentLocation.protocol + "//" + currentLocation.host;
 let PageSellerWait = 0;
 let PageSellerDone = 0;
+let PageSellerBlock = 0;
 
 $(document).ready(function () {
   waitSeller(0);
   doneSeller(0);
+  blockSeller(0);
 });
 // Gọi data
 function waitSeller(page) {
@@ -44,6 +46,24 @@ function doneSeller(page) {
     },
   });
 }
+function blockSeller(page) {
+  let link = currentLocation + "/api_admin/getSeller/block/" + page + "";
+  $.ajax({
+    url: link,
+    dataType: "json",
+    success: function (response) {
+      if (response.length == 0) {
+        offBtn("see-more-block-seller");
+      } else {
+        PageSellerBlock += response.length;
+        printSeller("block-seller", response, "block");
+        if (response.length < 5) {
+          offBtn("see-more-block-seller");
+        }
+      }
+    },
+  });
+}
 // In thông tin
 function printSeller(id, data, type) {
     if (type == "wait"){
@@ -54,7 +74,10 @@ function printSeller(id, data, type) {
     }else if (type == "done"){
         type = `
         <a class="trigger" data-type="block" href="javascript:;">Chặn</a>`;
-    }
+    }else if (type == "block"){
+      type = `
+      <a class="trigger" data-type="unblock" href="javascript:;">Bỏ chặn</a>`;
+  }
   for (let i = data.length - 1; i >= 0; i--) {
     document.getElementById(id).innerHTML +=
       `
@@ -144,13 +167,21 @@ $('#submit-modal').on('submit', function(e) {
       success: function (response) {
         console.log(response);
         html = $(selector).html();
+        html = html.replace("trigger" , "trigger-none"); 
         $(selector).remove();
-        if (type == "accept")
+        if (type == "accept" || type == "unblock"){
           document.getElementById('done-seller').innerHTML += `
           <tr id="wait-seller-`+ id +`" >
           `+ html +`
           </tr>
           `;
+        }else if (type == "block"){
+          document.getElementById('block-seller').innerHTML += `
+          <tr id="wait-seller-`+ id +`" >
+          `+ html +`
+          </tr>
+          `;
+        }
         }
     });
 })
