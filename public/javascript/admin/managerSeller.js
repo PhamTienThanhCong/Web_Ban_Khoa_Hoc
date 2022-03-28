@@ -5,6 +5,22 @@ let PageSellerDone = 0;
 let PageSellerBlock = 0;
 
 $(document).ready(function () {
+  toastr.options = {
+    closeButton: true,
+    debug: false,
+    newestOnTop: true,
+    progressBar: true,
+    positionClass: "toast-top-right",
+    preventDuplicates: false,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "5000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut",
+  };
   waitSeller(0);
   doneSeller(0);
   blockSeller(0);
@@ -182,6 +198,7 @@ $('#submit-modal').on('submit', function(e) {
           </tr>
           `;
         }
+        toastr["success"]("Thành công");
         }
     });
 })

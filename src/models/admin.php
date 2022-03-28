@@ -116,18 +116,26 @@
                 return "1";
             }
         }
-        public function updatePassWord($id, $secure_pass){
-            $sql = "UPDATE
-                        `admin`
-                    SET
-                        `password` = '$secure_pass'
-                    WHERE
-                        `id_admin` = '$id'";
-            mysqli_query($this->connection, $sql);
-            if (mysqli_error($this->connection) == ""){
-                return 1;
-            }else{
-                return 0;
+        public function updatePassWord($id, $secure_pass, $old_password){
+            $sql = "SELECT * FROM `admin` WHERE `id_admin` = '$id'";
+            $account = mysqli_query($this->connection, $sql);
+            $account = mysqli_fetch_array($account);
+            if (isset($account['password'])){
+                $verify = password_verify($old_password, $account['password']);
+                if($verify){
+                    $sql = "UPDATE
+                                `admin`
+                            SET
+                                `password` = '$secure_pass'
+                            WHERE
+                                `id_admin` = '$id'";
+                    mysqli_query($this->connection, $sql);
+                    if (mysqli_error($this->connection) == ""){
+                        return 1;
+                        exit();
+                    }
+                }
             }
+            return 0;
         }
 }

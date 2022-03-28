@@ -74,15 +74,16 @@
             header ("Location: $actual_link");
         }
         public function update_account_password(){
-            if (isset($_POST['password'])) {
+            if (isset($_POST['new_password'])== false || isset($_POST['password']) == false) {
                 echo "0";
                 exit();
             }
             $id = $_SESSION['id_admin'];
-            $password = addslashes($_POST["password"]);
+            $password = addslashes($_POST["new_password"]);
+            $old_password = addslashes($_POST["password"]);
             $secure_pass = password_hash($password, PASSWORD_BCRYPT);
             $change_Password = $this->model('admin');
-           echo $change_Password->updatePassWord($id, $secure_pass);
+            echo $change_Password->updatePassWord($id, $secure_pass, $old_password);
         }
 
     }
