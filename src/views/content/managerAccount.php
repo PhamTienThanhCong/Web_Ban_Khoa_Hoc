@@ -9,16 +9,16 @@
           <img id="output" width="100%" src="<?php echo $link_sever ?>/public/images/avatar/<?php echo $_SESSION['image_admin'] ?>" alt="" />
         </div>
 
-        <form id="user-in4" method="post" action="<?php echo $link_sever ?>account/update_account_admin" enctype="multipart/form-data">
+        <form id="user-in4" method="post" action="<?php echo $link_sever ?>/account/update_account_admin" enctype="multipart/form-data">
           <label for="name">Tên: </label>
-          <input type="text" id="name" name="name_admin" value="Cong be" readonly />
+          <input type="text" id="name" name="name_admin" value="<?php echo $_SESSION['name_admin']?>" readonly />
           <br />
           <label for="email">Email: </label>
           <input type="email" id="email" name="email_admin" value="<?php echo $data['email']?>" readonly />
           <br />
           <label style="width: 300px;" for="email">Thông tin của bạn: </label>
           <!-- <br> -->
-          <textarea class="textarea-view" name="infor" id="" cols="30" rows="6" readonly><?php echo $data['description']?></textarea>
+          <textarea class="textarea-view" name="info" id="" cols="30" rows="6" readonly><?php echo $data['description']?></textarea>
           <br />
           <input type="hidden" id="img" name="image" />
           <div class="hidden-lable">
