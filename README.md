@@ -20,3 +20,5 @@
   - Database: MySQL.
 - Tài liệu
   - [Tài liệu mô tả]
+
+- cách clone web về máy: https://www.youtube.com/watch?v=pA-bAHf--dM
