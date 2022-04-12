@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/demo', function () {
-    return view('template.admin');
+Route::get('/overview', function () {
+    return view('content.admin.overView');
 });
 
 Route::get('/', function () {
