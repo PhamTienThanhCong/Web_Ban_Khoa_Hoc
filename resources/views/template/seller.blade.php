@@ -20,7 +20,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/sidebar.html -->
-        @include('partials.navbar')
+        @include('partials.navbarSeller')
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
