@@ -14,12 +14,11 @@
         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
       </a>
     </li>
-    <li class="nav-item">
-      <span class="nav-link">
-        <a href="{{ route('seller.addCourse') }}">
-          <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Thêm khóa học</button>
+    <li class="nav-item {{ Request::segment(1) === 'taokhoahoc' ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('seller.addCourse') }}">
+          <span class="menu-title">Tạo khóa học</span>
+          <i class="mdi mdi-border-color menu-icon"></i>
         </a>
-      </span>
     </li>
     <li class="nav-item {{ Request::segment(1) === 'tongquan' ? 'active' : null }}">
       <a class="nav-link" href="{{ route('seller.overView') }}">
