@@ -52,7 +52,7 @@
 
         <div class="sales-boxes" style="margin-top: 25px">
             <div class="recent-sales box" style="width: 100%; display: block">
-                <div class="title">Xem trước khóa học mới</div>
+                <div class="page-title">Xem trước khóa học mới</div>
                 <div class="content">
                     <div class="img-pre">
                         <img id="img-preview"
@@ -63,23 +63,23 @@
                     <div class="cart-details">
                         <h2 id="title-course">Tên khóa học:</h2>
                         <p id="number-course">
-                            <i class="bx bxs-videos"></i>
+                            <i class="mdi mdi-book-open-page-variant"></i>
                             Số lượng bài học: 10 Bài
                         </p>
 
                         <p id="author-course">
-                            <i class="bx bxs-user"></i>
+                            <i class="mdi mdi-account"></i>
                             Tác giả: Bé Công
                         </p>
 
                         <p id="price-course">
-                            <i class="bx bxs-credit-card"></i>
+                            <i class="mdi mdi-cash"></i>
                             Giá thành: 000 VND
                         </p>
                     </div>
                 </div>
                 <br />
-                <div class="title">Mô tả khóa học</div>
+                <div class="page-title">Mô tả khóa học</div>
                 <br />
                 <div id="description-preview"></div>
             </div>
