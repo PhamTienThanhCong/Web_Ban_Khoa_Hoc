@@ -33,8 +33,8 @@
         <div class="sales-boxes">
             <div class="recent-sales box" style="width: 100%; display: block">
                 <div class="page-title">Tạo khóa học mới</div>
-
                 <form class="new-couse" method="post" action="" enctype="multipart/form-data">
+                    @csrf
                     <label for="">Tên của khóa học</label>
                     <input name="name_course" type="text" placeholder="Nhập tên của khóa học" onchange="changeTitle(event)" />
                     <br />

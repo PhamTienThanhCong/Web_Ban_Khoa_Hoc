@@ -9,7 +9,9 @@
 @stop
 
 @section('content')
-    Tổng quan code
+    Tổng quan code 
+    <br>
+    <a href="{{ route('seller.detailCourse', 12) }}">Xem Khóa học bất kì</a>
 @stop
 
 @section('js')

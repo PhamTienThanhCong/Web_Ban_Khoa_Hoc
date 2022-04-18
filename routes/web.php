@@ -46,13 +46,30 @@ Route::get('/seller/taikhoancuatoi', function () {
 })->name('seller.myAccount');
 
 Route::get('/seller/taokhoahoc', function () {
-    return view('content.seller.addCourse');
+    return view('content.seller.Course.addCourse');
 })->name('seller.addCourse');
 
 Route::get('/seller/quanlykhoahoc', function () {
-    return view('content.seller.managerCourse');
+    return view('content.seller.Course.managerCourse');
 })->name('seller.managerCourse');
 
+Route::get('/seller/quanlykhoahoc/chitiet/{course}', function ($course) {
+    return view('content.seller.Course.detailCourse', [
+        'course' => $course,
+    ]);
+})->name('seller.detailCourse');
+
+Route::get('/seller/quanlykhoahoc/chitiet/{course}/CauHoi{lesson}', function ($course,$lesson) {
+    return view('content.seller.Course.addQuestion', [
+        'course' => $course,
+    ]);
+})->name('seller.addQuestion');
+
+Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyCauhoi{lesson}', function ($course,$lesson) {
+    return view('content.seller.Course.questionManagement', [
+        'course' => $course,
+    ]);
+})->name('seller.questionManagement');
 
 Route::get('/', function () {
     return view('welcome');
