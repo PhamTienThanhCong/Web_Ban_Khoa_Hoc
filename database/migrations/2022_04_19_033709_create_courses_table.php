@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCoursesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('courses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_admin')->constrained('admins');
+            // $table->bigInteger('id_admin');
+            $table->string('name',40);
+            $table->string('image',150);
+            $table->integer('price');
+            $table->text('description');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('courses');
+    }
+}
