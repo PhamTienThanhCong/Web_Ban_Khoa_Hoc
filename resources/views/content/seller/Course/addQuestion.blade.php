@@ -32,8 +32,15 @@
             <div class="card-body">
                 <h4 class="card-title">Tạo câu hỏi mới</h4>
                 <form class="forms-sample" id="form-create-question">
-                    <div class="form-group">
-                        <label for="">Câu hỏi</label>
+                    <label for="">Loại câu hỏi: </label>
+                    <select class="select-type-question" id="exampleFormControlSelect2">
+                        <option value="1">Câu hỏi nhiều câu trả lời</option>
+                        <option value="2">Câu hỏi nhiều chỉ có một câu trả lời</option>
+                        <option value="3">Câu hỏi trả lời bằng text</option>
+                    </select>
+                    
+                    <div class="form-group mt-4">
+                        <h5>Câu hỏi: </h5>
                         <input type="text" name="q" class="form-control" placeholder="Câu hỏi">
                     </div>
                     <div id="form-question">
