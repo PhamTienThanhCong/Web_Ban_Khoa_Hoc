@@ -49,49 +49,102 @@
             
             <div>
                 <h5>Câu hỏi 1: Từ HTML là từ viết tắt của từ nào? </h5>
-                <table width="100%">
-                    <tr>
-                        <td>
-                            Câu trả lời
-                        </td>
-                        <td>
-                            kết quả
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Hyperlinks and Text Markup Language 
-                        </td>
-                        <td>
-                            kết quả
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Home Tool Markup Language 
-                        </td>
-                        <td>
-                            kết quả
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Hyper Text Markup Language 
-                        </td>
-                        <td>
-                            kết quả
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Tất cả đều sai 
+                <ul>
+                    <li>Hyperlinks and Text Markup Language </li>
+                    <li>Home Tool Markup Language </li>
+                    <li><b>Hyper Text Markup Language</b></li>
+                    <li>Tất cả đều sai </li>
+                    <li>
+                        <a href="">
+                            Sửa 
+                            <i class="mdi mdi-lead-pencil"></i>
+                        </a>
+                        <a href="" style="margin-left: 15px">
+                            Xóa
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-                        </td>
-                        <td>
-                            kết quả
-                        </td>
-                    </tr>
-                </table>
+            <div>
+                <h5>Câu hỏi 2: Ai (tổ chức nào) tạo ra Web standards?  </h5>
+                <ul>
+                    <li>The World Wide Web Consortium </li>
+                    <li><b>Microsoft</b></li>
+                    <li>Netscape</li>
+                    <li>Tất cả đều sai. </li>
+                    <li>
+                        <a href="">
+                            Sửa 
+                            <i class="mdi mdi-lead-pencil"></i>
+                        </a>
+                        <a href="" style="margin-left: 15px">
+                            Xóa
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Câu hỏi 3: JavaScript là ngôn ngữ xử lý ở: </h5>
+                <ul>
+                    <li> Client </li>
+                    <li>Server </li>
+                    <li><b>Server/client</b></li>
+                    <li>Không có dạng nào</li>
+                    <li>
+                        <a href="">
+                            Sửa 
+                            <i class="mdi mdi-lead-pencil"></i>
+                        </a>
+                        <a href="" style="margin-left: 15px">
+                            Xóa
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Câu hỏi 4:  Javascript là ngôn ngữ thông dịch hay biên dịch  </h5>
+                <ul>
+                    <li> Thông dịch </li>
+                    <li>Biên dịch </li>
+                    <li><b>Cả hai dạng</b></li>
+                    <li>Không có dạng nào ở trên </li>
+                    <li>
+                        <a href="">
+                            Sửa 
+                            <i class="mdi mdi-lead-pencil"></i>
+                        </a>
+                        <a href="" style="margin-left: 15px">
+                            Xóa
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h5>Câu hỏi 5: Từ HTML là từ viết tắt của từ nào? </h5>
+                <ul>
+                    <li>Hyperlinks and Text Markup Language </li>
+                    <li>Home Tool Markup Language </li>
+                    <li><b>Hyper Text Markup Language</b></li>
+                    <li>Tất cả đều sai </li>
+                    <li>
+                        <a href="">
+                            Sửa 
+                            <i class="mdi mdi-lead-pencil"></i>
+                        </a>
+                        <a href="" style="margin-left: 15px">
+                            Xóa
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
         </div>
