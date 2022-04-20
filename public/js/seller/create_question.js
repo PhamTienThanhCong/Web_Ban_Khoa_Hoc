@@ -1,6 +1,15 @@
-let typeQuestion = 1;
+let typeQuestion = '1';
 let numberQuestions = 1;
 
+function changeQuestionText(){
+    document.getElementById("form-question").innerHTML = `
+        <h5>
+            Câu trả lời:
+        </h5>
+        <textarea class="form-control" name="answer-text" rows="4"></textarea>
+        <br>
+    `;
+}
 
 function addQuestion(){
     numberQuestions++;
@@ -17,7 +26,7 @@ function addQuestion(){
         <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
         <br>
             <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
-            <select name="check" class="select-type-question">
+            <select name="check" class="select-type-answer">
             <option value="2">
                 Sai
             </option>
@@ -27,6 +36,9 @@ function addQuestion(){
             </select>
         <br>`
     document.getElementById("form-question").appendChild(node);
+    if (typeQuestion == '2'){
+        activeOneAnswer();
+    }
 }
 
 function active(){
@@ -36,32 +48,33 @@ function active(){
     })
 }
 
-function unarchive(){
-    $('.select-type-question').off('change');
-}
-
 function activeOneAnswer(){
-    unarchive();
-    $('.select-type-question').on('change',function(){
+    $('.select-type-answer').off('change');
+    $('.select-type-answer').on('change',function(){
         changeAnswer();
         this.value = 1;
     })
 }
 
 function changeAnswer(){
-    const value = $('.select-type-question');
-    for (let i = 0; i < value.length ; i++) {
+    const value = $('.select-type-answer');
+    let i;
+    for (i = 0; i < value.length ; i++) {
         value[i].value = 2;
-    }
-    
+    }    
 }
 
-$(document).ready(function () {
+function activateMultipleQuestions(){
+    $('#add-new-question').off('click');
     active();
     $('#add-new-question').on('click',function(){
         addQuestion();
         active();
     })
+}
+
+$(document).ready(function () {
+    activateMultipleQuestions();
     $('#clear-all-question').on('click',function(){
         $('#form-create-question')[0].reset();
         document.getElementById("form-question").innerHTML = "";
@@ -72,14 +85,26 @@ $(document).ready(function () {
     })
     $('#exampleFormControlSelect').on('change',function(){
         console.log('chekc')
+        if (typeQuestion == '3' && document.getElementById('exampleFormControlSelect').value != '3'){
+            $('#form-create-question')[0].reset();
+            document.getElementById("form-question").innerHTML = "";
+            numberQuestions = 0;
+            for (var i = 0; i < 1; i++) {
+                addQuestion();
+            }
+        }
         typeQuestion = document.getElementById('exampleFormControlSelect').value;
-        if(typeQuestion == '2'){
-            activeOneAnswer();
+        if (typeQuestion == '1'){
+            activateMultipleQuestions();
+            $('.select-type-answer').off('change');
+        }else if (typeQuestion == '2'){
+            activateMultipleQuestions()
             changeAnswer();
-            console.log('2pp');
-        }else if(typeQuestion == '1'){
-            unarchive();
-            console.log('upp');
+            $('.select-type-answer')[0].value = 1;
+            activeOneAnswer();
+        }else if (typeQuestion == '3'){
+            $('#add-new-question').off('click');
+            changeQuestionText();
         }
     })
 });
