@@ -33,10 +33,10 @@
                 <h4 class="card-title">Tạo câu hỏi mới</h4>
                 <form class="forms-sample" id="form-create-question">
                     <label for="">Loại câu hỏi: </label>
-                    <select class="select-type-question" id="exampleFormControlSelect2">
-                        <option value="1">Câu hỏi nhiều câu trả lời</option>
-                        <option value="2">Câu hỏi nhiều chỉ có một câu trả lời</option>
-                        <option value="3">Câu hỏi trả lời bằng text</option>
+                    <select class="select-type-question" type="type_question" id="exampleFormControlSelect">
+                        <option value="1">Câu hỏi nhiều câu trả lời đúng</option>
+                        <option value="2">Câu hỏi nhiều chỉ có một câu trả lời đúng</option>
+                        <option value="3">Câu hỏi trả lời bằng văn bản</option>
                     </select>
                     
                     <div class="form-group mt-4">

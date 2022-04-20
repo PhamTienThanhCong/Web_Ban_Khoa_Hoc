@@ -1,4 +1,6 @@
+let typeQuestion = 1;
 let numberQuestions = 1;
+
 
 function addQuestion(){
     numberQuestions++;
@@ -34,6 +36,11 @@ function active(){
     })
 }
 
+function changeAnswer(){
+    const value = $('.select-type-question');
+    
+}
+
 $(document).ready(function () {
     active();
     $('#add-new-question').on('click',function(){
@@ -46,6 +53,12 @@ $(document).ready(function () {
         numberQuestions = 0;
         for (var i = 0; i < 1; i++) {
             addQuestion();
+        }
+    })
+    $('exampleFormControlSelect').on('change',function(){
+        typeQuestion = document.getElementById('exampleFormControlSelect').value;
+        if(typeQuestion == '1'){
+
         }
     })
 });
