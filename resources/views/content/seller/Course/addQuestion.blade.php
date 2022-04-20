@@ -54,52 +54,18 @@
                             </h5>
                             <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
                             <br>
-                            <input type="checkbox" name="check" id="checkbox1">
-                            <label for="checkbox1">Đây là câu trả lời đúng </label>
+                            <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
+                            <select name="check" class="select-type-question">
+                                <option value="1">
+                                    Đúng
+                                </option>
+                                <option value="2">
+                                    Sai
+                                </option>
+                            </select>
                             <br>
                         </div>
-                        <div class="form-group">
-                            <h5> 
-                                Câu trả lời 2
-                                <a class="delete-question">
-                                    Xóa câu trả lời
-                                    <i class="mdi mdi-delete-forever"></i>
-                                </a>
-                            </h5>
-                            <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
-                            <br>
-                            <input type="checkbox" name="check" id="checkbox2">
-                            <label for="checkbox2">Đây là câu trả lời đúng </label>
-                            <br>
-                        </div>
-                        <div class="form-group">
-                            <h5> 
-                                Câu trả lời 3
-                                <a class="delete-question">
-                                    Xóa câu trả lời
-                                    <i class="mdi mdi-delete-forever"></i>
-                                </a>
-                            </h5>
-                            <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
-                            <br>
-                            <input type="checkbox" name="check" id="checkbox3">
-                            <label for="checkbox3">Đây là câu trả lời đúng </label>
-                            <br>
-                        </div>
-                        <div class="form-group">
-                            <h5> 
-                                Câu trả lời 4
-                                <a class="delete-question">
-                                    Xóa câu trả lời
-                                    <i class="mdi mdi-delete-forever"></i>
-                                </a>
-                            </h5>
-                            <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
-                            <br>
-                            <input type="checkbox" name="check" id="checkbox4">
-                            <label for="checkbox4">Đây là câu trả lời đúng </label>
-                            <br>
-                        </div>
+                        
                     </div>
                     
                     <button type="button" id="add-new-question" class="btn btn-gradient-success me-2">Thêm câu trả lời +</button>

@@ -1,23 +1,30 @@
-let numberQuestions = 4;
+let numberQuestions = 1;
 
 function addQuestion(){
     numberQuestions++;
-    document.getElementById("form-question").innerHTML += `
-        <div class="form-group">
-            <h5> 
-                Câu trả lời ` + numberQuestions + `
-                <a class="delete-question">
-                    Xóa câu trả lời
-                    <i class="mdi mdi-delete-forever"></i>
-                </a>
-            </h5>
-            <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
-            <br>
-            <input type="checkbox" name="check" id="checkbox` + numberQuestions + `">
-            <label for="checkbox` + numberQuestions + `">Đây là câu trả lời đúng </label>
-            <br>
-        </div>
-    `;
+    const node = document.createElement("div");
+    node.classList.add("form-group");
+    node.innerHTML = `
+        <h5> 
+        Câu trả lời ` + numberQuestions + `
+        <a class="delete-question">
+            Xóa câu trả lời
+            <i class="mdi mdi-delete-forever"></i>
+        </a>
+        </h5>
+        <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
+        <br>
+            <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
+            <select name="check" class="select-type-question">
+                <option value="1">
+                    Đúng
+                </option>
+                <option value="2">
+                    Sai
+                </option>
+            </select>
+        <br>`
+    document.getElementById("form-question").appendChild(node);
 }
 
 function active(){
@@ -37,7 +44,7 @@ $(document).ready(function () {
         $('#form-create-question')[0].reset();
         document.getElementById("form-question").innerHTML = "";
         numberQuestions = 0;
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 1; i++) {
             addQuestion();
         }
     })
