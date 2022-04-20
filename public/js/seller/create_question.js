@@ -18,12 +18,12 @@ function addQuestion(){
         <br>
             <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
             <select name="check" class="select-type-question">
-                <option value="1">
-                    Đúng
-                </option>
-                <option value="2">
-                    Sai
-                </option>
+            <option value="2">
+                Sai
+            </option>
+            <option value="1">
+                Đúng
+            </option>
             </select>
         <br>`
     document.getElementById("form-question").appendChild(node);
@@ -36,8 +36,23 @@ function active(){
     })
 }
 
+function unarchive(){
+    $('.select-type-question').off('change');
+}
+
+function activeOneAnswer(){
+    unarchive();
+    $('.select-type-question').on('change',function(){
+        changeAnswer();
+        this.value = 1;
+    })
+}
+
 function changeAnswer(){
     const value = $('.select-type-question');
+    for (let i = 0; i < value.length ; i++) {
+        value[i].value = 2;
+    }
     
 }
 
@@ -55,10 +70,16 @@ $(document).ready(function () {
             addQuestion();
         }
     })
-    $('exampleFormControlSelect').on('change',function(){
+    $('#exampleFormControlSelect').on('change',function(){
+        console.log('chekc')
         typeQuestion = document.getElementById('exampleFormControlSelect').value;
-        if(typeQuestion == '1'){
-
+        if(typeQuestion == '2'){
+            activeOneAnswer();
+            changeAnswer();
+            console.log('2pp');
+        }else if(typeQuestion == '1'){
+            unarchive();
+            console.log('upp');
         }
     })
 });
