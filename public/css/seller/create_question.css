@@ -3,3 +3,14 @@
     cursor: pointer;
     margin-left: 20px;
 }
+.select-type-question{
+    border: none;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    padding: 5px;
+}
