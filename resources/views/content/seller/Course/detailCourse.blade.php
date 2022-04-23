@@ -76,6 +76,9 @@
                             <i class="mdi mdi-cash"></i>
                             Giá thành: 000 VND
                         </p>
+                        <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
+                            Tạo Bài học mới
+                        </a>
                     </div>
                 </div>
                 <br />
@@ -120,7 +123,12 @@
                     </tbody>
                 </table>
                 {{-- List môn học --}}
-                <div></div>
+                <div>
+                </div>
+                <br>
+                    <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
+                        Tạo Bài học mới
+                    </a>
             </div>
         </div>
     </div>

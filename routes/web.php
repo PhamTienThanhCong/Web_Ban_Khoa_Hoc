@@ -59,6 +59,12 @@ Route::get('/seller/quanlykhoahoc/chitiet/{course}', function ($course) {
     ]);
 })->name('seller.detailCourse');
 
+Route::get('/seller/quanlykhoahoc/chitiet/{course}/createLesson', function ($course) {
+    return view('content.seller.Course.addLesson', [
+        'course' => $course,
+    ]);
+})->name('seller.createLesson');
+
 Route::get('/seller/quanlykhoahoc/chitiet/{course}/CauHoi{lesson}', function ($course,$lesson) {
     return view('content.seller.Course.addQuestion', [
         'course' => $course,
