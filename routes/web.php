@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/admin', function () {
-    return view('content.loginAdmin');
+    return view('auth.loginAdmin');
 })->name('admin.login');
 
 Route::get('/admin/register', function () {
-    return view('content.registerAdmin');
+    return view('auth.registerAdmin');
 })->name('admin.register');
+
+Route::post('/admin/register_processing', [authAdminController::class, 'register'])->name('admin.processing.login');
+
+// Route::group([])
 
 Route::get('/admin/tongquan', function () {
     return view('content.admin.overView');

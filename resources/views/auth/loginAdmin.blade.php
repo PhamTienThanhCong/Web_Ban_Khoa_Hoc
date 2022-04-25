@@ -20,9 +20,12 @@
                             <div class="brand-logo">
                                 <img src="https://www.bootstrapdash.com/demo/purple/jquery/template/assets/images/logo.svg?fbclid=IwAR2-aXLOwDRHAWJWAhHA4aJ7TH6OBamcVIl4QTM-F0uZkxsvSTUwdriGkK0">
                             </div>
-                            <h4>Hello! let's get started</h4>
+                            @if(Session::has('success'))
+                                <h4 class="text-success">{{ Session::get('success') }}</h4>
+                            @endif
                             <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3">
+                                @csrf
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
                                         placeholder="Username">
@@ -32,8 +35,7 @@
                                         id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="{{ route('seller.overView') }}">SIGN IN</a>
+                                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">

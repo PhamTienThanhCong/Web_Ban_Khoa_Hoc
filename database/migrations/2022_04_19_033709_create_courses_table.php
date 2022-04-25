@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('name',40);
             $table->string('image',150);
             $table->integer('price');
+            $table->tinyInteger('type')->default(1);
             $table->text('description');
             $table->timestamps();
         });

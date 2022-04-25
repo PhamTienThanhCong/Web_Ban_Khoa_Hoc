@@ -19,10 +19,9 @@ class CreateAdminsTable extends Migration
             $table->string('email', 50)->unique();
             $table->string('image', 100)->default("avatar.jpg");
             $table->text('description');
-            $table->float('income')->default(0.0);
             $table->string('password', 70);
             $table->string('token', 100);
-            $table->integer('lever')->default(0);
+            $table->tinyInteger('lever')->default(0);
             $table->timestamps();
         });
     }

@@ -23,30 +23,33 @@
                   <img src="https://www.bootstrapdash.com/demo/purple/jquery/template/assets/images/logo.svg?fbclid=IwAR2-aXLOwDRHAWJWAhHA4aJ7TH6OBamcVIl4QTM-F0uZkxsvSTUwdriGkK0">
                 </div>
                 <h4>New here?</h4>
-                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-                <form class="pt-3">
+                @if(Session::has('error'))
+                  <h4 class="text-danger">{{ Session::get('error') }}</h4>
+                @endif
+                <form class="pt-3" method="post" action={{ route('admin.processing.login') }}>
+                  @csrf
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
+                    <input type="text" name="name" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" required>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                    <input type="email" name=email class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" required>
                   </div>
                   <div class="form-group">
-                    <textarea class="form-control" id="exampleTextarea1" placeholder="Mô tả bản thân" rows="4"></textarea>
+                    <textarea class="form-control" name="description" id="exampleTextarea1" placeholder="Mô tả bản thân" rows="4" required></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
                   </div>
                   <div class="mb-4">
                     <div class="form-check">
                       <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input"> I agree to all Terms & Conditions </label>
+                        <input type="checkbox" class="form-check-input" required> I agree to all Terms & Conditions </label>
                     </div>
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="{{ route('admin.overview') }}">SIGN UP</a>
+                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> Already have an account? <a href="{{ route('admin.login') }}" class="text-primary">Login</a>
+                    <div class="text-center mt-4 font-weight-light"> Already have an account? <a href="{{ route('admin.login') }}" class="text-primary">Login</a>
                   </div>
                 </form>
               </div>
