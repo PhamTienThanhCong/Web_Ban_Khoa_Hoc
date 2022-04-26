@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\authAdminController;
 use App\Http\Middleware\AdminWasLogin;
 use Illuminate\Support\Facades\Route;
@@ -32,25 +33,18 @@ Route::get('/account/logout', [authAdminController::class, 'logout'])->name('adm
 Route::group([
     'middleware' => AdminWasLogin::class,
 ],function(){
-    Route::get('/admin/tongquan', function () {
-        return view('content.admin.overView');
-    })->name('admin.overview');
+    Route::get('/admin/tongquan', [AdminController::class, 'overview'])->name('admin.overview');
     
-    Route::get('/admin/quanlykhoahoc', function () {
-        return view('content.admin.managerCourse');
-    })->name('admin.managerCourse');
+    Route::get('/admin/quanlykhoahoc', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
+
+    Route::get('/admin/quanlynhanvien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');
     
-    Route::get('/admin/quanlynhanvien', function () {
-        return view('content.admin.managerSeller');
-    })->name('admin.managerSeller');
-    
-    Route::get('/admin/quanlynguoidung', function () {
-        return view('content.admin.managerUser');
-    })->name('admin.managerUser');
-    Route::get('/seller/tongquan', function () {
-        return view('content.seller.overView');
-    })->name('seller.overView');
+    Route::get('/admin/quanlynguoidung', [AdminController::class, 'managerUser'])->name('admin.managerUser');
 });
+
+Route::get('/seller/tongquan', function () {
+    return view('content.seller.overView');
+})->name('seller.overView');
 
 Route::get('/seller/taikhoancuatoi', function () {
     return view('content.seller.myAccount');
@@ -87,7 +81,3 @@ Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyCauhoi{lesson}', functi
         'course' => $course,
     ]);
 })->name('seller.questionManagement');
-
-Route::get('/', function () {
-    return view('welcome');
-});

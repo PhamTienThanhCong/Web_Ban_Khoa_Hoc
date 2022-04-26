@@ -16,7 +16,6 @@ class authAdminController extends Controller
                 'name'  => $request->get('name'),
                 'email' => $request->get('email'),
                 'description'  => $request->get('description'),
-                'lever' => 1,
                 'password' => Hash::make($request->get('password')),
                 'token' => bin2hex(random_bytes(16)),
             ]);
@@ -40,9 +39,9 @@ class authAdminController extends Controller
             session()->put('name', $admin->name);
             session()->put('image', $admin->image);
             session()->put('lever', $admin->lever);
-            if ($admin->lever == 1){
+            if ($admin->lever == 2){
                 return redirect()->route('admin.overview');
-            }else if ($admin->lever == 0){
+            }else if ($admin->lever == 1){
                 return redirect()->route('seller.overview');
             }
         } catch (\Throwable $th) {

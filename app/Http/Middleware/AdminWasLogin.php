@@ -17,7 +17,7 @@ class AdminWasLogin
     public function handle(Request $request, Closure $next)
     {
         if (session()->has('lever')){
-            if (session()->get('lever') == 1){
+            if (session()->get('lever') == 2){
                 return $next($request);
             }
         }
