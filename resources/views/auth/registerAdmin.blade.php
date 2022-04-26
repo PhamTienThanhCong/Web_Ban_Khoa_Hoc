@@ -26,7 +26,7 @@
                 @if(Session::has('error'))
                   <h4 class="text-danger">{{ Session::get('error') }}</h4>
                 @endif
-                <form class="pt-3" method="post" action={{ route('admin.processing.login') }}>
+                <form class="pt-3" method="post" action={{ route('admin.processing.register') }}>
                   @csrf
                   <div class="form-group">
                     <input type="text" name="name" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" required>

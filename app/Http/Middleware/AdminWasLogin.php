@@ -16,7 +16,11 @@ class AdminWasLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        // return $next($request);
+        if (session()->has('lever')){
+            if (session()->get('lever') == 1){
+                return $next($request);
+            }
+        }
         return redirect()->route('admin.login');
     }
 }

@@ -23,7 +23,11 @@ Route::get('/admin/register', function () {
     return view('auth.registerAdmin');
 })->name('admin.register');
 
-Route::post('/admin/register_processing', [authAdminController::class, 'register'])->name('admin.processing.login');
+// account processing
+Route::post('/admin/register_processing', [authAdminController::class, 'register'])->name('admin.processing.register');
+Route::post('/admin/login_processing', [authAdminController::class, 'login'])->name('admin.processing.login');
+Route::get('/account/logout', [authAdminController::class, 'logout'])->name('admin.logout');
+
 
 Route::group([
     'middleware' => AdminWasLogin::class,

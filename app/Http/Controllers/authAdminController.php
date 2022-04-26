@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\admin;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,5 +24,31 @@ class authAdminController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route('admin.register')->with('error','Email Đã được sử dụng');
         }
+    }
+    public function login(Request $request){
+        try {
+            $admin = admin::query()
+            ->where('email', $request->get('email'))
+            ->firstOrFail();
+            if (!Hash::check($request->get('password'), $admin->password)){
+                return redirect()->route('admin.login')->with('error','Tài khoản hoặc mật khẩu không đúng');
+                exit();
+            }
+            session()->put('id', $admin->id);
+            session()->put('name', $admin->name);
+            session()->put('image', $admin->image);
+            session()->put('lever', $admin->lever);
+            if ($admin->lever == 1){
+                return redirect()->route('admin.overview');
+            }else if ($admin->lever == 0){
+                return redirect()->route('seller.overview');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.login')->with('error','Tài khoản hoặc mật khẩu không đúng');
+        }
+    }
+    public function logout(){
+        session()->flush();
+        return redirect()->route('admin.login');
     }
 }
