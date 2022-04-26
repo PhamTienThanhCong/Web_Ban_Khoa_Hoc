@@ -32,7 +32,9 @@ class authAdminController extends Controller
             ->firstOrFail();
             if (!Hash::check($request->get('password'), $admin->password)){
                 return redirect()->route('admin.login')->with('error','Tài khoản hoặc mật khẩu không đúng');
-                exit();
+            }
+            if ($admin->lever == 0){
+                return redirect()->route('admin.login')->with('success','Tài khoản của bạn đang chờ xác nhận, vui đăng nhập sau ');
             }
             session()->put('id', $admin->id);
             session()->put('name', $admin->name);
