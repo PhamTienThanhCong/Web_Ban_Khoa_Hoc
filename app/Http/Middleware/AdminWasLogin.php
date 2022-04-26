@@ -17,6 +17,6 @@ class AdminWasLogin
     public function handle(Request $request, Closure $next)
     {
         // return $next($request);
-        return redirect()->route('admin');
+        return redirect()->route('admin.login');
     }
 }
