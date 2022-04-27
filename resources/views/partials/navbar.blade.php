@@ -24,7 +24,7 @@
       <a class="nav-link {{ Request::segment(1) === '' ? 'active' : null }}" href="{{ route('admin.managerCourse') }}">
         <span class="menu-title">Quản lý khóa học</span>
         <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <i class="mdi mdi-book-open-page-variant menu-icon"></i>
       </a>
     </li>
     <li class="nav-item">
@@ -36,18 +36,8 @@
     <li class="nav-item">
       <a class="nav-link {{ Request::segment(1) === '' ? 'active' : null }}" href="{{ route('admin.managerUser') }}">
         <span class="menu-title">Quản lý người dùng</span>
-        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+        <i class="mdi mdi-account menu-icon"></i>
       </a>
-    </li>
-    <li class="nav-item sidebar-actions">
-      <span class="nav-link">
-        <div class="border-bottom">
-          <h6 class="font-weight-normal mb-3">Dự án</h6>
-        </div>
-        <a href="#">
-          <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Thêm khóa học</button>
-        </a>
-      </span>
     </li>
   </ul>
 </nav>

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\admin;
 use App\Models\user;
-use Database\Factories\AdminFactory;
+use App\Models\course;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         // admin::factory(50)->create();
         // user::factory(500)->create();
+        // course::factory(200)->create();
     }
 }

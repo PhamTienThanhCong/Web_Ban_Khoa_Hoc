@@ -21,13 +21,16 @@ class AdminController extends Controller
 
         $Show = ["0","1","3"];
         
-        if ($t != ""){ $Show = [$t]; }
+        if ($t == ""){ $t = "2"; }
+        if ($t != "2"){ $Show = [$t]; }
         if ($t == "0"){ $t = "4"; }
         
         $admin = DB::table('admins')
-            ->select('id','name','image','lever','income','created_at')
-            ->where('name', 'like', "%".$s."%")
-            ->whereIn('lever', $Show)
+            ->leftJoin('courses' , 'admins.id', '=', 'courses.id_admin')
+            ->select('admins.id','admins.name','admins.image','admins.email','admins.lever','admins.income','admins.created_at', DB::raw('COUNT(admins.id) as number'))
+            ->where('admins.name', 'like', "%".$s."%")
+            ->whereIn('admins.lever', $Show)
+            ->groupBy('admins.id')
             ->paginate(10);
 
         $admin->appends([
@@ -41,7 +44,20 @@ class AdminController extends Controller
             'type' => $t,
         ]);
     }
-    public function managerUser(){
-        return view('content.admin.managerUser');
+    public function managerUser(Request $request){
+        $search = $request->get('search');
+
+        $user = DB::table('users')
+            ->select('id','name','email','image','created_at')
+            ->where('name', 'like', "%".$search."%")
+            ->paginate(10);
+
+        $user->appends([
+           'search' => $search,
+        ]);
+        return view('content.admin.managerUser',[
+            'data' => $user,
+            'search' => $search,
+        ]);
     }
 }

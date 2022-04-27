@@ -89,7 +89,7 @@
                                 @endif
 
                             </td>
-                            <td> 2 </td>
+                            <td> {{ $admin->number }} </td>
                             <td> {{ $admin->income }} </td>
                             <td> {{ date('d-m-Y', strtotime($admin->created_at)) }} </td>
                             <td>
