@@ -21,7 +21,7 @@ class AdminController extends Controller
 
         $Show = ["0","1","3"];
         
-        if ($t != "2"){ $Show = [$t]; }
+        if ($t != ""){ $Show = [$t]; }
         if ($t == "0"){ $t = "4"; }
         
         $admin = DB::table('admins')
