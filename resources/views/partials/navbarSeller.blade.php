@@ -21,7 +21,7 @@
         </a>
     </li>
     <li class="nav-item {{ Request::segment(1) === 'tongquan' ? 'active' : null }}">
-      <a class="nav-link" href="{{ route('seller.overView') }}">
+      <a class="nav-link" href="{{ route('seller.overview') }}">
         <span class="menu-title">Tổng quan</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>

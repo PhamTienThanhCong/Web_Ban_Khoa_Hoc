@@ -45,7 +45,7 @@ class authAdminController extends Controller
                 return redirect()->route('seller.overview');
             }
         } catch (\Throwable $th) {
-            return redirect()->route('admin.login')->with('error','Tài khoản hoặc mật khẩu không đúng');
+            return redirect()->route('admin.login')->with('error','ông đúng');
         }
     }
     public function logout(){
