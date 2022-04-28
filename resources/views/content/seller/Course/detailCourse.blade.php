@@ -61,7 +61,7 @@
                     </div>
                     <br />
                     <div class="cart-details">
-                        <h3><u>Tên khóa học</u>: Khóa học demo về môn kĩ thuật phần mềm</h3>
+                        <h3><u>Tên khóa học</u>: {{ $data->name }} </h3>
                         <p>
                             <i class="mdi mdi-book-open-page-variant"></i>
                             Số lượng bài học: 10 Bài
@@ -69,12 +69,12 @@
 
                         <p>
                             <i class="mdi mdi-account"></i>
-                            Tác giả: Bé Công
+                            Tác giả: {{ Session::get('name') }}
                         </p>
 
                         <p>
                             <i class="mdi mdi-cash"></i>
-                            Giá thành: 000 VND
+                            Giá thành: {{ $data->price }} VND
                         </p>
                         <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
                             Tạo Bài học mới
@@ -126,9 +126,9 @@
                 <div>
                 </div>
                 <br>
-                    <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
+                    {{-- <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
                         Tạo Bài học mới
-                    </a>
+                    </a> --}}
             </div>
         </div>
     </div>

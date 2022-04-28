@@ -36,22 +36,28 @@
                         <th> Tên khóa </th>
                         <th> Giá </th>
                         <th> Đã bán </th>
-                        <th> Thu nhập </th>
+                        <th> Ngày tạo </th>
                         <th> Cập nhập lần cuối </th>
                         <th> Xem </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td> Khóa học làm web cho người mới bắt đầu </td>
-                        <td> $ 77.99 </td>
-                        <td> 14 </td>
-                        <td> 1.123.123 đ </td>
-                        <td> May 15, 2015 </td>
-                        <th>
-                            <a href="{{ route('seller.detailCourse', 12) }}">Xem </a>
-                        </th>
-                    </tr>
+                    @foreach ($data as $course)
+                        <tr>
+                            <td> {{ $course->name }} </td>
+                            <td> {{ $course->price }} </td>
+                            <td> 14 </td>
+                            <td>
+                                {{ date('d-m-Y', strtotime($course->created_at)) }}
+                            </td>
+                            <td>
+                                {{ date('d-m-Y', strtotime($course->updated_at)) }}
+                            </td>
+                            <th>
+                                <a href="{{ route('seller.detailCourse', $course->id) }}">Xem </a>
+                            </th>
+                        </tr> 
+                    @endforeach
 
                 </tbody>
             </table>
