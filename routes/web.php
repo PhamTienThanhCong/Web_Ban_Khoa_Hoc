@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\authAdminController;
+use App\Http\Controllers\CourseSellerController;
+use App\Http\Controllers\SellerController;
 use App\Http\Middleware\AdminWasLogin;
 use App\Http\Middleware\SellerWasLogin;
 use Illuminate\Support\Facades\Route;
@@ -46,43 +48,21 @@ Route::group([
 Route::group([
     'middleware' => SellerWasLogin::class,
 ],function(){
-    Route::get('/seller/tongquan', function () {
-        return view('content.seller.overView');
-    })->name('seller.overview');
+    Route::get('/seller/tongquan', [SellerController::class, 'overview'])->name('seller.overview');
     
-    Route::get('/seller/taikhoancuatoi', function () {
-        return view('content.seller.myAccount');
-    })->name('seller.myAccount');
+    Route::get('/seller/taokhoahoc', [SellerController::class, 'createCourse'])->name('seller.addCourse');
     
-    Route::get('/seller/taokhoahoc', function () {
-        return view('content.seller.Course.addCourse');
-    })->name('seller.addCourse');
+    Route::get('/seller/quanlykhoahoc', [SellerController::class, 'manageCourse'])->name('seller.managerCourse');
     
-    Route::get('/seller/quanlykhoahoc', function () {
-        return view('content.seller.Course.managerCourse');
-    })->name('seller.managerCourse');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}', [SellerController::class, 'detailCourse'])->name('seller.detailCourse');
     
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}', function ($course) {
-        return view('content.seller.Course.detailCourse', [
-            'course' => $course,
-        ]);
-    })->name('seller.detailCourse');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}/createLesson',[SellerController::class, 'createLesson'])->name('seller.createLesson');
     
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}/createLesson', function ($course) {
-        return view('content.seller.Course.addLesson', [
-            'course' => $course,
-        ]);
-    })->name('seller.createLesson');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}/CauHoi{lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
     
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}/CauHoi{lesson}', function ($course,$lesson) {
-        return view('content.seller.Course.addQuestion', [
-            'course' => $course,
-        ]);
-    })->name('seller.addQuestion');
-    
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyCauhoi{lesson}', function ($course,$lesson) {
-        return view('content.seller.Course.questionManagement', [
-            'course' => $course,
-        ]);
-    })->name('seller.questionManagement');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyCauhoi{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
+
+    Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('seller.myAccount');
+
+    Route::post('seller/taokhoahoc/xuly', [SellerController::class, 'createCourseProcessing'])->name('seller.addCourseProcessing');
 });

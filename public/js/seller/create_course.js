@@ -22,8 +22,8 @@ var loadFile = function (event) {
   };
   
   function changeDescription() {
-    document.getElementById("description-preview").innerHTML =
-      tinyMCE.activeEditor.getContent();
+    document.getElementById("description-preview").innerHTML =  tinyMCE.activeEditor.getContent();
+    document.getElementById("description-push").innerHTML = tinyMCE.activeEditor.getContent();
   }
   
   tinymce.init({

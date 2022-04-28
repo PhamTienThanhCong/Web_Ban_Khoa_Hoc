@@ -33,19 +33,20 @@
         <div class="sales-boxes">
             <div class="recent-sales box" style="width: 100%; display: block">
                 <div class="page-title">Tạo khóa học mới</div>
-                <form class="new-couse" method="post" action="" enctype="multipart/form-data">
+                <form class="new-couse" method="post" action="{{ route('seller.addCourseProcessing') }}" enctype="multipart/form-data">
                     @csrf
                     <label for="">Tên của khóa học</label>
-                    <input name="name_course" type="text" placeholder="Nhập tên của khóa học" onchange="changeTitle(event)" />
+                    <input name="name" type="text" placeholder="Nhập tên của khóa học" onchange="changeTitle(event)" required/>
                     <br />
                     <label for="">Giá của khóa học</label>
-                    <input name="price" type="number" placeholder="Nhập giá của khóa học" onchange="ChangePrice(event)" />
+                    <input name="price" type="number" placeholder="Nhập giá của khóa học" onchange="ChangePrice(event)" required/>
                     <br />
                     <label for="">Ảnh mô tả</label>
-                    <input name="image_course" style="border: none" type="file" onchange="loadFile(event)" />
+                    <input name="image" style="border: none" type="file" onchange="loadFile(event)" required/>
                     <br />
-                    <textarea name="description" id="myTextarea"></textarea>
-                    <button id="btn">Tạo khóa học mới</button>
+                    <textarea id="myTextarea"></textarea>
+                    <textarea name="description" id="description-preview" style="display: none"></textarea>
+                    <button id="btn" type="submit">Tạo khóa học mới</button>
                 </form>
             </div>
         </div>
@@ -81,7 +82,7 @@
                 <br />
                 <div class="page-title">Mô tả khóa học</div>
                 <br />
-                <div id="description-preview"></div>
+                <div id="description-push"></div>
             </div>
         </div>
     </div>
