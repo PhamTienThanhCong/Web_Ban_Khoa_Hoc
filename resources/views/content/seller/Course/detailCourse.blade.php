@@ -85,8 +85,8 @@
                 <h4 class="card-title">
                     <b> # Mô tả khóa học</b>
                 </h4>
-                <div class="page-title">
-                    Môn kĩ thuật phần mền <br> sáng thứ 3
+                <div>
+                    {!! $data->description !!}
                 </div>
                 <br />
                 {{-- List môn học --}}
@@ -97,28 +97,28 @@
                             <th>#</th>
                             <th> Tên Bài học </th>
                             <th> Số Câu hỏi </th>
-                            <th> Đã học </th>
                             <th> Tổng quan </th>
                             <th> Chỉnh sửa </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td> 1 </td>
-                            <td> Bài mở đầu </td>
-                            <td> 5 </td>
-                            <td> 124 </td>
-                            <th>
-                                <a href="{{ route('seller.questionManagement', [$course, 1]) }}">
-                                    Xem
-                                </a>
-                            </th>
-                            <th>
-                                <a href="{{ route('seller.addQuestion', [$course, 3]) }}">
-                                    Thêm mới
-                                </a>
-                            </th>
-                        </tr>
+                        @foreach ($lesson as $index=>$ls)
+                            <tr>
+                                <td> {{ $index+1 }} </td>
+                                <td> {{ $ls->name }} </td>
+                                <td> 0 </td>
+                                <th>
+                                    <a href="{{ route('seller.questionManagement', [$course, $ls->id]) }}">
+                                        Xem
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="{{ route('seller.addQuestion', [$course, $ls->id]) }}">
+                                        Thêm mới
+                                    </a>
+                                </th>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>

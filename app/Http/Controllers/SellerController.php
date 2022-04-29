@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\course;
+use App\Models\lesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -49,17 +50,17 @@ class SellerController extends Controller
                 ->where('id_admin', '=', Session::get('id'))
                 ->Where('id', '=', $course)
                 ->first();
-            if (isset($my_course->name)){
-                dd("true");
+            if (!isset($my_course->name)){
+                dd("fail");
             }
-            $my_lesson = course::query()
+            $my_lesson = lesson::query()
                 ->select('*')
-                ->where('id_admin', '=', Session::get('id'))
                 ->Where('id', '=', $course)
-                ->first();
+                ->get();
             return view('content.seller.Course.detailCourse', [
                 'course' => $course,
                 'data' => $my_course,
+                'lesson' => $my_lesson,
             ]);
         } catch (\Throwable $th) {
             dd("Loi");
