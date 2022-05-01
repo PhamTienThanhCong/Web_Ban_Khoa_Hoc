@@ -1,33 +1,36 @@
 let typeQuestion = '1';
-let numberQuestions = 1;
+let numberQuestions = '1';
 
 function changeQuestionText(){
     document.getElementById("form-question").innerHTML = `
         <h5>
             Câu trả lời:
         </h5>
-        <textarea class="form-control" name="answer-text" rows="4"></textarea>
+        <textarea class="form-control" name="a1" rows="4"></textarea>
+        <input type="hidden" id="check1" name="check1" value="1">
         <br>
     `;
+    $("#total-question").val(1);
 }
 
 function addQuestion(){
     numberQuestions++;
+    $("#total-question").val(numberQuestions);
     const node = document.createElement("div");
     node.classList.add("form-group");
     node.innerHTML = `
         <h5> 
-        Câu trả lời ` + numberQuestions + `
+        Câu trả lời ${numberQuestions}
         <a class="delete-question">
             Xóa câu trả lời
             <i class="mdi mdi-delete-forever"></i>
         </a>
         </h5>
-        <input type="text" name="a" class="form-control" placeholder="Câu trả lời">
+        <input type="text" name="a${numberQuestions}" class="form-control" placeholder="Câu trả lời">
         <br>
             <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
-            <select name="check" class="select-type-answer">
-            <option value="2">
+            <select name="check${numberQuestions}" class="select-type-answer">
+            <option value="0">
                 Sai
             </option>
             <option value="1">
@@ -36,7 +39,7 @@ function addQuestion(){
             </select>
         <br>`
     document.getElementById("form-question").appendChild(node);
-    if (typeQuestion == '2'){
+    if (typeQuestion == '1'){
         activeOneAnswer();
     }
 }
@@ -60,7 +63,7 @@ function changeAnswer(){
     const value = $('.select-type-answer');
     let i;
     for (i = 0; i < value.length ; i++) {
-        value[i].value = 2;
+        value[i].value = 0;
     }    
 }
 

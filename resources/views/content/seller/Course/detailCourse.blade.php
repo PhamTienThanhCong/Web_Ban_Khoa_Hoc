@@ -56,7 +56,7 @@
                 <div class="content">
                     <div class="img-pre">
                         <img id="img-preview"
-                            src="https://image.thanhnien.vn/w1024/Uploaded/2022/xdrkxrvekx/2021_10_12/picture1-3031.png"
+                            src="{{ asset("images/".$data->image) }}"
                             alt="" />
                     </div>
                     <br />
@@ -64,7 +64,7 @@
                         <h3><u>Tên khóa học</u>: {{ $data->name }} </h3>
                         <p>
                             <i class="mdi mdi-book-open-page-variant"></i>
-                            Số lượng bài học: 10 Bài
+                            Số lượng bài học: {{ count($lesson) }} Bài
                         </p>
 
                         <p>
@@ -106,7 +106,7 @@
                             <tr>
                                 <td> {{ $index+1 }} </td>
                                 <td> {{ $ls->name }} </td>
-                                <td> 0 </td>
+                                <td> {{ $ls->number }} </td>
                                 <th>
                                     <a href="{{ route('seller.questionManagement', [$course, $ls->id]) }}">
                                         Xem

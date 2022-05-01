@@ -18,7 +18,6 @@ class CreateLessonsTable extends Migration
             $table->foreignId('courses_id')->constrained('courses');
             $table->string('name',150);
             $table->string('link',150);
-            $table->bigInteger('type_link')->default(1);
             $table->text('description',150);
             $table->timestamps();
         });

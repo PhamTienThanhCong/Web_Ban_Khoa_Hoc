@@ -60,9 +60,10 @@ Route::group([
     Route::get('/seller/quanlykhoahoc/chitiet/{course}/createLesson',[SellerController::class, 'createLesson'])->name('seller.createLesson');
     Route::post('/seller/quanlykhoahoc/chitiet/{course}/createLesson/xuly', [SellerController::class, 'createLessonProcessing'])->name('seller.addLessonProcessing');
     
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}/id={lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}/TaoCauHoi{lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
+    Route::post('/seller/quanlykhoahoc/chitiet/{course}/TaoCauHoi{lesson}/xuly', [SellerController::class, 'createQuestionProcessing'])->name('seller.addQuestionProcessing');
     
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyCauhoi{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyBaiHoc{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
 
     Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('seller.myAccount');
 

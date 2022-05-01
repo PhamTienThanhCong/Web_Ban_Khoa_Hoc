@@ -12,7 +12,6 @@ class lesson extends Model
         'courses_id',
         'name',
         'link',
-        'type_link',
         'description',
     ];
 }

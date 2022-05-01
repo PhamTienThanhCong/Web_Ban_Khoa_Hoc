@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\course;
 use App\Models\lesson;
+use App\Models\question;
+use App\Models\result;
+use App\Models\answer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
@@ -65,8 +69,10 @@ class SellerController extends Controller
         }
         try {
             $my_lesson = lesson::query()
-                ->select('*')
+                ->select('lessons.*',DB::raw('COUNT(questions.id) as number'))
+                ->leftJoin('questions' , 'lessons.id', '=', 'questions.lesson_id')
                 ->Where('courses_id', '=', $course)
+                ->groupBy('lessons.id')
                 ->get();
             return view('content.seller.Course.detailCourse', [
                 'course' => $course,
@@ -87,7 +93,6 @@ class SellerController extends Controller
             'name_course' => $my_course->name,
         ]);
     }
-    
     public function createLessonProcessing($course,Request $request){
         $my_course = $this->getMyCourse($course);
         if (!isset($my_course->name)){
@@ -121,6 +126,7 @@ class SellerController extends Controller
         }
         return view('content.seller.Course.addQuestion', [
             'course' => $course,
+            'lesson' => $lesson,
             'name_course' => $my_course->name,
             'name_lesson' => $my_lesson->name,
         ]);
@@ -134,6 +140,31 @@ class SellerController extends Controller
         if (!isset($my_lesson->name)){
             dd("fail");
         }
+
+        $type_question = $request->get('type_question');
+
+        $question = question::query()
+            ->create([
+                'lesson_id' => $lesson,
+                'question' => $request->get("q"),
+                'type' => $type_question,
+            ]);
+        
+        result::query()
+            ->create([
+                'questions_id' => $question->id,
+            ]);
+
+        $number_answer = $request->get('number_answer');
+        for ($i = 1; $i <= $number_answer; $i++){
+            answer::query()
+                ->create([
+                    'questions_id' => $question->id,
+                    'answer' => $request->get("a".$i),
+                    'check' => $request->get("check".$i),
+                ]);
+        }
+        return redirect()->route('seller.questionManagement' , [$course, $lesson]);
     }
     public function manageQuestion($course, $lesson){
         return view('content.seller.Course.questionManagement', [
