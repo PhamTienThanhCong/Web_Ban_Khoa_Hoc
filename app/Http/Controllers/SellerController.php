@@ -102,6 +102,9 @@ class SellerController extends Controller
                     'type_link' => $request->get('type_link'),
                     'description'  => $request->get('description'),
                 ]);
+            if ($request->get('create_question') == null){
+                return redirect()->route('seller.detailCourse', $course);
+            }
             return redirect()->route('seller.addQuestion', [$course, $lesson->id]);  
         } catch (\Throwable $th) {
             dd("error");
@@ -121,6 +124,16 @@ class SellerController extends Controller
             'name_course' => $my_course->name,
             'name_lesson' => $my_lesson->name,
         ]);
+    }
+    public function createQuestionProcessing($course, $lesson, Request $request){
+        $my_course = $this->getMyCourse($course);
+        if (!isset($my_course->name)){
+            dd("fail");
+        }
+        $my_lesson = $this->getMyLesson($course, $lesson);
+        if (!isset($my_lesson->name)){
+            dd("fail");
+        }
     }
     public function manageQuestion($course, $lesson){
         return view('content.seller.Course.questionManagement', [

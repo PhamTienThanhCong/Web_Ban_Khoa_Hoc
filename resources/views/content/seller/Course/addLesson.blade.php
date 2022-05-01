@@ -58,6 +58,11 @@
                         <textarea class="form-control" name="description" id="textareaLesson" rows="4"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label for="create_question">Tạo câu hỏi ngay</label>
+                        <input type="checkbox" name="create_question" id="create_question">
+                    </div>
+
                     <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                 </form>

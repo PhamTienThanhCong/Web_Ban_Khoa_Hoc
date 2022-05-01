@@ -97,8 +97,8 @@
                             <th>#</th>
                             <th> Tên Bài học </th>
                             <th> Số Câu hỏi </th>
-                            <th> Tổng quan </th>
-                            <th> Chỉnh sửa </th>
+                            <th> Xem Bài học </th>
+                            <th> Thêm câu hỏi </th>
                         </tr>
                     </thead>
                     <tbody>
