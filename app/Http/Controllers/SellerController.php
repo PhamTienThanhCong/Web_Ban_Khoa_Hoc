@@ -104,7 +104,6 @@ class SellerController extends Controller
                     'courses_id' => $course,
                     'name'  => $request->get('name'),
                     'link' => $request->get('link'),
-                    'type_link' => $request->get('type_link'),
                     'description'  => $request->get('description'),
                 ]);
             if ($request->get('create_question') == null){

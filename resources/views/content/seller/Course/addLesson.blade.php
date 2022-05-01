@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleSelectGender">Loại link</label>
-                        <select name="type_link" class="form-control" id="selectLinkType">
+                        <select class="form-control" id="selectLinkType">
                             <option value="1">Link youtube</option>
                             <option value="2">Link driver</option>
                             <option value="3">Link khác</option>
