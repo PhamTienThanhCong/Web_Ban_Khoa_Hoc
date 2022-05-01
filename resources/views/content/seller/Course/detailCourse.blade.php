@@ -123,12 +123,12 @@
                     </tbody>
                 </table>
                 {{-- List môn học --}}
-                <div>
-                </div>
                 <br>
-                    {{-- <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
+                <div style="width:100%; text-align: center;">
+                    <a href="{{ route('seller.createLesson', $course) }}">
                         Tạo Bài học mới
-                    </a> --}}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

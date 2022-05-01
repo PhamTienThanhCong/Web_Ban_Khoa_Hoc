@@ -51,18 +51,20 @@ Route::group([
     Route::get('/seller/tongquan', [SellerController::class, 'overview'])->name('seller.overview');
     
     Route::get('/seller/taokhoahoc', [SellerController::class, 'createCourse'])->name('seller.addCourse');
+    Route::post('seller/taokhoahoc/xuly', [SellerController::class, 'createCourseProcessing'])->name('seller.addCourseProcessing');
     
     Route::get('/seller/quanlykhoahoc', [SellerController::class, 'manageCourse'])->name('seller.managerCourse');
     
     Route::get('/seller/quanlykhoahoc/chitiet/{course}', [SellerController::class, 'detailCourse'])->name('seller.detailCourse');
     
     Route::get('/seller/quanlykhoahoc/chitiet/{course}/createLesson',[SellerController::class, 'createLesson'])->name('seller.createLesson');
+    Route::post('/seller/quanlykhoahoc/chitiet/{course}/createLesson/xuly', [SellerController::class, 'createLessonProcessing'])->name('seller.addLessonProcessing');
     
-    Route::get('/seller/quanlykhoahoc/chitiet/{course}/CauHoi{lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
+    Route::get('/seller/quanlykhoahoc/chitiet/{course}/id={lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
     
     Route::get('/seller/quanlykhoahoc/chitiet/{course}/QuanLyCauhoi{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
 
     Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('seller.myAccount');
 
-    Route::post('seller/taokhoahoc/xuly', [SellerController::class, 'createCourseProcessing'])->name('seller.addCourseProcessing');
+
 });

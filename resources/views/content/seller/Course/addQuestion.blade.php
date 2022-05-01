@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Tạo Câu hỏi
+    {{ $name_course }} Tạo Câu hỏi
 @stop
 
 @section('content')
@@ -14,12 +14,12 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-border-color"></i>
-            </span> Tạo Chỉnh sửa câu hỏi
+            </span> Tạo câu hỏi bài: {{ $name_lesson }}
         </h3>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Khóa học {{ $course }}<i
+                    <span></span>Khóa học {{ $name_course }}<i
                         class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                 </li>
             </ul>
@@ -30,7 +30,7 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tạo câu hỏi mới</h4>
+                <h4 class="card-title">Tạo câu hỏi mới bài: {{ $name_lesson }}</h4>
                 <form class="forms-sample" id="form-create-question">
                     <label for="">Loại câu hỏi: </label>
                     <select class="select-type-question" type="type_question" id="exampleFormControlSelect">
