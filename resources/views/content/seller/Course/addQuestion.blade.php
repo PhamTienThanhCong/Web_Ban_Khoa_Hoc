@@ -43,7 +43,7 @@
 
                     <div class="form-group mt-4">
                         <h5>Câu hỏi: </h5>
-                        <input type="text" name="q" class="form-control" placeholder="Câu hỏi">
+                        <input type="text" name="q" class="form-control" placeholder="Câu hỏi" required>
                     </div>
                     <div id="form-question">
                         <div class="form-group">
@@ -54,7 +54,7 @@
                                     <i class="mdi mdi-delete-forever"></i>
                                 </a>
                             </h5>
-                            <input type="text" name="a1" class="form-control" placeholder="Câu trả lời">
+                            <input type="text" name="a1" class="form-control" placeholder="Câu trả lời" required>
                             <br>
                             <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
                             <select name="check1" class="select-type-answer">

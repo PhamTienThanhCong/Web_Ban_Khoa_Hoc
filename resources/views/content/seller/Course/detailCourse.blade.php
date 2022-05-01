@@ -99,6 +99,7 @@
                             <th> Số Câu hỏi </th>
                             <th> Xem Bài học </th>
                             <th> Thêm câu hỏi </th>
+                            <th> Thời gian Tạo </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,6 +118,9 @@
                                         Thêm mới
                                     </a>
                                 </th>
+                                <td>
+                                    {{ date('d-m-Y', strtotime($ls->created_at)) }}
+                                </td>
                             </tr>
                         @endforeach
 

@@ -6,7 +6,7 @@ function changeQuestionText(){
         <h5>
             Câu trả lời:
         </h5>
-        <textarea class="form-control" name="a1" rows="4"></textarea>
+        <textarea class="form-control" name="a1" rows="4" required></textarea>
         <input type="hidden" id="check1" name="check1" value="1">
         <br>
     `;
@@ -26,7 +26,7 @@ function addQuestion(){
             <i class="mdi mdi-delete-forever"></i>
         </a>
         </h5>
-        <input type="text" name="a${numberQuestions}" class="form-control" placeholder="Câu trả lời">
+        <input type="text" name="a${numberQuestions}" class="form-control" placeholder="Câu trả lời" required>
         <br>
             <p for="checktrue1" style="display:inline-block">Đây là câu trả lời </p>
             <select name="check${numberQuestions}" class="select-type-answer">
@@ -39,7 +39,7 @@ function addQuestion(){
             </select>
         <br>`
     document.getElementById("form-question").appendChild(node);
-    if (typeQuestion == '1'){
+    if (typeQuestion == '2'){
         activeOneAnswer();
     }
 }
@@ -87,7 +87,6 @@ $(document).ready(function () {
         }
     })
     $('#exampleFormControlSelect').on('change',function(){
-        console.log('chekc')
         if (typeQuestion == '3' && document.getElementById('exampleFormControlSelect').value != '3'){
             $('#form-create-question')[0].reset();
             document.getElementById("form-question").innerHTML = "";
