@@ -67,86 +67,6 @@
                 </ul>
             </div>
 
-            <div>
-                <h5>Câu hỏi 2: Ai (tổ chức nào) tạo ra Web standards?  </h5>
-                <ul>
-                    <li>The World Wide Web Consortium </li>
-                    <li><b>Microsoft</b></li>
-                    <li>Netscape</li>
-                    <li>Tất cả đều sai. </li>
-                    <li>
-                        <a href="">
-                            Sửa 
-                            <i class="mdi mdi-lead-pencil"></i>
-                        </a>
-                        <a href="" style="margin-left: 15px">
-                            Xóa
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h5>Câu hỏi 3: JavaScript là ngôn ngữ xử lý ở: </h5>
-                <ul>
-                    <li> Client </li>
-                    <li>Server </li>
-                    <li><b>Server/client</b></li>
-                    <li>Không có dạng nào</li>
-                    <li>
-                        <a href="">
-                            Sửa 
-                            <i class="mdi mdi-lead-pencil"></i>
-                        </a>
-                        <a href="" style="margin-left: 15px">
-                            Xóa
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h5>Câu hỏi 4:  Javascript là ngôn ngữ thông dịch hay biên dịch  </h5>
-                <ul>
-                    <li> Thông dịch </li>
-                    <li>Biên dịch </li>
-                    <li><b>Cả hai dạng</b></li>
-                    <li>Không có dạng nào ở trên </li>
-                    <li>
-                        <a href="">
-                            Sửa 
-                            <i class="mdi mdi-lead-pencil"></i>
-                        </a>
-                        <a href="" style="margin-left: 15px">
-                            Xóa
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h5>Câu hỏi 5: Từ HTML là từ viết tắt của từ nào? </h5>
-                <ul>
-                    <li>Hyperlinks and Text Markup Language </li>
-                    <li>Home Tool Markup Language </li>
-                    <li><b>Hyper Text Markup Language</b></li>
-                    <li>Tất cả đều sai </li>
-                    <li>
-                        <a href="">
-                            Sửa 
-                            <i class="mdi mdi-lead-pencil"></i>
-                        </a>
-                        <a href="" style="margin-left: 15px">
-                            Xóa
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
         </div>
     </div>
 
@@ -159,20 +79,29 @@
             new Chart(document.getElementById("barChart"), {
                 type: 'bar',
                 data: {
-                    labels: ["Câu 1", "Câu 2", "Câu 3", "Câu 4", "Câu 5"
+                    labels: [
+                        @foreach ($number_true as $index=>$results)
+                            "Câu {{  $index+1 }}",
+                        @endforeach
                     ],
                     //   23 lable
                     datasets: [{
-                        data: [12,23,15,12,34
-                        ],
+                        data: [
+                            @foreach ($number_true as $results)
+                                {{ $results."," }}
+                            @endforeach
+                        0,],
                         label: "Số người trả lời đúng",
                         borderColor: "black",
                         backgroundColor: "rgba(75, 192, 192, 0.6)",
                         // fill: false
                     },
                     {
-                        data: [12,3,4,12,34
-                        ],
+                        data: [
+                            @foreach ($number_false as $results)
+                                {{ $results."," }}
+                            @endforeach
+                        0,],
                         label: "Số người trả lời sai",
                         borderColor: "black",
                         backgroundColor: "rgba(255, 99, 132, 0.6)",

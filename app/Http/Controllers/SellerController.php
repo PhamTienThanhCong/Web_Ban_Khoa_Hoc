@@ -166,8 +166,39 @@ class SellerController extends Controller
         return redirect()->route('seller.questionManagement' , [$course, $lesson]);
     }
     public function manageQuestion($course, $lesson){
+        $my_course = $this->getMyCourse($course);
+        if (!isset($my_course->name)){
+            dd("fail");
+        }
+        $my_lesson = $this->getMyLesson($course, $lesson);
+        if (!isset($my_lesson->name)){
+            dd("fail");
+        }
+        $result_question = question::query()
+            ->join('results' , 'questions.id', '=', 'results.questions_id')
+            ->leftJoin('answers' , 'questions.id', '=' , 'answers.questions_id')
+            ->select('questions.*', 'results.number_true', 'results.number_false', 'answers.answer', 'answers.check')
+            ->where('questions.lesson_id', '=', $lesson)
+            ->get();
+            
+            $id = -2;
+            $result_answer_true = [];
+            $result_answer_false = [];
+            foreach ($result_question as $result){
+                if ($result->id != $id){
+                    $id = $result->id;
+                    array_push($result_answer_true, $result->number_true);
+                    array_push($result_answer_false, $result->number_false);
+                }
+            }
+
         return view('content.seller.Course.questionManagement', [
             'course' => $course,
+            'name_course' => $my_course,
+            'name_lesson' => $my_lesson,
+            'results_question' => $result_question,
+            'number_true' => $result_answer_true,
+            'number_false' => $result_answer_false,
         ]);
     }
 }
