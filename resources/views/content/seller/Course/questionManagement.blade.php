@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-    Quản lý câu hỏi
+    Quản lý bài học {{ $my_lesson->name }}
 @stop
 
 @section('content')
@@ -14,12 +14,12 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-border-color"></i>
-            </span> Quản lý câu hỏi bài {{ $course }}
+            </span> Quản lý câu hỏi bài {{ $my_lesson->name }}
         </h3>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Cem câu hỏi {{ $course }} <i
+                    <span></span>khóa học {{ $my_course->name }} <i
                         class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
                 </li>
             </ul>
@@ -27,49 +27,121 @@
     </div>
     {{-- Tên trang --}}
 
+    {{-- start preview bài học --}}
     <div class="card">
         <div class="card-body">
-            <div class="chartjs-size-monitor">
-                <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
-                </div>
-                <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                </div>
-            </div>
-            <h4 class="card-title">Tỷ lệ trả lời</h4>
-            <canvas id="barChart" style="height: 392px; display: block; width: 784px;" width="784" height="392"
-                class="chartjs-render-monitor"></canvas>
+            <h4 class="card-title">Bài học: {{$my_lesson->name}}</h4>
+            <iframe width="100%" height="450" src="{{ $my_lesson->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>
+                Mô tả: <br>
+                {{ $my_lesson->description }} 
+            </p>
         </div>
     </div>
+    {{-- end preview bài học --}}
 
-    <div class="card" style="margin-top: 30px">
-        <div class="card-body">
-            <h4 class="card-title">Các câu hỏi</h4>
-            
-            <div>
-                <h5>Câu hỏi 1: Từ HTML là từ viết tắt của từ nào? </h5>
-                <ul>
-                    <li>Hyperlinks and Text Markup Language </li>
-                    <li>Home Tool Markup Language </li>
-                    <li><b>Hyper Text Markup Language</b></li>
-                    <li>Tất cả đều sai </li>
-                    <li>
-                        <a href="">
-                            Sửa 
-                            <i class="mdi mdi-lead-pencil"></i>
-                        </a>
-                        <a href="" style="margin-left: 15px">
-                            Xóa
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </li>
-                </ul>
+    @if (count($results_question))
+        <div class="card" style="margin-top: 30px">
+            <div class="card-body">
+                <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                    </div>
+                </div>
+                <h4 class="card-title">Tỷ lệ trả lời</h4>
+                <canvas id="barChart" style="height: 392px; display: block; width: 784px;" width="784" height="392"
+                    class="chartjs-render-monitor"></canvas>
             </div>
-
         </div>
-    </div>
 
+        <div class="card" style="margin-top: 30px">
+            <div class="card-body">
+                <h4 class="card-title">Các câu hỏi</h4>
+                <p> Số lượng câu hỏi: {{ count($number_true) }} 
+                    <br>
+                    <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
+                        Thêm câu hỏi ngay
+                    </a>
+                </p>
+                    <div>
+                        <?php $titleQuestion =  $results_question->first() ?>
+                        <?php $index = 0 ?>
+                    
+                        <h5>
+                            <b>Câu hỏi {{++$index}}: </b>
+                            {{ $titleQuestion->question }}
+                            (@if ($titleQuestion->type == 1)
+                                Nhiều câu trả lời đúng
+                            @elseif ($titleQuestion->type == 2)
+                                Chỉ một câu trả lời đúng
+                            @elseif ($titleQuestion->type == 3)
+                                Câu trả lời bằng văn bản
+                            @endif)
+                        </h5>
+                        <ul>
+                        
+                        @foreach ($results_question as $results)
+                            @if ($titleQuestion->id != $results->id)
+                                <li>
+                                    <a href="">
+                                        Sửa 
+                                        <i class="mdi mdi-lead-pencil"></i>
+                                    </a>
+                                    <a href="" style="margin-left: 15px">
+                                        Xóa
+                                        <i class="mdi mdi-delete"></i>
+                                    </a>
+                                </li>
+                                </ul>
+                                <h5>
+                                    <b>Câu hỏi {{++$index}}: </b> 
+                                    {{ $results->question }}
+                                    (@if ($results->type == 1)
+                                        Nhiều câu trả lời đúng
+                                    @elseif ($results->type == 2)
+                                        Chỉ một câu trả lời đúng
+                                    @elseif ($results->type == 3)
+                                        Câu trả lời bằng văn bản
+                                    @endif)
+                                </h5>
+                                <?php $titleQuestion = $results ?>
+                                <ul>
+                            @endif
+                            @if ($results->check == 1)
+                                <li>
+                                    <b>{{ $results->answer }}</b>
+                                </li>
+                            @else
+                                <li> {{ $results->answer }} </li>
+                            @endif
+                        @endforeach
+                        <li>
+                            <a href="">
+                                Sửa 
+                                <i class="mdi mdi-lead-pencil"></i>
+                            </a>
+                            <a href="" style="margin-left: 15px">
+                                Xóa
+                                <i class="mdi mdi-delete"></i>
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    @else
+        <div class="card" style="margin-top: 30px">
+            <div class="card-body" style="text-align: center">
+                <h4 class="card-title" style="text-align: center">Bài học chưa có câu hỏi nào</h4>
+                <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
+                    Tạo câu hỏi ngay
+                </a>
+            </div>
+        </div>
+    @endif
 @stop
 
 @section('js')

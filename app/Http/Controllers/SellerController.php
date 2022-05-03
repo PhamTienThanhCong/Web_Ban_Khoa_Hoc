@@ -192,10 +192,11 @@ class SellerController extends Controller
                 }
             }
 
+        // dd($result_question->first()->question);
+
         return view('content.seller.Course.questionManagement', [
-            'course' => $course,
-            'name_course' => $my_course,
-            'name_lesson' => $my_lesson,
+            'my_course' => $my_course,
+            'my_lesson' => $my_lesson,
             'results_question' => $result_question,
             'number_true' => $result_answer_true,
             'number_false' => $result_answer_false,
