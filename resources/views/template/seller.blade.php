@@ -26,7 +26,7 @@
           <div class="content-wrapper">
             {{-- Tên trang --}}
             <div class="page-header">
-              <h3 class="page-title">
+              <h3 id="page-title-replace" class="page-title">
                   <span class="page-title-icon bg-gradient-primary text-white me-2">
                       <i class="mdi mdi-border-color"></i>
                   </span>
@@ -73,6 +73,11 @@
     <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('js/misc.js') }}"></script>
     @yield('js')
+    <script>
+      $(document).ready(function () {
+        $('#page-title-replace').html($('#page-title-replace').html()+document.title);
+      });
+    </script>
     <!-- End plugin js for this page -->
   </body>
 </html>
