@@ -14,10 +14,34 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
     public function overview(){
-        return view('content.seller.overView');
+        return view('content.seller.overView',[
+            'url' => $this->breadcrumb(),
+        ]);
     }
+
     public function createCourse(){
-        return view('content.seller.Course.addCourse');
+        return view('content.seller.Course.addCourse',[
+            'url' => $this->breadcrumb(),
+        ]);
+    
+    }
+
+    public function breadcrumb(){
+        $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ."/". $crumbs[1];
+        // $url = $request->getHttpHost() ."". $crumbs[1];
+        $urlCrumbs = [array(
+            "url" => $url,
+            "name" => "none",
+        )];
+        for ($i = 2; $i < count($crumbs) ; $i++){
+            array_push($urlCrumbs, 
+            array(
+                "url" => $urlCrumbs[$i-2]["url"] ."/". $crumbs[$i],
+                "name" => $crumbs[$i],
+            ));
+        }
+        return $urlCrumbs;
     }
     public function createCourseProcessing(Request $request){
         try {
@@ -43,6 +67,7 @@ class SellerController extends Controller
             ->where('id_admin', '=', Session::get('id'))
             ->paginate(10);
         return view('content.seller.Course.managerCourse',[
+            'url' => $this->breadcrumb(),
             'data' => $course,
         ]);
     }
@@ -75,6 +100,7 @@ class SellerController extends Controller
                 ->groupBy('lessons.id')
                 ->get();
             return view('content.seller.Course.detailCourse', [
+                'url' => $this->breadcrumb(),
                 'course' => $course,
                 'data' => $my_course,
                 'lesson' => $my_lesson,
@@ -89,6 +115,7 @@ class SellerController extends Controller
             dd("fail");
         }
         return view('content.seller.Course.addLesson', [
+            'url' => $this->breadcrumb(),
             'course' => $course,
             'name_course' => $my_course->name,
         ]);
@@ -124,6 +151,7 @@ class SellerController extends Controller
             dd("fail");
         }
         return view('content.seller.Course.addQuestion', [
+            'url' => $this->breadcrumb(),
             'course' => $course,
             'lesson' => $lesson,
             'name_course' => $my_course->name,
@@ -192,9 +220,8 @@ class SellerController extends Controller
                 }
             }
 
-        // dd($result_question->first()->question);
-
         return view('content.seller.Course.questionManagement', [
+            'url' => $this->breadcrumb(),
             'my_course' => $my_course,
             'my_lesson' => $my_lesson,
             'results_question' => $result_question,

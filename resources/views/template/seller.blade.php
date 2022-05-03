@@ -24,6 +24,37 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+            {{-- Tên trang --}}
+            <div class="page-header">
+              <h3 class="page-title">
+                  <span class="page-title-icon bg-gradient-primary text-white me-2">
+                      <i class="mdi mdi-border-color"></i>
+                  </span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item active" aria-current="page">
+                          <nav aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                @for ($i = 1; $i < count($url)-1; $i++)
+                                  <li class="breadcrumb-item">
+                                    <a href="{{ $url[$i]["url"] }}">
+                                      {{ $url[$i]["name"] }}
+                                    </a>
+                                  </li>
+                                @endfor
+                                <li class="breadcrumb-item active" aria-current="page">
+                                  {{-- <a href="{{ $url[$i]["url"] }}"> --}}
+                                    {{ $url[$i]["name"] }}
+                                  {{-- </a> --}}
+                                </li>
+                              </ol>
+                          </nav>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+          {{-- Tên trang --}}
             @yield('content')
           </div>
           <!-- content-wrapper ends -->

@@ -9,23 +9,6 @@
 @stop
 
 @section('content')
-    {{-- Tên trang --}}
-    <div class="page-header">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-border-color"></i>
-            </span> Tổng quan khóa học
-        </h3>
-        <nav aria-label="breadcrumb">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Tất cả khóa học<i
-                        class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    {{-- Tên trang --}}
 
     <div class="card">
         <div class="card-body">
