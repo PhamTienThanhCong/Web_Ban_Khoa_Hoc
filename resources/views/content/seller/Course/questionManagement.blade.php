@@ -63,7 +63,7 @@
                                 Câu trả lời bằng văn bản
                             @endif)
                         </h5>
-                        <ul>
+                        <ul style="list-style-type: none">
                         
                         @foreach ($results_question as $results)
                             @if ($titleQuestion->id != $results->id)
@@ -90,14 +90,26 @@
                                     @endif)
                                 </h5>
                                 <?php $titleQuestion = $results ?>
-                                <ul>
+                                <ul style="list-style-type: none">
                             @endif
                             @if ($results->check == 1)
                                 <li>
-                                    <b>{{ $results->answer }}</b>
+                                    @if ($results->type == 1)
+                                        <input type="checkbox" checked="checked" onclick="return false;">
+                                    @elseif ($results->type == 2)
+                                        <input type="radio" checked="checked" onclick="return false;">
+                                    @endif
+                                    {{ $results->answer }}
                                 </li>
                             @else
-                                <li> {{ $results->answer }} </li>
+                                <li> 
+                                    @if ($results->type == 1)
+                                        <input type="checkbox" onclick="return false;">
+                                    @elseif ($results->type == 2)
+                                        <input type="radio" onclick="return false;">
+                                    @endif
+                                    {{ $results->answer }} 
+                                </li>
                             @endif
                         @endforeach
                         <li>

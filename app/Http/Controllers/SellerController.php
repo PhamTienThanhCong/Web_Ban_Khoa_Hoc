@@ -27,12 +27,13 @@ class SellerController extends Controller
     }
 
     public function breadcrumb(){
-        $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+        $crumbs = explode("?",$_SERVER["REQUEST_URI"]);
+        $crumbs = explode("/",$crumbs[0]);
         $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" ."/". $crumbs[1];
         // $url = $request->getHttpHost() ."". $crumbs[1];
         $urlCrumbs = [array(
             "url" => $url,
-            "name" => "none",
+            "name" => "home",
         )];
         for ($i = 2; $i < count($crumbs) ; $i++){
             array_push($urlCrumbs, 

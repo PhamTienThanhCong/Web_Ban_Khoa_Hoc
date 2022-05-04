@@ -36,7 +36,7 @@
                       <li class="breadcrumb-item active" aria-current="page">
                           <nav aria-label="breadcrumb">
                               <ol class="breadcrumb">
-                                @for ($i = 1; $i < count($url)-1; $i++)
+                                @for ($i = 0; $i < count($url)-1; $i++)
                                   <li class="breadcrumb-item">
                                     <a href="{{ $url[$i]["url"] }}">
                                       {{ $url[$i]["name"] }}
@@ -44,9 +44,7 @@
                                   </li>
                                 @endfor
                                 <li class="breadcrumb-item active" aria-current="page">
-                                  {{-- <a href="{{ $url[$i]["url"] }}"> --}}
                                     {{ $url[$i]["name"] }}
-                                  {{-- </a> --}}
                                 </li>
                               </ol>
                           </nav>
