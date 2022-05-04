@@ -61,14 +61,31 @@ class SellerController extends Controller
             return redirect()->route('seller.addCourse');
         }
     }
-    public function manageCourse(){
+    public function manageCourse(Request $request){
+        $s = $request->get('search');
+        $t = $request->get('check');
+
+        if ($t == ""){ $t = "3"; }
+
+        $Show = ["1","2"];
+        
+        if ($t != "3"){ $Show = [$t]; }
+        
         $course = course::query()
             ->select('*')
             ->where('id_admin', '=', Session::get('id'))
+            ->where('name', 'like', "%".$s."%")
+            ->whereIn('type', $Show)
             ->paginate(10);
+        $course->appends([
+            'search' => $s,
+            'check' => $t,
+        ]);
         return view('content.seller.Course.managerCourse',[
             'url' => $this->breadcrumb(),
             'data' => $course,
+            'type' => $t,
+            'search' => $s,
         ]);
     }
     public function getMyCourse($course){
