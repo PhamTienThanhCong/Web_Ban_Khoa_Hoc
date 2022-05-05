@@ -1,7 +1,7 @@
 @extends('template.seller')
 
 @section('css')
-    {{-- Css code --}}
+    <link rel="stylesheet" href="{{ asset('css/seller/my_account.css') }}">
 @stop
 
 @section('title')

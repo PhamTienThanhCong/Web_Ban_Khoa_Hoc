@@ -53,6 +53,8 @@ class authAdminController extends Controller
         return redirect()->route('admin.login');
     }
     public function myAccount(){
-        return view('content.seller.myAccount');
+        return view('content.seller.myAccount',[
+            'url' => $this->breadcrumb(),
+        ]);
     }
 }
