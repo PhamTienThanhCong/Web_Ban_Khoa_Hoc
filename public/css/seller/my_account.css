@@ -1,0 +1,62 @@
+.avatar-preview{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid rgb(216, 102, 102);
+}
+
+.avatar-preview img{
+    object-fit: cover;
+    object-position: center;
+}
+
+.name-preview{
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+}
+.infor-preview{
+    width: 100%;
+}
+.email-preview{
+    width: 100%;
+    text-align: center;
+}
+.description-preview{
+    width: 450px;
+    margin: 0 auto;
+}
+.result-account{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.box-result{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: rgba(221, 123, 123, 0.007);
+    border: 2px solid rgba(145, 85, 85, 0.747);
+    margin: 0 30px;
+    text-align: center;
+}
+.box-result p{
+    margin-top: -10px;
+    font-size: 18px;
+}
+.box-result h1{
+    margin-top: 15px;
+}
+.change-info-btn{
+    width: 100%;
+    text-align: center;
+    margin-top: 35px;
+}
+#change-my-account{
+    display: none;
+}

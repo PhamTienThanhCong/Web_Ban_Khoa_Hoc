@@ -5,13 +5,116 @@
 @stop
 
 @section('title')
-    Thêm khóa học
+    Tài khoản của tôi
 @stop
 
 @section('content')
-    Tổng quan code
+    <div class="col-12 grid-margin stretch-card" id="change-my_account">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Tài khoản của {{ Session::get('name') }} </p>
+                <br>
+                <div class="avatar-preview">
+                    <img width="100%" height="100%" src="{{ asset("images/avatar/".Session::get('image')) }}" alt="">
+                </div>
+                <div class="name-preview">
+                    <h3>
+                        {{ Session::get('name') }}
+                    </h3>
+                </div>
+                <div class="infor-preview">
+                    <div class="email-preview">
+                        <i class="mdi mdi-email-outline" style="font-size: 18px"></i>
+                        Email: Email@example.com
+                    </div>
+                    <br>
+                    <div class="description-preview">
+                        - Mô tả bản thân: Là một người hiền lành không đánh ai bao giờ chỉ thích đi châm chọc các em gái mới lơn
+                    </div>
+                </div>
+                <div class="result-account">
+                    <div class="box-result"> 
+                        <h1>
+                            15
+                        </h1>
+                        <p>
+                            khóa học
+                        </p>
+                    </div>
+                    <div class="box-result"> 
+                        <h1>
+                            1889
+                        </h1>
+                        <p>
+                            đã bán
+                        </p>
+                    </div>
+                    <div class="box-result"> 
+                        <h1>
+                            4.3
+                        </h1>
+                        <p>
+                            đánh giá
+                        </p>
+                    </div>
+                </div>
+                <div class="change-info-btn">
+                    <button class="btn btn-outline-danger btn-fw" style="margin: auto;" onclick="showChange()">
+                        Chỉnh sửa thông tin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- style="display:none" --}}
+    <div class="col-12 grid-margin stretch-card" id="change-my-account">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Quản lý tài khoản</h4>
+                <p class="card-description"> Chỉnh sửa đi nhé cậu yêu :3 </p>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Tên tài khoản</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputName1" placeholder="Name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Địa chỉ Email</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail3" placeholder="Email"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ảnh đại diện mới</label>
+                        <div class="input-group col-xs-12">
+                            <input type="file" name="image" class="form-control file-upload-info"
+                                placeholder="Upload Image">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Mô tả bản thân</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" style="resize: vertical;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary me-2">Thay đổi</button>
+                    <button class="btn btn-light" onclick="hinddenChange()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('js')
-    {{-- js code --}}
+    <script>
+        function showChange(){
+            document.getElementById("change-my-account").style.display="block";
+        }
+        function hinddenChange(){
+            document.getElementById("change-my-account").style.display="none";
+        }
+    </script>
 @stop
