@@ -67,5 +67,6 @@ Route::group([
 
     Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('admin.myAccount');
     Route::put('/seller/taikhoancuatoi/thaydoi', [authAdminController::class, 'updateMyAccount'])->name('admin.myAccountUpdate');
+    Route::put('/seller/taikhoancuatoi/thaydoimatkhau', [authAdminController::class, 'updateMyPassword'])->name('admin.myAccountUpdatePassword');
 
 });

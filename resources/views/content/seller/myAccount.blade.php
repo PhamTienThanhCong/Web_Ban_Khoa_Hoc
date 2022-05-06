@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+{{-- Show thonong tin tài khoản --}}
     <div class="col-12 grid-margin stretch-card" id="change-my_account">
         <div class="card">
             <div class="card-body">
@@ -68,12 +69,16 @@
                     <button class="btn btn-outline-danger btn-fw" style="margin: auto;" onclick="showChange()">
                         Chỉnh sửa thông tin
                     </button>
+                    <button class="btn btn-gradient-dark btn-fw" style="margin: auto;" onclick="showChangePassword()">
+                        Thay đổi mật khẩu
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    {{-- Show thông tin tài khoản --}}
 
-    {{-- style="display:none" --}}
+    {{-- Đổi thông tin tài khoản --}}
     <div class="col-12 grid-margin stretch-card" id="change-my-account">
         <div class="card">
             <div class="card-body">
@@ -114,6 +119,35 @@
             </div>
         </div>
     </div>
+    {{-- Đổi thông tin tài khoản --}}
+
+    {{-- Đổi mật khẩu --}}
+    <div class="col-12 grid-margin stretch-card" id="change-my-password">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thay đổi mật khẩu</h4>
+                <p class="card-description"> Chỉnh sửa mật khẩu đi nhé cậu yêu :3 </p>
+                <form class="forms-sample" method="post" action="{{ route('admin.myAccountUpdatePassword') }} ">
+                    @csrf
+                    {{ method_field('PUT') }}
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Mật khẩu cũ</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword4" placeholder="Password"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Mật khẩu mới</label>
+                        <input type="password" name="password2" class="form-control" id="exampleInputPassword4" placeholder="Password"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary me-2">Thay đổi</button>
+                    <button class="btn btn-light" onclick="hinddenChangePass()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Đổi mật khẩu --}}
+
 @stop
 
 @section('js')
@@ -123,6 +157,12 @@
         }
         function hinddenChange(){
             document.getElementById("change-my-account").style.display="none";
+        }
+        function showChangePassword(){
+            document.getElementById("change-my-password").style.display="block";
+        }
+        function hinddenChangePass(){
+            document.getElementById("change-my-password").style.display="none";
         }
     </script>
 @stop

@@ -86,4 +86,13 @@ class authAdminController extends Controller
         $admin->save();
         return redirect()->route('admin.myAccount')->with('success','Đổi thông tin tài khoản thành công');
     }
+    public function updateMyPassword(Request $request){
+        $admin = admin::find(session()->get('id'));
+        if (!Hash::check($request->get('password'), $admin->password)){
+            return redirect()->route('admin.myAccount')->with('error','Mật khẩu không đúng, vui lòng nhập lại để thay đổi');
+        }
+        $admin->password = Hash::make($request->get('password2'));
+        $admin->save();
+        return redirect()->route('admin.myAccount')->with('success','Đổi mật khẩu tài khoản thành công');
+    }
 }
