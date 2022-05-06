@@ -1,9 +1,9 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
-      <a href="{{ route('seller.myAccount') }}" class="nav-link">
+      <a href="{{ route('admin.myAccount') }}" class="nav-link">
         <div class="nav-profile-image">
-          <img src="{{ asset('img/profile.jpg') }}" alt="profile">
+          <img src="{{ asset("images/avatar/".Session::get('image')) }}" style="object-fit: cover;object-position: center;" alt="profile">
           <span class="login-status online"></span>
           <!--change to offline or busy as needed-->
         </div>
@@ -34,7 +34,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link {{ Request::segment(1) === 'taikhoancuatoi' ? 'active' : null }}" href="{{ route('seller.myAccount') }}">
+      <a class="nav-link {{ Request::segment(1) === 'taikhoancuatoi' ? 'active' : null }}" href="{{ route('admin.myAccount') }}">
         <span class="menu-title">Quản lý trang cá nhân</span>
         <i class="mdi mdi-contacts menu-icon"></i>
       </a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin;
 use Exception;
+use Illuminate\Support\Facades\File; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,8 +54,36 @@ class authAdminController extends Controller
         return redirect()->route('admin.login');
     }
     public function myAccount(){
+        $admin = admin::query()
+                ->where('id', '=', session()->get('id'))
+                ->firstOrFail();
         return view('content.seller.myAccount',[
             'url' => $this->breadcrumb(),
+            'admin' => $admin,
         ]);
+    }
+    public function updateMyAccount(Request $request){
+        $admin = admin::find(session()->get('id'));
+        if (!Hash::check($request->get('password'), $admin->password)){
+            return redirect()->route('admin.myAccount')->with('error','Mật khẩu không đúng, vui lòng nhập lại để đăng nhập');
+        }
+        if (request()->image != null){
+            $filename = $admin->name.'.'.time().'.'.request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images\avatar'), $filename);
+            if ($admin->image != "avatar.jpg"){
+                $nameDelete = public_path("images\avatar\\").$admin->image;
+                File::delete($nameDelete);
+            }
+            $admin->image = $filename;
+        }
+        $admin->name = $request->get('name');
+        $admin->email = $request->get('email');
+        $admin->description = $request->get('description');
+        session()->put('id', $admin->id);
+        session()->put('name', $admin->name);
+        session()->put('image', $admin->image);
+        session()->put('lever', $admin->lever);
+        $admin->save();
+        return redirect()->route('admin.myAccount')->with('success','Đổi thông tin tài khoản thành công');
     }
 }

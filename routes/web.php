@@ -65,7 +65,7 @@ Route::group([
     
     Route::get('/seller/quanlykhoahoc/chitietid{course}/QuanLyBaiHoc{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
 
-    Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('seller.myAccount');
-
+    Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('admin.myAccount');
+    Route::put('/seller/taikhoancuatoi/thaydoi', [authAdminController::class, 'updateMyAccount'])->name('admin.myAccountUpdate');
 
 });
