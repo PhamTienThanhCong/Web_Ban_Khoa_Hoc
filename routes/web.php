@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseSellerController;
 use App\Http\Controllers\SellerController;
 use App\Http\Middleware\AdminWasLogin;
 use App\Http\Middleware\SellerWasLogin;
+use App\Http\Middleware\AdminSellerWasLogin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,16 @@ Route::group([
     Route::get('/admin/quanlynhanvien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');
     
     Route::get('/admin/quanlynguoidung', [AdminController::class, 'managerUser'])->name('admin.managerUser');
+
+});
+
+Route::group([
+    'middleware' => AdminSellerWasLogin::class,
+],function(){
+    Route::get('/account/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('admin.myAccount');
+    Route::put('/account/taikhoancuatoi/thaydoi', [authAdminController::class, 'updateMyAccount'])->name('admin.myAccountUpdate');
+    Route::put('/account/taikhoancuatoi/thaydoimatkhau', [authAdminController::class, 'updateMyPassword'])->name('admin.myAccountUpdatePassword');
+
 });
 
 Route::group([
@@ -64,9 +75,5 @@ Route::group([
     Route::post('/seller/quanlykhoahoc/chitietid{course}/TaoCauHoi{lesson}/xuly', [SellerController::class, 'createQuestionProcessing'])->name('seller.addQuestionProcessing');
     
     Route::get('/seller/quanlykhoahoc/chitietid{course}/QuanLyBaiHoc{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
-
-    Route::get('/seller/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('admin.myAccount');
-    Route::put('/seller/taikhoancuatoi/thaydoi', [authAdminController::class, 'updateMyAccount'])->name('admin.myAccountUpdate');
-    Route::put('/seller/taikhoancuatoi/thaydoimatkhau', [authAdminController::class, 'updateMyPassword'])->name('admin.myAccountUpdatePassword');
 
 });

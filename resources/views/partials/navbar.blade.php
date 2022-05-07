@@ -3,7 +3,7 @@
     <li class="nav-item nav-profile">
       <a href="#" class="nav-link">
         <div class="nav-profile-image">
-          <img src="{{ asset('img/profile.jpg') }}" alt="profile">
+          <img src="{{ asset("images/avatar/".Session::get('image')) }}" alt="profile">
           <span class="login-status online"></span>
           <!--change to offline or busy as needed-->
         </div>
@@ -37,6 +37,12 @@
       <a class="nav-link {{ Request::segment(1) === '' ? 'active' : null }}" href="{{ route('admin.managerUser') }}">
         <span class="menu-title">Quản lý người dùng</span>
         <i class="mdi mdi-account menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {{ Request::segment(1) === 'taikhoancuatoi' ? 'active' : null }}" href="{{ route('admin.myAccount') }}">
+        <span class="menu-title">Quản lý trang cá nhân</span>
+        <i class="mdi mdi-contacts menu-icon"></i>
       </a>
     </li>
   </ul>
