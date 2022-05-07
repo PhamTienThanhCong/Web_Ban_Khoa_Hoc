@@ -1,4 +1,4 @@
-@extends('template.seller')
+@extends('template.admin')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/seller/my_account.css') }}">

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\admin;
+use App\Models\course;
+use App\Models\lesson;
+use App\Models\question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,11 +13,6 @@ class AdminController extends Controller
 {
     public function overview(){
         return view('content.admin.overView',[
-            'url' => $this->breadcrumb(),
-        ]);
-    }
-    public function mamagerCourses(){
-        return view('content.admin.managerCourse',[
             'url' => $this->breadcrumb(),
         ]);
     }
@@ -89,5 +87,79 @@ class AdminController extends Controller
             $admin->save();
         }
         return redirect()->route('admin.viewSeller',$seller)->with('success','Cập nhập thành công');
+    }
+    public function mamagerCourses(Request $request, $name_admin = ""){
+        $s = $request->get('search');
+        $t = $request->get('check');
+
+        if ($t == ""){ $t = "3"; }
+
+        $Show = ["1","2"];
+        
+        if ($t != "3"){ $Show = [$t]; }
+        
+        $course = course::query()
+            ->select('courses.*','admins.name as name_admin')
+            ->join('admins', 'courses.id_admin', '=', 'admins.id')
+            ->where('courses.name', 'like', "%".$s."%")
+            ->where('admins.name', 'like', "%".$name_admin."%")
+            ->whereIn('courses.type', $Show)
+            ->paginate(10);
+        $course->appends([
+            'search' => $s,
+            'check' => $t,
+        ]);
+        return view('content.seller.Course.managerCourse',[
+            'url' => $this->breadcrumb(),
+            'data' => $course,
+            'type' => $t,
+            'search' => $s,
+        ]);
+    }
+    public function mamagerDetailCourses($name_admin,$course){
+        $my_course = course::find($course);
+        $my_lesson = lesson::query()
+            ->select('lessons.*',DB::raw('COUNT(questions.id) as number'))
+            ->leftJoin('questions' , 'lessons.id', '=', 'questions.lesson_id')
+            ->Where('courses_id', '=', $course)
+            ->groupBy('lessons.id')
+            ->get();
+        return view('content.seller.Course.detailCourse', [
+            'url' => $this->breadcrumb(),
+            'course' => $course,
+            'data' => $my_course,
+            'lesson' => $my_lesson,
+        ]);
+    }
+    public function viewLesson($name_admin,$course,$lesson){
+        $my_course = course::find($course);
+        $my_lesson = course::find($lesson);
+        
+        $result_question = question::query()
+            ->join('results' , 'questions.id', '=', 'results.questions_id')
+            ->leftJoin('answers' , 'questions.id', '=' , 'answers.questions_id')
+            ->select('questions.*', 'results.number_true', 'results.number_false', 'answers.answer', 'answers.check')
+            ->where('questions.lesson_id', '=', $lesson)
+            ->get();
+            
+            $id = -2;
+            $result_answer_true = [];
+            $result_answer_false = [];
+            foreach ($result_question as $result){
+                if ($result->id != $id){
+                    $id = $result->id;
+                    array_push($result_answer_true, $result->number_true);
+                    array_push($result_answer_false, $result->number_false);
+                }
+            }
+
+        return view('content.seller.Course.questionManagement', [
+            'url' => $this->breadcrumb(),
+            'my_course' => $my_course,
+            'my_lesson' => $my_lesson,
+            'results_question' => $result_question,
+            'number_true' => $result_answer_true,
+            'number_false' => $result_answer_false,
+        ]);
     }
 }

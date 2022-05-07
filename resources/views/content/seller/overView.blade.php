@@ -1,4 +1,4 @@
-@extends('template.seller')
+@extends('template.admin')
 
 @section('css')
     {{-- Css code --}}

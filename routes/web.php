@@ -39,7 +39,9 @@ Route::group([
 ],function(){
     Route::get('/admin/tongquan', [AdminController::class, 'overview'])->name('admin.overview');
     
-    Route::get('/admin/quanlykhoahoc', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
+    Route::get('/admin/quanlykhoahoc/{name_admin?}', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
+    Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}', [AdminController::class, 'mamagerDetailCourses'])->name('admin.mamagerDetailCourses');
+    Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}/BaiHoc{lesson}', [AdminController::class, 'viewLesson'])->name('admin.viewLesson');
 
     Route::get('/admin/quanlynhanvien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');
     Route::get('/admin/quanlynhanvien/xemnhanvien{seller}', [AdminController::class, 'viewSeller'])->name('admin.viewSeller');

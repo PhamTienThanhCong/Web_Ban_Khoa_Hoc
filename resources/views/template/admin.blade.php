@@ -71,11 +71,11 @@
     <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('js/misc.js') }}"></script>
     @yield('js')
-    <!-- End plugin js for this page -->
     <script>
       $(document).ready(function () {
         $('#page-title-replace').html($('#page-title-replace').html()+document.title);
       });
     </script>
+    <!-- End plugin js for this page -->
   </body>
 </html>

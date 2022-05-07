@@ -1,4 +1,4 @@
-@extends('template.seller')
+@extends('template.admin')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/seller/create_course.css') }}">
@@ -59,9 +59,14 @@
                             <i class="mdi mdi-cash"></i>
                             Giá thành: {{ $data->price }} VND
                         </p>
-                        <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
-                            Tạo Bài học mới
-                        </a>
+                        @if (Session::get('lever') == '1')
+                            <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
+                                Tạo Bài học mới
+                            </a>  
+                        @else
+                            <button type="button" class="btn btn-gradient-info btn-fw">Xác nhận</button>                 
+                            <button type="button" class="btn btn-gradient-danger btn-fw">Từ Chối</button>
+                        @endif
                     </div>
                 </div>
                 <br />
@@ -81,7 +86,9 @@
                             <th> Tên Bài học </th>
                             <th> Số Câu hỏi </th>
                             <th> Xem Bài học </th>
-                            <th> Thêm câu hỏi </th>
+                            @if (Session::get('lever') == '1')
+                                <th> Thêm câu hỏi </th>                    
+                            @endif
                             <th> Thời gian Tạo </th>
                         </tr>
                     </thead>
@@ -92,15 +99,23 @@
                                 <td> {{ $ls->name }} </td>
                                 <td> {{ $ls->number }} </td>
                                 <th>
-                                    <a href="{{ route('seller.questionManagement', [$course, $ls->id]) }}">
-                                        Xem
-                                    </a>
+                                    @if (Session::get('lever') == '1')
+                                        <a href="{{ route('seller.questionManagement', [$course, $ls->id]) }}">
+                                            Xem
+                                        </a>
+                                    @else
+                                        <a href="{{ route('admin.viewLesson', [$data->name, $course, $ls->id]) }}">
+                                            Xem
+                                        </a>
+                                    @endif
                                 </th>
-                                <th>
-                                    <a href="{{ route('seller.addQuestion', [$course, $ls->id]) }}">
-                                        Thêm mới
-                                    </a>
-                                </th>
+                                @if (Session::get('lever') == '1')
+                                    <th>    
+                                        <a href="{{ route('seller.addQuestion', [$course, $ls->id]) }}">
+                                            Thêm mới
+                                        </a>
+                                    </th>
+                                @endif
                                 <td>
                                     {{ date('d-m-Y', strtotime($ls->created_at)) }}
                                 </td>
@@ -111,11 +126,13 @@
                 </table>
                 {{-- List môn học --}}
                 <br>
-                <div style="width:100%; text-align: center;">
-                    <a href="{{ route('seller.createLesson', $course) }}">
-                        Tạo Bài học mới
-                    </a>
-                </div>
+                @if (Session::get('lever') == '1') 
+                    <div style="width:100%; text-align: center;">
+                        <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
+                            Tạo Bài học mới
+                        </a>                   
+                    </div>
+                @endif
             </div>
         </div>
     </div>

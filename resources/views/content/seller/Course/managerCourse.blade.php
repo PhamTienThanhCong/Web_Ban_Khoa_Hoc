@@ -1,4 +1,4 @@
-@extends('template.seller')
+@extends('template.admin')
 
 @section('css')
     {{-- Css code --}}
@@ -36,13 +36,21 @@
                     </div>
                 </div>
             </form>
-            <h4 class="card-title">Khóa học của tôi</h4>
+            @if (Session::get('lever') == '1')
+                <h4 class="card-title">Khóa học của tôi</h4>
+            @else
+                <h4 class="card-title">Tất cả khóa học</h4>
+            @endif
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th> Tên khóa </th>
                         <th> Giá </th>
-                        <th> Đã bán </th>
+                        @if (Session::get('lever') == '1')
+                            <th> Đã bán </th>
+                        @else
+                            <th> Tác giả </th>
+                        @endif
                         <th> Ngày tạo </th>
                         <th> Cập nhập lần cuối </th>
                         <th> Trạng thái </th>
@@ -54,7 +62,15 @@
                         <tr>
                             <td> {{ $course->name }} </td>
                             <td> {{ $course->price }} </td>
-                            <td> 14 </td>
+                            <td> 
+                                @if (Session::get('lever') == '1')
+                                    wait
+                                @else
+                                    <a href="{{ route('admin.managerCourse', $course->name_admin) }}">
+                                        {{ $course->name_admin }}
+                                    </a>
+                                @endif                                                                                                             
+                            </td>
                             <td>
                                 {{ date('d-m-Y', strtotime($course->created_at)) }}
                             </td>
@@ -69,7 +85,11 @@
                                 @endif
                             </td>
                             <th>
-                                <a href="{{ route('seller.detailCourse', $course->id) }}">Xem </a>
+                                @if (Session::get('lever') == '1')
+                                    <a href="{{ route('seller.detailCourse', $course->id) }}">Xem </a>
+                                @else
+                                    <a href="{{ route('admin.mamagerDetailCourses', [$course->name_admin, $course->id]) }}">Xem </a> 
+                                @endif
                             </th>
                         </tr> 
                     @endforeach
