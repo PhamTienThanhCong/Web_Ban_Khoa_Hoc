@@ -42,7 +42,9 @@ Route::group([
     Route::get('/admin/quanlykhoahoc', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
 
     Route::get('/admin/quanlynhanvien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');
-    
+    Route::get('/admin/quanlynhanvien/xemnhanvien{seller}', [AdminController::class, 'viewSeller'])->name('admin.viewSeller');
+    Route::get('/admin/quanlynhanvien/xemnhanvien{seller}/capnhap{type}/token={token}' , [AdminController::class, 'updateSeller'])->name('admin.SellerUpdate');
+
     Route::get('/admin/quanlynguoidung', [AdminController::class, 'managerUser'])->name('admin.managerUser');
 
 });

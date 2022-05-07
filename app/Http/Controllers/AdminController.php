@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function overview(){
-        return view('content.admin.overView');
+        return view('content.admin.overView',[
+            'url' => $this->breadcrumb(),
+        ]);
     }
     public function mamagerCourses(){
-        return view('content.admin.managerCourse');
+        return view('content.admin.managerCourse',[
+            'url' => $this->breadcrumb(),
+        ]);
     }
     public function managerSeller(Request $request){
         $s = $request->get('search');
@@ -39,6 +44,7 @@ class AdminController extends Controller
         ]);
         
         return view('content.admin.managerSeller',[
+            'url' => $this->breadcrumb(),
             'data' => $admin,
             'search' => $s,
             'type' => $t,
@@ -56,8 +62,32 @@ class AdminController extends Controller
            'search' => $search,
         ]);
         return view('content.admin.managerUser',[
+            'url' => $this->breadcrumb(),
             'data' => $user,
             'search' => $search,
         ]);
+    }
+    public function viewSeller($seller){
+        $admin =  admin::query()
+                ->select('admins.*',DB::raw('COUNT(courses.id) as number_courses'))
+                ->leftJoin('courses' , 'admins.id', '=', 'courses.id_admin')
+                ->where('admins.id', '=', $seller)
+                ->groupBy('admins.id')
+                ->firstOrFail();
+        return view('content.admin.ViewSeller',[
+            'url' => $this->breadcrumb(),
+            'admin' => $admin,
+        ]);
+    }
+    public function updateSeller($seller, $type, $token){
+        $admin = admin::find($seller);
+        if ($type != 1 && $type != 4 && $type != 3){
+            return redirect()->route('admin.viewSeller',$seller)->with('error','Lỗi cập nhập');
+        }
+        if ($admin->token == $token){
+            $admin->lever = $type;
+            $admin->save();
+        }
+        return redirect()->route('admin.viewSeller',$seller)->with('success','Cập nhập thành công');
     }
 }

@@ -9,23 +9,6 @@
 @stop
 
 @section('content')
-    {{-- Tên Trang --}}
-    <div class="page-header">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-home"></i>
-            </span> Người dùng
-        </h3>
-        <nav aria-label="breadcrumb">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Tổng quan về người dùng <i
-                        class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    {{-- Kết thúc tên Trang --}}
 
     {{-- Bảng Nhân Viên --}}
     <div class="card">
@@ -60,7 +43,7 @@
                         <tr>
                             <td class="py-1">
                                 {{-- <img src="{{ asset('img/profile.jpg') }}" alt="image"> --}}
-                                <img src="{{ $user->image }}" alt="image">
+                                <img src="{{ asset("images/avatar/".$user->image) }}" style="object-fit: cover;object-position: center;" alt="image">
                             </td>
                             <td> {{ $user->name }} </td>
                             <td> {{ $user->email }} </td>

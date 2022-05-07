@@ -9,23 +9,6 @@
 @stop
 
 @section('content')
-    {{-- Tên Trang --}}
-    <div class="page-header">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-home"></i>
-            </span> Nhân viên
-        </h3>
-        <nav aria-label="breadcrumb">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Tổng quan về nhân viên <i
-                        class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    {{-- Kết thúc tên Trang --}}
 
     {{-- Bảng Nhân Viên --}}
     <div class="card">
@@ -76,7 +59,7 @@
                         <tr>
                             <td class="py-1">
                                 {{-- <img src="{{ asset('img/profile.jpg') }}" alt="image"> --}}
-                                <img src="{{ $admin->image }}" alt="image">
+                                <img src="{{ asset("images/avatar/".$admin->image) }}" style="object-fit: cover;object-position: center;" alt="image">
                             </td>
                             <td> {{ $admin->name }} </td>
                             <td>
@@ -89,11 +72,11 @@
                                 @endif
 
                             </td>
-                            <td> {{ $admin->number }} </td>
+                            <td> {{ $admin->number - 1 }} </td>
                             <td> {{ $admin->income }} </td>
                             <td> {{ date('d-m-Y', strtotime($admin->created_at)) }} </td>
                             <td>
-                                <a href="#">
+                                <a href="{{ route('admin.viewSeller', $admin->id) }}">
                                     Xem
                                 </a>
                             </td>
