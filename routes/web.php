@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\authAdminController;
 use App\Http\Controllers\CourseSellerController;
 use App\Http\Controllers\SellerController;
+use App\Http\Middleware\AdminDontLogin;
 use App\Http\Middleware\AdminWasLogin;
 use App\Http\Middleware\SellerWasLogin;
 use App\Http\Middleware\AdminSellerWasLogin;
@@ -20,19 +21,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return view('auth.loginAdmin');
-})->name('admin.login');
+// admin and seller
+Route::group([
+    'middleware' => AdminDontLogin::class,
+], function () {
+    Route::get('/admin', function () {
+        return view('auth.loginAdmin');
+    })->name('admin.login');
+    
+    Route::get('/admin/register', function () {
+        return view('auth.registerAdmin');
+    })->name('admin.register');
 
-Route::get('/admin/register', function () {
-    return view('auth.registerAdmin');
-})->name('admin.register');
+    Route::post('/admin/register_processing', [authAdminController::class, 'register'])->name('admin.processing.register');
+});
 
-// account processing
-Route::post('/admin/register_processing', [authAdminController::class, 'register'])->name('admin.processing.register');
+Route::get('/account/logout', [authAdminController::class, 'logout'])->name('admin.logout');  
 Route::post('/admin/login_processing', [authAdminController::class, 'login'])->name('admin.processing.login');
-Route::get('/account/logout', [authAdminController::class, 'logout'])->name('admin.logout');
-
 
 Route::group([
     'middleware' => AdminWasLogin::class,
@@ -82,3 +87,7 @@ Route::group([
     Route::get('/seller/quanlykhoahoc/chitietid{course}/QuanLyBaiHoc{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
 
 });
+// admin and seller
+
+// User
+// User
