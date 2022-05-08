@@ -43,10 +43,13 @@
             <div class="card-body">
                 <h4 class="card-title">Các câu hỏi</h4>
                 <p> Số lượng câu hỏi: {{ count($number_true) }} 
-                    <br>
-                    <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
-                        Thêm câu hỏi ngay
-                    </a>
+                    @if (Session::get('lever') == '1')
+                        <br>
+                        <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
+                            Thêm câu hỏi ngay
+                        </a>
+                    @endif
+                    
                 </p>
                     <div>
                         <?php $titleQuestion =  $results_question->first() ?>
@@ -67,16 +70,18 @@
                         
                         @foreach ($results_question as $results)
                             @if ($titleQuestion->id != $results->id)
-                                <li>
-                                    <a href="">
-                                        Sửa 
-                                        <i class="mdi mdi-lead-pencil"></i>
-                                    </a>
-                                    <a href="" style="margin-left: 15px">
-                                        Xóa
-                                        <i class="mdi mdi-delete"></i>
-                                    </a>
-                                </li>
+                                @if (Session::get('lever') == '1')
+                                    <li>
+                                        <a href="">
+                                            Sửa 
+                                            <i class="mdi mdi-lead-pencil"></i>
+                                        </a>
+                                        <a href="" style="margin-left: 15px">
+                                            Xóa
+                                            <i class="mdi mdi-delete"></i>
+                                        </a>
+                                    </li>
+                                @endif
                                 </ul>
                                 <h5>
                                     <b>Câu hỏi {{++$index}}: </b> 
@@ -112,16 +117,18 @@
                                 </li>
                             @endif
                         @endforeach
-                        <li>
-                            <a href="">
-                                Sửa 
-                                <i class="mdi mdi-lead-pencil"></i>
-                            </a>
-                            <a href="" style="margin-left: 15px">
-                                Xóa
-                                <i class="mdi mdi-delete"></i>
-                            </a>
-                        </li>
+                        @if (Session::get('lever') == '1')
+                            <li>
+                                <a href="">
+                                    Sửa 
+                                    <i class="mdi mdi-lead-pencil"></i>
+                                </a>
+                                <a href="" style="margin-left: 15px">
+                                    Xóa
+                                    <i class="mdi mdi-delete"></i>
+                                </a>
+                            </li>
+                        @endif
                         </ul>
                     </div>
             </div>

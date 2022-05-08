@@ -23,6 +23,11 @@
                     <option value="2"  @if ($type == "2")
                         selected="selected"
                     @endif >--Khóa học đã được duyệt--</option>
+                    @if (Session::get('lever') == '2')
+                    <option value="0"  @if ($type == "2")
+                        selected="selected"
+                    @endif >--Khóa học đã hủy--</option>
+                    @endif
                 </select>
                 <br>
                 <div class="input-group">
@@ -37,9 +42,9 @@
                 </div>
             </form>
             @if (Session::get('lever') == '1')
-                <h4 class="card-title">Khóa học của tôi</h4>
+                <h4 class="card-title">Khóa học của tôi: {{ $data->total() }} Khóa</h4>
             @else
-                <h4 class="card-title">Tất cả khóa học</h4>
+                <h4 class="card-title">Tất cả khóa học: {{ $data->total() }} Khóa</h4>
             @endif
             <table class="table table-bordered">
                 <thead>
@@ -82,6 +87,8 @@
                                     <label class="badge badge-warning">Đang chờ</label>
                                 @elseif ($course->type == 2)
                                     <label class="badge badge-primary">Đã duyệt</label>
+                                @elseif ($course->type == 0)
+                                    <label class="badge badge-danger">Đã Hủy</label>
                                 @endif
                             </td>
                             <th>

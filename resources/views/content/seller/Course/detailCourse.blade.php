@@ -10,23 +10,25 @@
 
 @section('content')
 
-    {{-- Bắt đầu biểu đồ thu nhập --}}
-    <div class="card" style="margin-bottom: 40px">
-        <div class="card-body">
-            <div class="chartjs-size-monitor">
-                <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
+    @if ($data->type == '2')
+        {{-- Bắt đầu biểu đồ thu nhập --}}
+        <div class="card" style="margin-bottom: 40px">
+            <div class="card-body">
+                <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                    </div>
                 </div>
-                <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                </div>
+                <h4 class="card-title">Số khóa học đã bán ra</h4>
+                <canvas id="line-chart-seller-course" style="height: 407px; display: block; width: 815px;" width="815"
+                    height="407" class="chartjs-render-monitor"></canvas>
             </div>
-            <h4 class="card-title">Số khóa học đã bán ra</h4>
-            <canvas id="line-chart-seller-course" style="height: 407px; display: block; width: 815px;" width="815"
-                height="407" class="chartjs-render-monitor"></canvas>
         </div>
-    </div>
-    {{-- Kết thúc biểu đồ thu nhập --}}
+        {{-- Kết thúc biểu đồ thu nhập --}}
+    @endif
 
     {{-- start nội dung --}}
     <div class="sale-box-all">
@@ -52,7 +54,12 @@
 
                         <p>
                             <i class="mdi mdi-account"></i>
-                            Tác giả: {{ Session::get('name') }}
+                            Tác giả: 
+                            @if (Session::get('lever') == '1')
+                                {{ Session::get('name') }}
+                            @else
+                                {{ $name_admin }}
+                            @endif
                         </p>
 
                         <p>
@@ -64,8 +71,22 @@
                                 Tạo Bài học mới
                             </a>  
                         @else
-                            <button type="button" class="btn btn-gradient-info btn-fw">Xác nhận</button>                 
-                            <button type="button" class="btn btn-gradient-danger btn-fw">Từ Chối</button>
+                            @if ($data->type == '1')
+                                <a href="{{ route('admin.acceptCourse', [$name_admin, $course, 2]) }}">
+                                    <button type="button" class="btn btn-gradient-info btn-fw">Xác nhận</button>
+                                </a>                 
+                                <a href="{{ route('admin.acceptCourse', [$name_admin, $course, 0]) }}">
+                                    <button type="button" class="btn btn-gradient-danger btn-fw">Từ Chối</button>
+                                </a>
+                            @elseif ($data->type == '2')
+                            <h4 class="text-primary">
+                                Khóa học đã được xác nhận
+                            </h4>
+                            @elseif ($data->type == '0')
+                            <h4 class="text-danger">
+                                Khóa học đã bị từ chối
+                            </h4>
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -104,7 +125,7 @@
                                             Xem
                                         </a>
                                     @else
-                                        <a href="{{ route('admin.viewLesson', [$data->name, $course, $ls->id]) }}">
+                                        <a href="{{ route('admin.viewLesson', [$name_admin, $course, $ls->id]) }}">
                                             Xem
                                         </a>
                                     @endif

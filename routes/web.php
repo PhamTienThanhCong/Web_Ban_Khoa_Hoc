@@ -41,6 +41,7 @@ Route::group([
     
     Route::get('/admin/quanlykhoahoc/{name_admin?}', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
     Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}', [AdminController::class, 'mamagerDetailCourses'])->name('admin.mamagerDetailCourses');
+    Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}/xacnhan{type}', [AdminController::class, 'acceptCourse'])->name('admin.acceptCourse');
     Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}/BaiHoc{lesson}', [AdminController::class, 'viewLesson'])->name('admin.viewLesson');
 
     Route::get('/admin/quanlynhanvien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');

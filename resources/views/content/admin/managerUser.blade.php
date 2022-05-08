@@ -13,7 +13,7 @@
     {{-- Bảng Nhân Viên --}}
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Danh sách người dùng đã đăng kí</h4>
+            <h4 class="card-title">Danh sách người dùng: {{ $data->total() }} người dùng đã đăng kí</h4>
             <br>
             <form class="form-group">
                 <div class="input-group">
@@ -59,7 +59,7 @@
                 </tbody>
             </table>
             <br>
-            {{-- {{ $data->links() }} --}}
+            {{ $data->links() }}
         </div>
     </div>
     {{-- Kết thúc bảng nhân viên --}}

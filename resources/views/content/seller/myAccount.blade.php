@@ -39,32 +39,45 @@
                         - Mô tả bản thân: {{ $admin->description }}
                     </div>
                 </div>
-                <div class="result-account">
-                    <div class="box-result"> 
-                        <h1>
-                            15
-                        </h1>
-                        <p>
-                            khóa học
-                        </p>
+                @if (Session::get('lever') == '1')
+                    <div class="result-account">
+                        <div class="box-result"> 
+                            <h1>
+                                15
+                            </h1>
+                            <p>
+                                khóa học
+                            </p>
+                        </div>
+                        <div class="box-result"> 
+                            <h1>
+                                1889
+                            </h1>
+                            <p>
+                                đã bán
+                            </p>
+                        </div>
+                        <div class="box-result"> 
+                            <h1>
+                                4.3
+                            </h1>
+                            <p>
+                                đánh giá
+                            </p>
+                        </div>
                     </div>
-                    <div class="box-result"> 
-                        <h1>
-                            1889
-                        </h1>
-                        <p>
-                            đã bán
-                        </p>
+                @else
+                    <div class="result-account">
+                        <div class="box-result" style="width: 410px;"> 
+                            <h1>
+                                {{ Session::get('name') }}
+                            </h1>
+                            <p>
+                                Đây là tài khoản admin
+                            </p>
+                        </div>
                     </div>
-                    <div class="box-result"> 
-                        <h1>
-                            4.3
-                        </h1>
-                        <p>
-                            đánh giá
-                        </p>
-                    </div>
-                </div>
+                @endif
                 <div class="change-info-btn">
                     <button class="btn btn-outline-danger btn-fw" style="margin: auto;" onclick="showChange()">
                         Chỉnh sửa thông tin

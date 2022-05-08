@@ -89,6 +89,9 @@ class AdminController extends Controller
         return redirect()->route('admin.viewSeller',$seller)->with('success','Cập nhập thành công');
     }
     public function mamagerCourses(Request $request, $name_admin = ""){
+        $part = $this->breadcrumb();
+        $part[2]['name'] = $name_admin;
+
         $s = $request->get('search');
         $t = $request->get('check');
 
@@ -110,13 +113,16 @@ class AdminController extends Controller
             'check' => $t,
         ]);
         return view('content.seller.Course.managerCourse',[
-            'url' => $this->breadcrumb(),
+            'url' => $part,
             'data' => $course,
             'type' => $t,
             'search' => $s,
         ]);
     }
     public function mamagerDetailCourses($name_admin,$course){
+        $part = $this->breadcrumb();
+        $part[2]['name'] = $name_admin;
+
         $my_course = course::find($course);
         $my_lesson = lesson::query()
             ->select('lessons.*',DB::raw('COUNT(questions.id) as number'))
@@ -125,16 +131,27 @@ class AdminController extends Controller
             ->groupBy('lessons.id')
             ->get();
         return view('content.seller.Course.detailCourse', [
-            'url' => $this->breadcrumb(),
+            'name_admin' => $name_admin,
+            'url' => $part,
             'course' => $course,
             'data' => $my_course,
             'lesson' => $my_lesson,
         ]);
     }
+    public function acceptCourse($name_admin, $course, $type){
+        $my_course = course::find($course);
+        $my_course->type = $type;
+        $my_course->save();
+
+        return redirect()->route('admin.mamagerDetailCourses',[$name_admin, $course])->with('success','Cập nhập thành công');
+    }
     public function viewLesson($name_admin,$course,$lesson){
         $my_course = course::find($course);
-        $my_lesson = course::find($lesson);
+        $my_lesson = lesson::find($lesson);
         
+        $part = $this->breadcrumb();
+        $part[2]['name'] = $name_admin;
+
         $result_question = question::query()
             ->join('results' , 'questions.id', '=', 'results.questions_id')
             ->leftJoin('answers' , 'questions.id', '=' , 'answers.questions_id')
@@ -152,9 +169,8 @@ class AdminController extends Controller
                     array_push($result_answer_false, $result->number_false);
                 }
             }
-
         return view('content.seller.Course.questionManagement', [
-            'url' => $this->breadcrumb(),
+            'url' => $part,
             'my_course' => $my_course,
             'my_lesson' => $my_lesson,
             'results_question' => $result_question,

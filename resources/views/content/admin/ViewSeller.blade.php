@@ -42,12 +42,14 @@
             </div>
             <div class="result-account">
                 <div class="box-result"> 
-                    <h1>
-                        {{ $admin->number_courses }}
-                    </h1>
-                    <p>
-                        khóa học
-                    </p>
+                    <a href="{{ route('admin.managerCourse', $admin->name) }}" style="text-decoration: none; color: #343A40;">
+                        <h1>
+                            {{ $admin->number_courses }}
+                        </h1>
+                        <p>
+                            khóa học
+                        </p>
+                    </a>
                 </div>
                 <div class="box-result"> 
                     <h1>

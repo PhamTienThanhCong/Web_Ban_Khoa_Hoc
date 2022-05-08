@@ -13,7 +13,7 @@
     {{-- Bảng Nhân Viên --}}
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Danh sách nhân viên tổng hợp</h4>
+            <h4 class="card-title">Danh sách nhân viên: {{ $data->total() }} nhân viên</h4>
             <br>
             <form class="form-group">
                 <select class="form-control" id="exampleFormControlSelect2" name="check" value="{{ $type }}">
