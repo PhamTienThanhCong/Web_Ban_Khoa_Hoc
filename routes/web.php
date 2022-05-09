@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\authAdminController;
 use App\Http\Controllers\CourseSellerController;
+use App\Http\Controllers\homeViewController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\userController;
 use App\Http\Middleware\AdminDontLogin;
 use App\Http\Middleware\AdminWasLogin;
 use App\Http\Middleware\SellerWasLogin;
@@ -44,50 +46,60 @@ Route::group([
 ],function(){
     Route::get('/admin/tongquan', [AdminController::class, 'overview'])->name('admin.overview');
     
-    Route::get('/admin/quanlykhoahoc/{name_admin?}', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
-    Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}', [AdminController::class, 'mamagerDetailCourses'])->name('admin.mamagerDetailCourses');
-    Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}/xacnhan{type}', [AdminController::class, 'acceptCourse'])->name('admin.acceptCourse');
-    Route::get('/admin/quanlykhoahoc/{name_admin}/Khoahoc{course}/BaiHoc{lesson}', [AdminController::class, 'viewLesson'])->name('admin.viewLesson');
+    Route::get('/admin/quan-ly-khoa-hoc/{name_admin?}', [AdminController::class, 'mamagerCourses'])->name('admin.managerCourse');
+    Route::get('/admin/quan-ly-khoa-hoc/{name_admin}/Khoa-hoc{course}', [AdminController::class, 'mamagerDetailCourses'])->name('admin.mamagerDetailCourses');
+    Route::get('/admin/quan-ly-khoa-hoc/{name_admin}/Khoa-hoc{course}/xac-nhan{type}', [AdminController::class, 'acceptCourse'])->name('admin.acceptCourse');
+    Route::get('/admin/quan-ly-khoa-hoc/{name_admin}/Khoa-hoc{course}/Bai-Hoc{lesson}', [AdminController::class, 'viewLesson'])->name('admin.viewLesson');
 
-    Route::get('/admin/quanlynhanvien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');
-    Route::get('/admin/quanlynhanvien/xemnhanvien{seller}', [AdminController::class, 'viewSeller'])->name('admin.viewSeller');
-    Route::get('/admin/quanlynhanvien/xemnhanvien{seller}/capnhap{type}/token={token}' , [AdminController::class, 'updateSeller'])->name('admin.SellerUpdate');
+    Route::get('/admin/quan-ly-nhan-vien', [AdminController::class, 'managerSeller'])->name('admin.managerSeller');
+    Route::get('/admin/quan-ly-nhan-vien/xem-nhan-vien{seller}', [AdminController::class, 'viewSeller'])->name('admin.viewSeller');
+    Route::get('/admin/quan-ly-nhan-vien/xem-nhan-vien{seller}/cap-nhap{type}/token={token}' , [AdminController::class, 'updateSeller'])->name('admin.SellerUpdate');
 
-    Route::get('/admin/quanlynguoidung', [AdminController::class, 'managerUser'])->name('admin.managerUser');
+    Route::get('/admin/quan-ly-nguoi-dung', [AdminController::class, 'managerUser'])->name('admin.managerUser');
 
 });
 
 Route::group([
     'middleware' => AdminSellerWasLogin::class,
 ],function(){
-    Route::get('/account/taikhoancuatoi', [authAdminController::class, 'myAccount'])->name('admin.myAccount');
-    Route::put('/account/taikhoancuatoi/thaydoi', [authAdminController::class, 'updateMyAccount'])->name('admin.myAccountUpdate');
-    Route::put('/account/taikhoancuatoi/thaydoimatkhau', [authAdminController::class, 'updateMyPassword'])->name('admin.myAccountUpdatePassword');
+    Route::get('/account/tai-khoan-cua-toi', [authAdminController::class, 'myAccount'])->name('admin.myAccount');
+    Route::put('/account/tai-khoan-cua-toi/thay-doi', [authAdminController::class, 'updateMyAccount'])->name('admin.myAccountUpdate');
+    Route::put('/account/tai-khoan-cua-toi/thay-doi-mat-khau', [authAdminController::class, 'updateMyPassword'])->name('admin.myAccountUpdatePassword');
 
 });
 
 Route::group([
     'middleware' => SellerWasLogin::class,
 ],function(){
-    Route::get('/seller/tongquan', [SellerController::class, 'overview'])->name('seller.overview');
+    Route::get('/seller/tong-quan', [SellerController::class, 'overview'])->name('seller.overview');
     
-    Route::get('/seller/taokhoahoc', [SellerController::class, 'createCourse'])->name('seller.addCourse');
-    Route::post('seller/taokhoahoc/xuly', [SellerController::class, 'createCourseProcessing'])->name('seller.addCourseProcessing');
+    Route::get('/seller/tao-khoa-hoc', [SellerController::class, 'createCourse'])->name('seller.addCourse');
+    Route::post('seller/tao-khoa-hoc/xu-ly', [SellerController::class, 'createCourseProcessing'])->name('seller.addCourseProcessing');
     
-    Route::get('/seller/quanlykhoahoc', [SellerController::class, 'manageCourse'])->name('seller.managerCourse');
+    Route::get('/seller/quan-ly-khoa-hoc', [SellerController::class, 'manageCourse'])->name('seller.managerCourse');
     
-    Route::get('/seller/quanlykhoahoc/chitietid{course}', [SellerController::class, 'detailCourse'])->name('seller.detailCourse');
+    Route::get('/seller/quan-ly-khoa-hoc/chi-tiet-id-{course}', [SellerController::class, 'detailCourse'])->name('seller.detailCourse');
     
-    Route::get('/seller/quanlykhoahoc/chitietid{course}/createLesson',[SellerController::class, 'createLesson'])->name('seller.createLesson');
-    Route::post('/seller/quanlykhoahoc/chitietid{course}/createLesson/xuly', [SellerController::class, 'createLessonProcessing'])->name('seller.addLessonProcessing');
+    Route::get('/seller/quan-ly-khoa-hoc/chi-tiet-id-{course}/create-Lesson',[SellerController::class, 'createLesson'])->name('seller.createLesson');
+    Route::post('/seller/quan-ly-khoa-hoc/chi-tiet-id-{course}/create-Lesson/xuly', [SellerController::class, 'createLessonProcessing'])->name('seller.addLessonProcessing');
     
-    Route::get('/seller/quanlykhoahoc/chitietid{course}/TaoCauHoi{lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
-    Route::post('/seller/quanlykhoahoc/chitietid{course}/TaoCauHoi{lesson}/xuly', [SellerController::class, 'createQuestionProcessing'])->name('seller.addQuestionProcessing');
+    Route::get('/seller/quan-ly-khoa-hoc/chi-tiet-id-{course}/Tao-Cau-Hoi{lesson}', [SellerController::class, 'createQuestion'])->name('seller.addQuestion');
+    Route::post('/seller/quan-ly-khoa-hoc/chi-tiet-id-{course}/Tao-Cau-Hoi{lesson}/xu-ly', [SellerController::class, 'createQuestionProcessing'])->name('seller.addQuestionProcessing');
     
-    Route::get('/seller/quanlykhoahoc/chitietid{course}/QuanLyBaiHoc{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
+    Route::get('/seller/quan-ly-khoa-hoc/chi-tiet-id-{course}/Quan-Ly-Bai-Hoc{lesson}', [SellerController::class, 'manageQuestion'])->name('seller.questionManagement');
 
 });
 // admin and seller
 
 // User
+Route::get('/login', [userController::class, 'login'])->name('user.login');
+
+Route::get('/trang-chu', [homeViewController::class , 'home'])->name('home.course');
+
+Route::get('/khoa-hoc-cua-toi', [myCourseViewController::class , 'myCourse'])->name('home.myCourse');
+
+Route::get('/khoa-hoc/ma', [myCourseViewController::class , 'viewCourse'])->name('home.viewCourse');
+
+Route::get('/gio-hang', [myCourseViewController::class , 'viewCourse'])->name('home.viewCourse');
+
 // User
