@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\authAdminController;
-use App\Http\Controllers\CourseSellerController;
 use App\Http\Controllers\homeViewController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\userController;
@@ -92,14 +91,20 @@ Route::group([
 // admin and seller
 
 // User
-Route::get('/login', [userController::class, 'login'])->name('user.login');
+Route::get('/dang-nhap', [userController::class, 'login'])->name('user.login');
+Route::post('/dang-nhap/xu-ly-dang-ky', [userController::class, 'register'])->name('user.register');
 
-Route::get('/trang-chu', [homeViewController::class , 'home'])->name('home.course');
+Route::get('/tai-khoan-cua-toi', [userController::class, 'myAccount'])->name('user.myAccount');
 
-Route::get('/khoa-hoc-cua-toi', [myCourseViewController::class , 'myCourse'])->name('home.myCourse');
+Route::get('/tai-khoan-cua-toi/dang-xuat', [userController::class, 'myAccount'])->name('user.logout');
 
-Route::get('/khoa-hoc/ma', [myCourseViewController::class , 'viewCourse'])->name('home.viewCourse');
+Route::get('/khoa-hoc', [homeViewController::class , 'course'])->name('home.course');
 
-Route::get('/gio-hang', [myCourseViewController::class , 'viewCourse'])->name('home.viewCourse');
+Route::get('/khoa-hoc-cua-toi', [homeViewController::class , 'myCourse'])->name('home.myCourse');
+
+Route::get('/khoa-hoc/ma-{course_id}', [homeViewController::class , 'viewCourse'])->name('home.viewCourse');
+
+Route::get('/gio-hang', [homeViewController::class , 'myCart'])->name('home.myCart');
+
 
 // User

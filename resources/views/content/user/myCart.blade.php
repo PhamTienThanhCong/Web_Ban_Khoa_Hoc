@@ -2,6 +2,11 @@
 
 @section('css')
     {{-- Css code --}}
+    <style>
+        #my-cart{
+            background-color: rgba(0, 0, 0, .2);
+        }
+    </style>
 @stop
 
 @section('title')

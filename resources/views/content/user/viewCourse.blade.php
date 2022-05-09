@@ -1,7 +1,11 @@
 @extends('template.user')
 
 @section('css')
-    {{-- Css code --}}
+    <style>
+        #course{
+            background-color: rgba(0, 0, 0, .2);
+        }
+    </style>
 @stop
 
 @section('title')
@@ -9,6 +13,7 @@
 @stop
 
 @section('content')
+
 <div class="grid">
     <div class="grid__row">
         <div class="grid__column-3">

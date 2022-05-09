@@ -1,0 +1,91 @@
+@extends('template.user')
+
+@section('css')
+    {{-- Css code --}}
+    <style>
+        #course{
+            background-color: rgba(0, 0, 0, .2);
+        }
+    </style>
+@stop
+
+@section('title')
+    Quản lý Nhân viên
+@stop
+
+@section('content')
+    <img class="main-img" width="95%" height="350px"
+        src="https://scontent.fhan2-2.fna.fbcdn.net/v/t1.15752-9/277114640_1666431013724170_5404558021918161449_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=grUPfb2vV3UAX_V3vRE&_nc_ht=scontent.fhan2-2.fna&oh=03_AVKkfphCFlpUJkl163-OpncIR1jxWpcxRH-9zdaKaWkfxw&oe=628364ED"
+        alt="">
+    <div class="grid">
+        <div class="grid__row">
+            <div class="grid__column-3">
+                <div class="product-item">
+                    <a href="">
+                        <div class="product-item-img"
+                            style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
+                        </div>
+                        <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
+                    </a>
+                    <div class="product-des">
+                        <span><i class="fa-brands fa-youtube"></i>Tổng số bài học: 35</span>
+                        <span><i class="fa-solid fa-user"></i>Tác giả: Nguyễn Nam Long</span>
+                        <span><i class="fa-solid fa-id-card"></i>Giá: 950.000 VND</span>
+                    </div>
+                    <button class="btn-click"><a href="">Xem chi tiết</a></button>
+                </div>
+            </div>
+            <div class="grid__column-3">
+                <div class="product-item">
+                    <a href="">
+                        <div class="product-item-img"
+                            style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
+                        </div>
+                        <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
+                    </a>
+                    <div class="product-des">
+                        <span>Tổng số bài học: 35</span>
+                        <span>Tác giả: Nguyễn Nam Long</span>
+                        <span>Giá: 950.000 VND</span>
+                    </div>
+                    <button class="btn-click"><a href="">Xem chi tiết</a></button>
+                </div>
+            </div>
+            <div class="grid__column-3">
+                <div class="product-item">
+                    <a href="">
+                        <div class="product-item-img"
+                            style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
+                        </div>
+                        <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
+                    </a>
+                    <div class="product-des">
+                        <span>Tổng số bài học: 35</span>
+                        <span>Tác giả: Nguyễn Nam Long</span>
+                        <span>Giá: 950.000 VND</span>
+                    </div>
+                    <button class="btn-click"><a href="">Xem chi tiết</a></button>
+                </div>
+            </div>
+            <div class="grid__column-3">
+                <div class="product-item">
+                    <a href="">
+                        <div class="product-item-img"
+                            style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
+                        </div>
+                        <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
+                    </a>
+                    <div class="product-des">
+                        <span>Tổng số bài học: 35</span>
+                        <span>Tác giả: Nguyễn Nam Long</span>
+                        <span>Giá: 950.000 VND</span>
+                    </div>
+                    <button class="btn-click"><a href="">Xem chi tiết</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+
+@section('js')
+@stop

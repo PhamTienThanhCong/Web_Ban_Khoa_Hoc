@@ -2,6 +2,11 @@
 
 @section('css')
     {{-- Css code --}}
+    <style>
+        #my-course{
+            background-color: rgba(0, 0, 0, .2);
+        }
+    </style>
 @stop
 
 @section('title')
@@ -9,6 +14,12 @@
 @stop
 
 @section('content')
+
+<h2 class="product-header">
+    Khóa học của tôi
+</h2>
+<br>
+
 <div class="grid">
     <div class="grid__row">
         <div class="grid__column-3">
