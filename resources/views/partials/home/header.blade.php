@@ -18,9 +18,9 @@
             </div>
         @else
             <div class="header__user">
-                <img src="https://th.bing.com/th/id/OIP.djtHFlAcx0spchAfFcg87gHaIg?pid=ImgDet&rs=1" alt=""
+                <img src="{{ asset("images/avatar/" . Session::get('image')) }}" alt="{{ Session::get('name') }}"
                     class="header__user-img">
-                <span class="header__user-name">Dũng Phạm</span>
+                <span class="header__user-name">{{ Session::get('name') }}</span>
 
                 <ul class="header__user-menu">
                     <li class="header__user-item">

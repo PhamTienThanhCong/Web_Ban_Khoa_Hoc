@@ -93,10 +93,11 @@ Route::group([
 // User
 Route::get('/dang-nhap', [userController::class, 'login'])->name('user.login');
 Route::post('/dang-nhap/xu-ly-dang-ky', [userController::class, 'register'])->name('user.register');
+Route::post('/dang-nhap/xu-ly-dang-nhap', [userController::class, 'loginProcessing'])->name('user.loginProcessing');
+Route::get('/tai-khoan-cua-toi/dang-xuat', [userController::class, 'logout'])->name('user.logout');
 
 Route::get('/tai-khoan-cua-toi', [userController::class, 'myAccount'])->name('user.myAccount');
 
-Route::get('/tai-khoan-cua-toi/dang-xuat', [userController::class, 'myAccount'])->name('user.logout');
 
 Route::get('/khoa-hoc', [homeViewController::class , 'course'])->name('home.course');
 

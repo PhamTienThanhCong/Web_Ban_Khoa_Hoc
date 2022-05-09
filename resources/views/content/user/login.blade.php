@@ -32,20 +32,26 @@
                 <div class="form-content">
                     <div class="login-form">
                         <div class="title">Login</div>
-                        <form action="#">
+                        <form method="post" action="{{ route('user.loginProcessing') }}">
                             <div class="input-boxes">
+                                @csrf
                                 @if(Session::has('success'))
                                     <h2 style="color:rgb(0, 51, 218)">
                                         {{ Session::get('success') }}
                                     </h2>
                                 @endif
+                                @if(Session::has('error-login'))
+                                    <h2 style="color:red">
+                                        {{ Session::get('error-login') }}
+                                    </h2>
+                                @endif
                                 <div class="input-box">
                                     <i class="fas fa-envelope"></i>
-                                    <input type="text" placeholder="Enter your email" required>
+                                    <input name="email" type="text" placeholder="Enter your email" required>
                                 </div>
                                 <div class="input-box">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Enter your password" required>
+                                    <input name="password" type="password" placeholder="Enter your password" required>
                                 </div>
                                 <div class="text"><a href="#">Forgot password?</a></div>
                                 <div class="button input-box">

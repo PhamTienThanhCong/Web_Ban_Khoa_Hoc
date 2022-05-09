@@ -25,6 +25,26 @@ class userController extends Controller
             return redirect()->route('user.login')->with('error','Email nãy lỗi hoặc Đã được sử dụng');
         }
     }
+    public function loginProcessing(Request $request){
+        try {
+            $user = user::query()
+                ->where('email', $request->get('email'))
+                ->firstOrFail();
+            if (!Hash::check($request->get('password'), $user->password)){ 
+                return redirect()->route('user.login')->with('error-login','Tài khoản hoặc mật khẩu không đúng');
+            }
+            session()->put('id', $user->id);
+            session()->put('name', $user->name);
+            session()->put('image', $user->image);
+            return redirect()->route('home.course');
+        } catch (\Throwable $th) {
+            return redirect()->route('user.login')->with('error-login','Tài khoản hoặc mật khẩu không đúng');
+        }
+    }
+    public function logout(){
+        session()->flush();
+        return redirect()->route('home.course');
+    }
     public function myAccount(){
         return view('content.user.myAccount');
     }
