@@ -6,7 +6,7 @@
 @stop
 
 @section('title')
-    Quản lý Nhân viên
+    Đăng nhập
 @stop
 
 @section('content')

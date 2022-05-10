@@ -10,7 +10,7 @@
 @stop
 
 @section('title')
-    Quản lý Nhân viên
+    Tài khoản của tôi
 @stop
 
 @section('content')

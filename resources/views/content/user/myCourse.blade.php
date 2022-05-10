@@ -11,7 +11,7 @@
 @stop
 
 @section('title')
-    Quản lý Nhân viên
+    Khóa học đã mua
 @stop
 
 @section('content')
@@ -25,7 +25,7 @@
                 @foreach ($courses as $course)
                     <div class="grid__column-3">
                         <div class="product-item">
-                            <a href="">
+                            <a href="{{ route('home.viewCourse', $course->id) }}">
                                 <div class="product-item-img"
                                     style="background-image: url({{ asset('images/' . $course->image) }});">
                                 </div>
@@ -37,7 +37,7 @@
                                 <span><i class="fa-solid fa-user"></i>Tác giả: {{ $course->name_admin }}</span>
                                 <span><i class="fa-solid fa-id-card"></i>Giá: {{ $course->price }} VND</span>
                             </div>
-                            <button class="btn-click"><a href="">Xem chi tiết</a></button>
+                            <button class="btn-click"><a href="{{ route('home.viewCourse', $course->id) }}">Xem chi tiết</a></button>
                         </div>
                     </div>
                 @endforeach

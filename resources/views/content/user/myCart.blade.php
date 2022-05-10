@@ -3,85 +3,88 @@
 @section('css')
     {{-- Css code --}}
     <style>
-        #my-cart{
+        #my-cart {
             background-color: rgba(0, 0, 0, .2);
         }
+
     </style>
 @stop
 
 @section('title')
-    Quản lý Nhân viên
+    Giỏ hàng của tôi
 @stop
 
 @section('content')
-<div class="grid">
-    <div class="grid__row">
-        <div class="grid__column-3">
-            <div class="product-item">
-                <a href="">
-                    <div class="product-item-img"
-                        style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
-                    </div>
-                    <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
-                </a>
-                <div class="product-des">
-                    <span><i class="fa-brands fa-youtube"></i>Tổng số bài học: 35</span>
-                    <span><i class="fa-solid fa-user"></i>Tác giả: Nguyễn Nam Long</span>
-                    <span><i class="fa-solid fa-id-card"></i>Giá: 950.000 VND</span>
+    <div class="grid">
+        <div class="page-content">
+            <div class="page">
+                <div class="content">
+                    <h2>Thông tin giỏ hàng của bạn </h2>
                 </div>
-                <button class="btn-click"><a href="">Xem chi tiết</a></button>
+                <table id="table_gio_hang">
+                    <tr class="header-table">
+                        <th class="header_ten"> Tên </th>
+                        <th class="header_tacgia"> Tác Giả </th>
+
+                        <th class="header_gia"> Giá </th>
+                        <th class="header_tuong_tac"> Huỷ</th>
+                        <th class="header_mua"> Mua </th>
+                    </tr>
+                    <tr>
+                        <th>phong</th>
+                        <th>vip pro no 1 </th>
+                        <th>1000000$</th>
+                        <th><a href="#">xoá</a> </th>
+                        <th>
+                            <input type="hidden" class="value" value="36">
+                            <input class="check-value" type="checkbox">
+                            <input type="hidden" class="value" value="36">
+                        </th>
+                    </tr>
+
+                </table>
+                <h3>Tổng tiền: <span>0</span>VND</h3>
+                <div class="content_mid_table">
+                    <p>Bạn ơi giỏ hàng của bạn đang trống kìa hãy lụm thêm vài sản phẩm vào nào !!!</p>
+                    <p>Bạn có thể xem sản phẩm <a href="{{ route('home.course') }}">Tại đây</a> </p>
+                </div>
             </div>
-        </div>
-        <div class="grid__column-3">
-            <div class="product-item">
-                <a href="">
-                    <div class="product-item-img"
-                        style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
+
+            <div>
+                <div class="page_right">
+                    <div calss="test">
+                        <div class="table1">
+                            <h2>Thông tin thanh toán</h2>
+                            @if (!Session::has('id'))
+                                <p>Chưa có thông tin bạn phải đăng nhập</p>
+                                <p>Bạn có thể đăng nhập <a href="{{ route('user.login') }}">Tại đây</a></p>
+                            @else
+                                <div>
+                                    <span>Tên : <span>{{ Session::get('name') }}</span></span><br>
+                                    <span>Số tài khoản: <span>0381 0053 501</span></span><br>
+                                    <span>Ngân hàng <span>Tiên Phong (TpBank) </span></span>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="table2">
+                            <h2>Thông tin về mặt hàng</h2>
+                            <p></p>
+                            <p>Số tiền phải trả : 0</p>
+                            <p>Số lượng bài học bạn đã mua: 0</p>
+                        </div>
                     </div>
-                    <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
-                </a>
-                <div class="product-des">
-                    <span>Tổng số bài học: 35</span>
-                    <span>Tác giả: Nguyễn Nam Long</span>
-                    <span>Giá: 950.000 VND</span>
+                    <form id="mua">
+                        <input type="hidden">
+                        <button
+                        @if (!Session::has('id'))
+                            type="button" onclick="alert('Ban Phai Dang Nhap')"
+                        @endif
+                        >Mua</button>
+                    </form>
                 </div>
-                <button class="btn-click"><a href="">Xem chi tiết</a></button>
-            </div>
-        </div>
-        <div class="grid__column-3">
-            <div class="product-item">
-                <a href="">
-                    <div class="product-item-img"
-                        style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
-                    </div>
-                    <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
-                </a>
-                <div class="product-des">
-                    <span>Tổng số bài học: 35</span>
-                    <span>Tác giả: Nguyễn Nam Long</span>
-                    <span>Giá: 950.000 VND</span>
-                </div>
-                <button class="btn-click"><a href="">Xem chi tiết</a></button>
-            </div>
-        </div>
-        <div class="grid__column-3">
-            <div class="product-item">
-                <a href="">
-                    <div class="product-item-img"
-                        style="background-image: url(https://shopkhoahoccong.000webhostapp.com/public/images/upload/Kh%C3%B3a%20h%E1%BB%8Dc%20html-css-javascript-php%201642081103.png);">
-                    </div>
-                    <div class="product-item-name">Khóa HỌC JAVASCRIPT</div>
-                </a>
-                <div class="product-des">
-                    <span>Tổng số bài học: 35</span>
-                    <span>Tác giả: Nguyễn Nam Long</span>
-                    <span>Giá: 950.000 VND</span>
-                </div>
-                <button class="btn-click"><a href="">Xem chi tiết</a></button>
             </div>
         </div>
     </div>
-</div>
 @stop
 
 @section('js')

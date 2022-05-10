@@ -1,0 +1,161 @@
+.info-author{
+    width: 100%;
+}
+
+.avatar-author{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.name-author{
+    margin-left: 15px;
+    display: inline-block;
+    font-size: 25px;
+    padding-bottom: 15px;
+    transform: translateY(-14px);
+}
+
+.my_course_view{
+    display: flex;
+    width: 100%;
+}
+
+.my_course_view img{
+    width: 500px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    display: inline-block;
+}
+
+.my_course_view_info{
+    display: inline-block;
+    height: 250px;
+    margin-left: 15px;
+}
+
+.name_course{
+    font-size: 30px;
+}
+
+.my_course_view_info p{
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.btn-action-course{
+    font-size: 15px;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid rgb(26, 25, 25);
+    border-radius: 5px;
+    background-color: rgb(5, 163, 255);
+}
+
+.description-course{
+    margin-top: 40px;
+    width: 100%;
+}
+
+.rating-course{
+    width: 100%;
+}
+
+fieldset{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    height: 45px;
+    padding-top: 10px;
+}
+
+.rating { 
+    border: none;
+    float: left;
+  }
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating > label { 
+    color: #ddd; 
+   float: right; 
+  }
+  
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  
+  .rating > input:checked ~ label, /* show gold star when clicked */
+  .rating:not(:checked) > label:hover, /* hover current star */
+  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+  
+  .rating > input:checked + label:hover, /* hover current star when changing rating */
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+.comment-course{
+    margin-top: 10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    resize: vertical;
+    font-size: 17px;
+    padding: 10px;
+    outline: none;
+}
+
+.submit-comment{
+    margin-left: 50%;
+    transform: translateX(213px);
+}
+
+.buy-course-alert{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(236, 15, 15);
+}
+
+.user-comment{
+    padding: 10px;
+    width: calc(100% - 20px);
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.rating-account{
+    width: 100%;
+    display: flex;
+}
+
+.img-rating-account{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.name-and-rating{
+    margin-left: 10px;
+}
+
+.name-and-rating p{
+    margin-top: 5px;
+    margin-bottom: 6px;
+    font-size: 18px;
+}
