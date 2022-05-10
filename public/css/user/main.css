@@ -671,3 +671,32 @@ border-radius: 10px;
     line-height: 2rem;
     margin-top: 10px;
 }
+
+nav{
+    display: flex;
+    justify-content: center;
+}
+.active{
+    background-color: rgb(84, 156, 252);
+    cursor: default;
+}
+.disabled{
+    cursor: default;
+}
+.pagination{
+    list-style-type: none;
+    display: flex;
+    font-size: 16px;
+}
+.page-item{
+    width: 30px;
+    height: 30px;
+    margin-left: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    border: 1px solid #ccc;
+}
+.page-link{
+    text-decoration: none;
+}

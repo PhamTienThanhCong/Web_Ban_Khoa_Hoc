@@ -33,6 +33,7 @@ class userController extends Controller
             if (!Hash::check($request->get('password'), $user->password)){ 
                 return redirect()->route('user.login')->with('error-login','Tài khoản hoặc mật khẩu không đúng');
             }
+            session()->put('login', 'true');
             session()->put('id', $user->id);
             session()->put('name', $user->name);
             session()->put('image', $user->image);

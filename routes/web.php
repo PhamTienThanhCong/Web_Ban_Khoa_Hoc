@@ -7,6 +7,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\AdminDontLogin;
 use App\Http\Middleware\AdminWasLogin;
+use App\Http\Middleware\UserWasLogin;
 use App\Http\Middleware\SellerWasLogin;
 use App\Http\Middleware\AdminSellerWasLogin;
 use Illuminate\Support\Facades\Route;
@@ -96,16 +97,17 @@ Route::post('/dang-nhap/xu-ly-dang-ky', [userController::class, 'register'])->na
 Route::post('/dang-nhap/xu-ly-dang-nhap', [userController::class, 'loginProcessing'])->name('user.loginProcessing');
 Route::get('/tai-khoan-cua-toi/dang-xuat', [userController::class, 'logout'])->name('user.logout');
 
-Route::get('/tai-khoan-cua-toi', [userController::class, 'myAccount'])->name('user.myAccount');
-
+Route::group([
+    'middleware' => UserWasLogin::class,
+],function(){
+    Route::get('/tai-khoan-cua-toi', [userController::class, 'myAccount'])->name('user.myAccount');
+    Route::get('/khoa-hoc-cua-toi', [homeViewController::class , 'myCourse'])->name('home.myCourse');
+});
 
 Route::get('/khoa-hoc', [homeViewController::class , 'course'])->name('home.course');
-
-Route::get('/khoa-hoc-cua-toi', [homeViewController::class , 'myCourse'])->name('home.myCourse');
 
 Route::get('/khoa-hoc/ma-{course_id}', [homeViewController::class , 'viewCourse'])->name('home.viewCourse');
 
 Route::get('/gio-hang', [homeViewController::class , 'myCart'])->name('home.myCart');
-
 
 // User
