@@ -20,6 +20,7 @@ html{
 }
 
 .grid__row{
+    width: calc(100% - 10px);
     display: flex;
     flex-wrap: wrap ;
     margin-left: -5px;

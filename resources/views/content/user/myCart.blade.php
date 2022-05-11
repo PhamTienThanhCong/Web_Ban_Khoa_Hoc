@@ -21,8 +21,10 @@
                 <div class="content">
                     <h2>Thông tin giỏ hàng của bạn </h2>
                 </div>
+                @if (Session::has('id_course'))
                 <table id="table_gio_hang">
                     <tr class="header-table">
+                        <th>#</th>
                         <th class="header_ten"> Tên </th>
                         <th class="header_tacgia"> Tác Giả </th>
 
@@ -30,24 +32,28 @@
                         <th class="header_tuong_tac"> Huỷ</th>
                         <th class="header_mua"> Mua </th>
                     </tr>
-                    <tr>
-                        <th>phong</th>
-                        <th>vip pro no 1 </th>
-                        <th>1000000$</th>
-                        <th><a href="#">xoá</a> </th>
-                        <th>
-                            <input type="hidden" class="value" value="36">
-                            <input class="check-value" type="checkbox">
-                            <input type="hidden" class="value" value="36">
-                        </th>
-                    </tr>
-
+                    @for ($i = 0; $i < count(Session::get('id_course')); $i++)
+                        <tr>
+                            <th> {{ $i + 1 }} </th>
+                            <th> {{ Session::get('name_course')[$i] }} </th>
+                            <th> {{ Session::get('author_course')[$i] }} </th>
+                            <th> {{ Session::get('price_course')[$i] }} VND</th>
+                            <th><a href="#">xoá</a> </th>
+                            <th>
+                                <input type="hidden" class="value" value="36">
+                                <input class="check-value" type="checkbox">
+                                <input type="hidden" class="value" value="36">
+                            </th>
+                        </tr>
+                    @endfor
                 </table>
-                <h3>Tổng tiền: <span>0</span>VND</h3>
-                <div class="content_mid_table">
-                    <p>Bạn ơi giỏ hàng của bạn đang trống kìa hãy lụm thêm vài sản phẩm vào nào !!!</p>
-                    <p>Bạn có thể xem sản phẩm <a href="{{ route('home.course') }}">Tại đây</a> </p>
-                </div>
+                <h3>Tổng tiền: <span>0</span>VND</h3>   
+                @else
+                    <div class="content_mid_table">
+                        <p>Bạn ơi giỏ hàng của bạn đang trống kìa hãy lụm thêm vài sản phẩm vào nào !!!</p>
+                        <p>Bạn có thể xem sản phẩm <a href="{{ route('home.course') }}">Tại đây</a> </p>
+                    </div>
+                @endif
             </div>
 
             <div>

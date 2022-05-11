@@ -5,6 +5,18 @@
         #course{
             background-color: rgba(0, 0, 0, .2);
         }
+        table, td, th {
+            border: 1px solid;
+            text-align: center;
+            height: 30px;
+        }
+
+        table {
+            width: calc(100% - 20px);
+            font-size: 16px;
+            padding: 10px;
+            border-collapse: collapse;
+        }
     </style>
     <link rel="stylesheet" href="{{ asset('css/user/view_course.css') }}">
 @stop
@@ -55,25 +67,64 @@
                     Đánh giá: 4.5 <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
                 </p>
                 <p>
-                    <a href="">
-                        <button class="btn-action-course">
-                            Đặt khóa học 
-                            <i class="fa-solid fa-cart-plus"></i>
-                        </button>
-                    </a>
+                    @if ($check == 1)
+                        <a href="{{ route('home.orderCourse', $courses->id) }}">
+                            <button class="btn-action-course">
+                                Đặt khóa học 
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </a>
+                    @elseif ($check == 2)
+                        <a href="{{ route('home.myCart') }}">
+                            <button class="btn-action-course">
+                                Mua khóa học
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </a>
+                    @elseif ($check == 3)
+                        <a href="{{ route('home.orderCourse', $courses->id) }}">
+                            <button class="btn-action-course">
+                                Xem khóa học
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </a>
+                    @endif
                 </p>
             </div>
         </div>
-        <div class="description-course">
-            <div class="name-author">
+        <div class="description-course" style="font-size: 16px">
+            <div class="name-author" style="display: block">
                 # Mô tả:
-                {!! $courses->description !!}
             </div>
+            {!! $courses->description !!}
         </div>
         {{-- Thông tin khóa học --}}
 
+        {{-- list bài học --}}
+        <table >
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Tên bài học
+                </th>
+            </tr>
+            @foreach ($lessons as $index => $lesson)
+                <tr>
+                    <td>
+                        {{ $index + 1 }}
+                    </td>
+                    <td>
+                        {{ $lesson->name }}
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+        {{-- list bài học --}}
+
         {{-- Đánh giá --}}
-        <div class="rating-course">
+        <div class="rating-course" style="margin-top: 15px">
             <br>
             <div class="name-author" style="display: block">
                 # Đánh giá sản phẩm

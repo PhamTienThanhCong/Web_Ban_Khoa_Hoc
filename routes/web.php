@@ -107,6 +107,7 @@ Route::group([
 Route::get('/khoa-hoc', [homeViewController::class , 'course'])->name('home.course');
 
 Route::get('/khoa-hoc/ma-{course_id}', [homeViewController::class , 'viewCourse'])->name('home.viewCourse');
+Route::get('/khoa-hoc/ma-{course_id}/dat-hang', [homeViewController::class , 'orderCourse'])->name('home.orderCourse');
 
 Route::get('/gio-hang', [homeViewController::class , 'myCart'])->name('home.myCart');
 
