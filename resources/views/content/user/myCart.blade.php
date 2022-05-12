@@ -45,7 +45,7 @@
                         </tr>
                     @endfor
                 </table>
-                <h3>Tổng tiền: <span>0</span>VND</h3>   
+                <h3>Tổng tiền: <span id="price-total">0</span>VND</h3>   
                 @else
                     <div class="content_mid_table">
                         <p>Bạn ơi giỏ hàng của bạn đang trống kìa hãy lụm thêm vài sản phẩm vào nào !!!</p>
@@ -96,9 +96,28 @@
 <script>
     let id = [];
     let total_price = 0;
+
+    function getIndex(arr = [], n) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == n){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     $(document).ready(function () {
-        $('.check-value').on('change', function () {
-            console.log($(this.parentNode).attr('data-price'));
+        $('.check-value').on('click', function () {
+            var price = parseInt($(this.parentNode).attr('data-price'));
+            var id_course = parseInt($(this.parentNode).attr('data-id'));
+            if (getIndex(id, id_course) == -1){
+                id.push(id_course);
+                total_price += price;
+            }else{
+                id.splice(getIndex(id, id_course), 1);
+                total_price -= price;
+            }
+            document.getElementById("price-total").innerHTML = total_price;
         })
     });
 </script>
