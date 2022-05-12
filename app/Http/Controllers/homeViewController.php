@@ -37,9 +37,11 @@ class homeViewController extends Controller
             ->get();
         
         $check = 1;
-        foreach (session()->get('id_course') as $cour){
-            if ($cour == $course_id){
-                $check = 2;
+        if(session()->has('id_course')){
+            foreach (session()->get('id_course') as $cour){
+                if ($cour == $course_id){
+                    $check = 2;
+                }
             }
         }
         return view('content.user.viewCourse',[

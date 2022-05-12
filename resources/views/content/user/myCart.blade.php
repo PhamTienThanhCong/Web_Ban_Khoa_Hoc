@@ -38,11 +38,9 @@
                             <th> {{ Session::get('name_course')[$i] }} </th>
                             <th> {{ Session::get('author_course')[$i] }} </th>
                             <th> {{ Session::get('price_course')[$i] }} VND</th>
-                            <th><a href="#">xoá</a> </th>
-                            <th>
-                                <input type="hidden" class="value" value="36">
+                            <th><a href="#">xoá</a></th>
+                            <th data-id={{ Session::get('id_course')[$i] }} data-price={{ Session::get('price_course')[$i] }}>
                                 <input class="check-value" type="checkbox">
-                                <input type="hidden" class="value" value="36">
                             </th>
                         </tr>
                     @endfor
@@ -94,4 +92,14 @@
 @stop
 
 @section('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    let id = [];
+    let total_price = 0;
+    $(document).ready(function () {
+        $('.check-value').on('change', function () {
+            console.log($(this.parentNode).attr('data-price'));
+        })
+    });
+</script>
 @stop

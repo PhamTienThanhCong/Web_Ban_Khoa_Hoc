@@ -22,7 +22,7 @@
 @stop
 
 @section('title')
-    Quản lý Nhân viên
+    {{ $courses->name }}
 @stop
 
 @section('content')
@@ -101,7 +101,7 @@
         {{-- Thông tin khóa học --}}
 
         {{-- list bài học --}}
-        <table >
+        <table style="margin-top: 10px">
             <tr>
                 <th>
                     #
