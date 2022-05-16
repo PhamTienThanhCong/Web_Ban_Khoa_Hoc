@@ -137,9 +137,11 @@
         <div class="card" style="margin-top: 30px">
             <div class="card-body" style="text-align: center">
                 <h4 class="card-title" style="text-align: center">Bài học chưa có câu hỏi nào</h4>
-                <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
-                    Tạo câu hỏi ngay
-                </a>
+                @if (Session::get('lever') == '1')
+                    <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
+                        Tạo câu hỏi ngay
+                    </a>
+                @endif
             </div>
         </div>
     @endif

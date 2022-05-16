@@ -117,7 +117,7 @@
                 id.splice(getIndex(id, id_course), 1);
                 total_price -= price;
             }
-            document.getElementById("price-total").innerHTML = total_price;
+            document.getElementById("price-total").innerHTML = total_price; 
         })
     });
 </script>
