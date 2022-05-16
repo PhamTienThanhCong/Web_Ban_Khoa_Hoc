@@ -35,10 +35,12 @@
                     @for ($i = 0; $i < count(Session::get('id_course')); $i++)
                         <tr>
                             <th> {{ $i + 1 }} </th>
-                            <th> {{ Session::get('name_course')[$i] }} </th>
+                            <th> 
+                                <a style="color: black; text-decoration: none" href="{{ route('home.viewCourse', Session::get('id_course')[$i]) }}">{{ Session::get('name_course')[$i] }}</a>
+                            </th>
                             <th> {{ Session::get('author_course')[$i] }} </th>
                             <th> {{ Session::get('price_course')[$i] }} VND</th>
-                            <th><a href="#">xoá</a></th>
+                            <th><a href="{{ route('home.unOrderCourse', Session::get('id_course')[$i]) }}">xoá</a></th>
                             <th data-id={{ Session::get('id_course')[$i] }} data-price={{ Session::get('price_course')[$i] }}>
                                 <input class="check-value" type="checkbox">
                             </th>
@@ -73,16 +75,20 @@
                         <div class="table2">
                             <h2>Thông tin về mặt hàng</h2>
                             <p></p>
-                            <p>Số tiền phải trả : 0</p>
-                            <p>Số lượng bài học bạn đã mua: 0</p>
+                            <p id="total-price-account">Số tiền phải trả : 0</p>
+                            <p id="total-course-account">Số lượng bài học bạn sẽ mua: 0</p>
                         </div>
                     </div>
-                    <form id="mua">
-                        <input type="hidden">
-                        <button
+                    <form id="mua" method="post" action="{{ route('home.buyCourse') }}">
+                        @csrf
+                        <input name="id-buy" id="id-buy" type="hidden">
+                        <input name="id-not-buy" id="id-not-buy" type="hidden">
+                        <button id="btn-buy"
                         @if (!Session::has('id'))
                             type="button" onclick="alert('Ban Phai Dang Nhap')"
                         @endif
+                        style="cursor: not-allowed"
+                        type="button"
                         >Mua</button>
                     </form>
                 </div>
@@ -96,6 +102,13 @@
 <script>
     let id = [];
     let total_price = 0;
+    let not_buy = [
+        @if (Session::has('id_course'))
+            @for ($i = 0; $i < count(Session::get('id_course')); $i++)
+                {{ Session::get('id_course')[$i] }},
+            @endfor
+        @endif
+    ];
 
     function getIndex(arr = [], n) {
         for (let i = 0; i < arr.length; i++) {
@@ -107,17 +120,31 @@
     }
 
     $(document).ready(function () {
+        document.getElementById("id-not-buy").value = not_buy;
         $('.check-value').on('click', function () {
             var price = parseInt($(this.parentNode).attr('data-price'));
             var id_course = parseInt($(this.parentNode).attr('data-id'));
             if (getIndex(id, id_course) == -1){
+                not_buy.splice(getIndex(not_buy, id_course), 1)
                 id.push(id_course);
                 total_price += price;
             }else{
                 id.splice(getIndex(id, id_course), 1);
+                not_buy.push(id_course)
                 total_price -= price;
             }
             document.getElementById("price-total").innerHTML = total_price; 
+            document.getElementById("total-price-account").innerHTML = "Số tiền phải trả : " + total_price;
+            document.getElementById("total-course-account").innerHTML = "Số lượng bài học bạn sẽ mua: " + id.length;
+            document.getElementById("id-buy").value = id;
+            document.getElementById("id-not-buy").value = not_buy;
+            if (id.length == 0){
+                document.getElementById("btn-buy").style.cursor = "not-allowed";
+                document.getElementById("btn-buy").setAttribute('type','button');
+            }else{
+                document.getElementById("btn-buy").style.cursor = "pointer";
+                document.getElementById("btn-buy").setAttribute('type','submit');
+            }
         })
     });
 </script>

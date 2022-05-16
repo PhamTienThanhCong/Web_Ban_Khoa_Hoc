@@ -102,12 +102,15 @@ Route::group([
 ],function(){
     Route::get('/tai-khoan-cua-toi', [userController::class, 'myAccount'])->name('user.myAccount');
     Route::get('/khoa-hoc-cua-toi', [homeViewController::class , 'myCourse'])->name('home.myCourse');
+    Route::post('/khoa-hoc/mua-khoa-hoc', [homeViewController::class, 'buyCourse'])->name('home.buyCourse');
+    Route::post('/khoa-hoc/ma-{course_id}/danh-gia', [homeViewController::class, 'ratingCourse'])->name('home.ratingCourse');
 });
 
 Route::get('/khoa-hoc', [homeViewController::class , 'course'])->name('home.course');
 
 Route::get('/khoa-hoc/ma-{course_id}', [homeViewController::class , 'viewCourse'])->name('home.viewCourse');
 Route::get('/khoa-hoc/ma-{course_id}/dat-hang', [homeViewController::class , 'orderCourse'])->name('home.orderCourse');
+Route::get('/khoa-hoc/ma-{course_id}/huy-dat-hang', [homeViewController::class , 'unOrderCourse'])->name('home.unOrderCourse');
 
 Route::get('/gio-hang', [homeViewController::class , 'myCart'])->name('home.myCart');
 

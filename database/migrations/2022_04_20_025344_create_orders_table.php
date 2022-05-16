@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('courses_id')->constrained('courses');
             $table->integer('price_buy');
-            $table->float('rate');
-            $table->text('comment');
+            $table->float('rate')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

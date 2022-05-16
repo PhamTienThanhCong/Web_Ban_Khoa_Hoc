@@ -64,7 +64,7 @@
                 </p>
                 <p>
                     <i class="fa-solid fa-user-pen"></i>
-                    Đánh giá: 4.5 <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
+                    Đánh giá: {{ $courses->rate_course }} <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
                 </p>
                 <p>
                     @if ($check == 1)
@@ -84,8 +84,8 @@
                     @elseif ($check == 3)
                         <a href="{{ route('home.orderCourse', $courses->id) }}">
                             <button class="btn-action-course">
-                                Xem khóa học
-                                <i class="fa-solid fa-cart-plus"></i>
+                                Học khóa học
+                                <i class="fa-solid fa-tv"></i>
                             </button>
                         </a>
                     @endif
@@ -109,6 +109,11 @@
                 <th>
                     Tên bài học
                 </th>
+                @if ($check == 3)
+                <th>
+                    Xem ngay
+                </th>
+                @endif
             </tr>
             @foreach ($lessons as $index => $lesson)
                 <tr>
@@ -118,6 +123,13 @@
                     <td>
                         {{ $lesson->name }}
                     </td>
+                    @if ($check == 3)
+                    <th>
+                        <a href="">
+                            Xem ngay
+                        </a>
+                    </th>
+                    @endif
                 </tr>
             @endforeach
         </table>
@@ -129,8 +141,8 @@
             <div class="name-author" style="display: block">
                 # Đánh giá sản phẩm
             </div>
-            @if (Session::has('id'))
-            <form method="post" action=""></form>
+            @if ($check == 3)
+            <form method="post" action="{{ route('home.ratingCourse', $courses->id) }}">
                 @csrf
                 <fieldset class="rating">
                     <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -146,10 +158,10 @@
                 </fieldset>
                 <br>
                 <div>
-                    <textarea class="comment-course" name="comment" cols="60" rows="6" placeholder="Viết ra bình luận của bạn"></textarea>
+                    <textarea class="comment-course" name="comment" cols="60" rows="6" placeholder="Viết ra bình luận của bạn">{{ $my_order->comment }}</textarea>
                 </div>
                 <div>
-                    <button class="btn-action-course submit-comment" type="submit">
+                    <button class="btn-action-course submit-comment">
                         Bình Luận
                     </button>
                 </div>
@@ -169,65 +181,31 @@
                 # Đánh giá của người đã mua
             </div>
 
-            <div class="user-comment">
-                <div class="rating-account">
-                    <img class="img-rating-account" src="{{ asset("images/avatar/avatar.jpg") }}" alt="">
-                    <div class="name-and-rating">
-                        <p>
-                            Tên: tên gì đó đi
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                        </p>
+            @foreach ($order_rate as $order)
+                <div class="user-comment">
+                    <p style="font-size: 15px">
+                        Ngày: {{ date('d-m-Y', strtotime($order->updated_at)) }}
+                    </p>
+                    <div class="rating-account" style="margin-top: 7px">
+                        <img class="img-rating-account" src="{{ asset("images/avatar/avatar.jpg") }}" alt="">
+                        <div class="name-and-rating">
+                            <p>
+                                Tên: {{ $order->name }}
+                            </p>
+                            <p>
+                                @for ($i = 0; $i < $order->rate; $i++)
+                                    <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
+                                @endfor
+                            </p>
+                        </div>
+                    </div>
+                    <div style="font-size: 17px; margin-top: 10px">
+                        {{ $order->comment }}
                     </div>
                 </div>
-                <div style="font-size: 17px; margin-top: 10px">
-                    Bình luận gì đó đi
-                </div>
-            </div>
-
-            <div class="user-comment">
-                <div class="rating-account">
-                    <img class="img-rating-account" src="{{ asset("images/avatar/avatar.jpg") }}" alt="">
-                    <div class="name-and-rating">
-                        <p>
-                            Tên: tên gì đó đi
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                        </p>
-                    </div>
-                </div>
-                <div style="font-size: 17px; margin-top: 10px">
-                    Bình luận gì đó đi
-                </div>
-            </div>
-
-            <div class="user-comment">
-                <div class="rating-account">
-                    <img class="img-rating-account" src="{{ asset("images/avatar/avatar.jpg") }}" alt="">
-                    <div class="name-and-rating">
-                        <p>
-                            Tên: tên gì đó đi
-                        </p>
-                        <p>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                            <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
-                        </p>
-                    </div>
-                </div>
-                <div style="font-size: 17px; margin-top: 10px">
-                    Bình luận gì đó đi
-                </div>
-            </div>
+            @endforeach
+        <br>
+        {{ $order_rate->links() }}
         </div>
         {{-- Đánh giá chi tiết --}}
     </div>
@@ -235,4 +213,7 @@
 @stop
 
 @section('js')
+<script>
+    document.getElementById("star{{ $my_order->rate }}").checked = true;
+</script>
 @stop
