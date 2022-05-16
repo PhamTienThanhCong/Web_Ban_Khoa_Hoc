@@ -180,4 +180,19 @@ class homeViewController extends Controller
     public function myCart(){
         return view('content.user.myCart');
     }
+
+    public function learnCourse($course_id, $lesson_id){
+        $lesson_id -= 1;
+        $lessons = lesson::query()
+            ->select('lessons.*', DB::raw('COUNT(questions.id) as number_question'))
+            ->leftJoin('questions', 'lessons.id', '=', 'questions.lesson_id')
+            ->where('lessons.courses_id', '=', $course_id)
+            ->groupBy('lessons.id')
+            ->get();
+        return view('content.user.learnCourse',[
+            'lessons'   => $lessons,
+            'course_id' => $course_id,
+            'lesson_id' => $lesson_id,
+        ]);
+    }
 }

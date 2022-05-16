@@ -1,0 +1,62 @@
+.lesson{
+    width: 100%;
+    display: flex;
+}
+.video_lesson{
+    height: 430px;
+    width: calc(100% - 320px);
+    display: inline-block;
+}
+.list_lesson{
+    height: 430px;
+    width: 300px;
+    padding: 10px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.btn-next-lesson{
+    width: 100%;
+    display: inline-block;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 0;
+    border-radius: 10px;
+    background-color: rgb(183, 226, 224);
+}
+.list_lesson_view{
+    padding: 10px 0;
+    overflow-y: scroll;
+    margin-top: 10px;
+    list-style-type: none;
+    height: 375px;
+}
+.lessons{
+    font-size: 15px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin-top: 3px;
+}
+.icon-question{
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgb(81, 200, 247);
+    border: 1px solid #ccc;
+}
+.icon-check{
+    float: right;
+    margin-right: 10px;
+}
+.name-lesson{
+    margin-top: 10px;
+    font-size: 22px;
+}
+.description-lesson{
+    font-size: 16px;
+}

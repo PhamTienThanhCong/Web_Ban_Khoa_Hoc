@@ -87,7 +87,7 @@
                             </button>
                         </a>
                     @elseif ($check == 3)
-                        <a href="{{ route('home.orderCourse', $courses->id) }}">
+                        <a href="{{ route('home.learnCourse', [$courses->id,1]) }}">
                             <button class="btn-action-course">
                                 Học khóa học
                                 <i class="fa-solid fa-tv"></i>
