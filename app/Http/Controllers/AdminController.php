@@ -30,7 +30,7 @@ class AdminController extends Controller
         
         $admin = DB::table('admins')
             ->leftJoin('courses' , 'admins.id', '=', 'courses.id_admin')
-            ->select('admins.id','admins.name','admins.image','admins.email','admins.lever','admins.income','admins.created_at', DB::raw('COUNT(admins.id) as number'))
+            ->select('admins.id','admins.name','admins.image','admins.email','admins.lever','admins.created_at', DB::raw('COUNT(admins.id) as number'))
             ->where('admins.name', 'like', "%".$s."%")
             ->whereIn('admins.lever', $Show)
             ->groupBy('admins.id')

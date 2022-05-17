@@ -16,7 +16,6 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_admin')->constrained('admins');
-            // $table->bigInteger('id_admin');
             $table->string('name',40);
             $table->string('image',150);
             $table->integer('price');
