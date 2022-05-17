@@ -18,7 +18,6 @@ class CreateResultsTable extends Migration
             $table->foreignId('questions_id')->constrained('questions');
             $table->integer('number_true')->default(0);
             $table->integer('number_false')->default(0);
-            $table->timestamps();
         });
     }
 

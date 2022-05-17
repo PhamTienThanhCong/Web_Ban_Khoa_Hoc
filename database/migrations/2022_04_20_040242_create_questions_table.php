@@ -18,7 +18,6 @@ class CreateQuestionsTable extends Migration
             $table->foreignId('lessons_id')->constrained('lessons');
             $table->string('question');
             $table->smallInteger('type');
-            $table->timestamps();
         });
     }
 

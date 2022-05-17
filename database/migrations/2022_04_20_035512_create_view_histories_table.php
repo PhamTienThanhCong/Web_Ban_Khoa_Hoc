@@ -18,7 +18,6 @@ class CreateViewHistoriesTable extends Migration
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('courses_id')->constrained('courses');
             $table->integer('number_view'); 
-            $table->timestamps();
         });
     }
 
