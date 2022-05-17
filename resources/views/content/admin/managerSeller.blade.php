@@ -73,7 +73,7 @@
 
                             </td>
                             <td> {{ $admin->number - 1 }} </td>
-                            <td> "0.0" </td>
+                            <td> 0.0 </td>
                             <td> {{ date('d-m-Y', strtotime($admin->created_at)) }} </td>
                             <td>
                                 <a href="{{ route('admin.viewSeller', $admin->id) }}">

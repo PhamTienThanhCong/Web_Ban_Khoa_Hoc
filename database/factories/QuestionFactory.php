@@ -14,7 +14,9 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'lessons_id' => $this->faker->numberBetween(1,3011),
+            'question' => $this->faker->name() . " là ai ?",
+            'type' => 2,
         ];
     }
 }

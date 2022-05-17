@@ -27,7 +27,7 @@ class SellerController extends Controller
     }
 
     public function createCourseProcessing(Request $request){
-        try {
+        // try {
             $filename = time().'.'.request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images'), $filename);
             $course = course::query()
@@ -39,10 +39,10 @@ class SellerController extends Controller
                     'price'  => $request->get('price'),
                     'description'  => $request->get('description'),
                 ]);
-            return redirect()->route('seller.managerCourse');
-        } catch (\Throwable $th) {
-            return redirect()->route('seller.addCourse');
-        }
+            return redirect()->route('seller.detailCourse', $course->id);
+        // } catch (\Throwable $th) {
+        //     return redirect()->route('seller.addCourse');
+        // }
     }
     public function manageCourse(Request $request){
         $s = $request->get('search');
@@ -95,7 +95,7 @@ class SellerController extends Controller
         try {
             $my_lesson = lesson::query()
                 ->select('lessons.*',DB::raw('COUNT(questions.id) as number'))
-                ->leftJoin('questions' , 'lessons.id', '=', 'questions.lesson_id')
+                ->leftJoin('questions' , 'lessons.id', '=', 'questions.lessons_id')
                 ->Where('courses_id', '=', $course)
                 ->groupBy('lessons.id')
                 ->get();
@@ -169,10 +169,9 @@ class SellerController extends Controller
         }
 
         $type_question = $request->get('type_question');
-
         $question = question::query()
             ->create([
-                'lesson_id' => $lesson,
+                'lessons_id' => $lesson,
                 'question' => $request->get("q"),
                 'type' => $type_question,
             ]);
@@ -206,7 +205,7 @@ class SellerController extends Controller
             ->join('results' , 'questions.id', '=', 'results.questions_id')
             ->leftJoin('answers' , 'questions.id', '=' , 'answers.questions_id')
             ->select('questions.*', 'results.number_true', 'results.number_false', 'answers.answer', 'answers.check')
-            ->where('questions.lesson_id', '=', $lesson)
+            ->where('questions.lessons_id', '=', $lesson)
             ->get();
             
             $id = -2;

@@ -45,7 +45,7 @@
                 <p> Số lượng câu hỏi: {{ count($number_true) }} 
                     @if (Session::get('lever') == '1')
                         <br>
-                        <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
+                        <a href="{{ route('seller.addQuestion', [$my_course->id, $my_lesson->id ]) }}">
                             Thêm câu hỏi ngay
                         </a>
                     @endif
@@ -138,7 +138,7 @@
             <div class="card-body" style="text-align: center">
                 <h4 class="card-title" style="text-align: center">Bài học chưa có câu hỏi nào</h4>
                 @if (Session::get('lever') == '1')
-                    <a href="{{ route('seller.addQuestion', [$my_course->name, $my_lesson->name ]) }}">
+                    <a href="{{ route('seller.addQuestion', [$my_course->id, $my_lesson->id ]) }}">
                         Tạo câu hỏi ngay
                     </a>
                 @endif

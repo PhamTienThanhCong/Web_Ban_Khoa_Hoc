@@ -10,7 +10,7 @@ class question extends Model
     public $timestamps = false;
     use HasFactory;
     protected $fillable = [
-        'lesson_id',
+        'lessons_id',
         'question',
         'type',
     ];

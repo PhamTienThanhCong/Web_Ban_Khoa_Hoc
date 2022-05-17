@@ -14,7 +14,10 @@ class LessonFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'courses_id' => $this->faker->numberBetween(1,201),
+            'name' => "Bài học: " . $this->faker->name(),
+            'link' => "https://www.youtube.com/embed/8IoM_IjH6BQ",
+            'description' => $this->faker->address(), 
         ];
     }
 }

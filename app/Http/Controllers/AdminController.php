@@ -126,7 +126,7 @@ class AdminController extends Controller
         $my_course = course::find($course);
         $my_lesson = lesson::query()
             ->select('lessons.*',DB::raw('COUNT(questions.id) as number'))
-            ->leftJoin('questions' , 'lessons.id', '=', 'questions.lesson_id')
+            ->leftJoin('questions' , 'lessons.id', '=', 'questions.lessons_id')
             ->Where('courses_id', '=', $course)
             ->groupBy('lessons.id')
             ->get();
@@ -156,7 +156,7 @@ class AdminController extends Controller
             ->join('results' , 'questions.id', '=', 'results.questions_id')
             ->leftJoin('answers' , 'questions.id', '=' , 'answers.questions_id')
             ->select('questions.*', 'results.number_true', 'results.number_false', 'answers.answer', 'answers.check')
-            ->where('questions.lesson_id', '=', $lesson)
+            ->where('questions.lessons_id', '=', $lesson)
             ->get();
             
             $id = -2;
