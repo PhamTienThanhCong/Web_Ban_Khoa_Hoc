@@ -37,7 +37,7 @@
                                 <span><i class="fa-solid fa-user"></i>Tác giả: {{ $course->name_admin }}</span>
                                 <span><i class="fa-solid fa-id-card"></i>Giá: {{ $course->price }} VND</span>
                             </div>
-                            <button class="btn-click"><a href="{{ route('home.viewCourse', $course->id) }}">Vào học ngay</a></button>
+                            <button class="btn-click"><a href="{{ route('home.learnCourse', [$course->id,1]) }}">Vào học ngay</a></button>
                         </div>
                     </div>
                 @endforeach
