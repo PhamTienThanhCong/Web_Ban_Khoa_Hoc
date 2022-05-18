@@ -47,10 +47,12 @@
                             </td>
                             <td> {{ $user->name }} </td>
                             <td> {{ $user->email }} </td>
-                            <td> 4 </td>
+                            <td> 
+                                {{ $user->number_order }} khóa
+                            </td>
                             <td> {{ date('d-m-Y', strtotime($user->created_at)) }} </td>
                             <td>
-                                <a href="#">
+                                <a>
                                     Xem
                                 </a>
                             </td>

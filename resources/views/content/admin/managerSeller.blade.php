@@ -48,8 +48,7 @@
                         <th> Avatar </th>
                         <th> Name </th>
                         <th> Trạng thái </th>
-                        <th> Bài học </th>
-                        <th> Thu nhập </th>
+                        <th> Khóa học </th>
                         <th> Ngày ra nhập </th>
                         <th> Xem </th>
                     </tr>
@@ -72,8 +71,11 @@
                                 @endif
 
                             </td>
-                            <td> {{ $admin->number - 1 }} </td>
-                            <td> 0.0 </td>
+                            <td> 
+                                <a href="{{ route('admin.managerCourse', $admin->name) }}">
+                                    {{ $admin->number - 1 }} khóa
+                                </a>
+                            </td>
                             <td> {{ date('d-m-Y', strtotime($admin->created_at)) }} </td>
                             <td>
                                 <a href="{{ route('admin.viewSeller', $admin->id) }}">

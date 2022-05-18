@@ -7,6 +7,7 @@ use App\Models\lesson;
 use App\Models\question;
 use App\Models\result;
 use App\Models\answer;
+use App\Models\order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -14,8 +15,26 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
     public function overview(){
+        $course = course::query()
+                ->select(DB::raw('COUNT(orders.id) as number_order'), DB::raw('SUM(orders.price_buy) as total_price'), DB::raw('AVG(orders.rate) as number_rate'))
+                ->leftJoin('orders' , 'courses.id', '=', 'orders.courses_id')
+                ->where('id_admin', '=', session()->get('id'))
+                ->first();
+
+        $top_course = course::query()
+                ->select('courses.id', 'courses.id_admin', 'courses.name', 'courses.price', 'courses.updated_at', DB::raw('COUNT(orders.id) as number_order'), DB::raw('AVG(orders.rate) as number_rate'))
+                ->join('admins', 'courses.id_admin', '=', 'admins.id')
+                ->leftJoin('orders', 'courses.id', '=', 'orders.courses_id')
+                ->where('courses.id_admin', '=', session()->get('id'))
+                ->where('courses.type', '=', '2')
+                ->groupBy('courses.id')
+                ->orderBy('number_order', 'DESC')
+                ->limit(10)
+                ->get();
         return view('content.seller.overView',[
-            'url' => $this->breadcrumb(),
+            'url'       => $this->breadcrumb(),
+            'course'    => $course,
+            'top_course'=> $top_course,
         ]);
     }
 
@@ -55,10 +74,12 @@ class SellerController extends Controller
         if ($t != "3"){ $Show = [$t]; }
         
         $course = course::query()
-            ->select('*')
-            ->where('id_admin', '=', Session::get('id'))
-            ->where('name', 'like', "%".$s."%")
-            ->whereIn('type', $Show)
+            ->select('courses.*',DB::raw('COUNT(orders.id) as number_buy'))
+            ->leftJoin('orders', 'courses.id', '=', 'orders.courses_id')
+            ->where('courses.id_admin', '=', session()->get('id'))
+            ->where('courses.name', 'like', "%".$s."%")
+            ->whereIn('courses.type', $Show)
+            ->groupBy('courses.id')
             ->paginate(10);
         $course->appends([
             'search' => $s,
@@ -99,11 +120,25 @@ class SellerController extends Controller
                 ->Where('courses_id', '=', $course)
                 ->groupBy('lessons.id')
                 ->get();
+
+            $my_rate = order::query()
+                ->select('orders.rate', 'orders.comment', 'orders.created_at', 'users.name')
+                ->join('users','orders.users_id','=', 'users.id')
+                ->where('orders.courses_id', '=', $course)
+                ->where('orders.rate', '!=', 'null')
+                ->get();
+
+            $total_rate = 0;
+            for ($i = 0; $i < count($my_rate); $i++) {
+                $total_rate += $my_rate[$i]->rate;
+            }
             return view('content.seller.Course.detailCourse', [
-                'url' => $this->breadcrumb(),
-                'course' => $course,
-                'data' => $my_course,
-                'lesson' => $my_lesson,
+                'url'       => $this->breadcrumb(),
+                'course'    => $course,
+                'data'      => $my_course,
+                'lesson'    => $my_lesson,
+                'rates'     => $my_rate,
+                'total_rate'=> $total_rate,
             ]);
         } catch (\Throwable $th) {
             dd("Loi");

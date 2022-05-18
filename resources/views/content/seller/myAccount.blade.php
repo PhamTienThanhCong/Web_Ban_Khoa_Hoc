@@ -37,13 +37,16 @@
                     <br>
                     <div class="description-preview">
                         - Mô tả bản thân: {{ $admin->description }}
+                        <br><br>
+                        - Tổng thu nhập
+                        {{ number_format($course->total_price, 0, '', ',') }} VND
                     </div>
                 </div>
                 @if (Session::get('lever') == '1')
                     <div class="result-account">
                         <div class="box-result"> 
                             <h1>
-                                15
+                                {{ $admin->number_course }}
                             </h1>
                             <p>
                                 khóa học
@@ -51,7 +54,7 @@
                         </div>
                         <div class="box-result"> 
                             <h1>
-                                1889
+                                {{ $course->number_order }}
                             </h1>
                             <p>
                                 đã bán
@@ -59,7 +62,7 @@
                         </div>
                         <div class="box-result"> 
                             <h1>
-                                4.3
+                                {{ round($course->number_rate, 2) }}
                             </h1>
                             <p>
                                 đánh giá

@@ -51,12 +51,10 @@
                     <tr>
                         <th> Tên khóa </th>
                         <th> Giá </th>
-                        @if (Session::get('lever') == '1')
-                            <th> Đã bán </th>
-                        @else
+                        @if (Session::get('lever') == '2')
                             <th> Tác giả </th>
                         @endif
-                        <th> Ngày tạo </th>
+                        <th> Đã bán </th>
                         <th> Cập nhập lần cuối </th>
                         <th> Trạng thái </th>
                         <th> Xem </th>
@@ -66,18 +64,16 @@
                     @foreach ($data as $course)
                         <tr>
                             <td> {{ $course->name }} </td>
-                            <td> {{ $course->price }} </td>
-                            <td> 
-                                @if (Session::get('lever') == '1')
-                                    wait
-                                @else
-                                    <a href="{{ route('admin.managerCourse', $course->name_admin) }}">
-                                        {{ $course->name_admin }}
-                                    </a>
-                                @endif                                                                                                             
-                            </td>
+                            <td> {{ number_format($course->price, 0, '', ',') }} VND</td> 
+                            @if (Session::get('lever') == '2')
+                            <th>
+                                <a href="{{ route('admin.managerCourse', $course->name_admin) }}">
+                                    {{ $course->name_admin }} 
+                                </a>
+                            </th>
+                            @endif                                                                                                             
                             <td>
-                                {{ date('d-m-Y', strtotime($course->created_at)) }}
+                                {{ $course->number_buy }}
                             </td>
                             <td>
                                 {{ date('d-m-Y', strtotime($course->updated_at)) }}

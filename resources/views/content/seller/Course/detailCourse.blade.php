@@ -44,7 +44,6 @@
                             src="{{ asset("images/".$data->image) }}"
                             alt="" />
                     </div>
-                    <br />
                     <div class="cart-details">
                         <h3><u>Tên khóa học</u>: {{ $data->name }} </h3>
                         <p>
@@ -64,8 +63,14 @@
 
                         <p>
                             <i class="mdi mdi-cash"></i>
-                            Giá thành: {{ $data->price }} VND
+                            Giá thành: {{ number_format($data->price, 0, '', ',') }} đ
                         </p>
+                        @if ($data->type == '2')
+                        <p>
+                            <i class="mdi mdi-star"></i>
+                            Đánh giá: {{ round($total_rate,2) }} 
+                        </p>
+                        @endif
                         @if (Session::get('lever') == '1')
                             <a href="{{ route('seller.createLesson', $course) }}" style="text-align: center;">
                                 Tạo Bài học mới
@@ -145,7 +150,7 @@
 
                     </tbody>
                 </table>
-                {{-- List môn học --}}
+
                 <br>
                 @if (Session::get('lever') == '1') 
                     <div style="width:100%; text-align: center;">
@@ -154,6 +159,39 @@
                         </a>                   
                     </div>
                 @endif
+                
+                @if ($data->type == '2')
+                    <br>
+                    <h4 class="card-title">
+                        <b> # Bình luận đánh giá</b>
+                    </h4>
+                    <br>
+                    @foreach ($rates as $rate)
+                        <div class="comment">
+                            <p style="font-size: 14px; display: block; margin:0">
+                                Ngày: {{ date('d-m-Y', strtotime($rate->created_at)) }}
+                            </p>
+                            <div class="comment-info">
+                                <div class="comment-avatar">
+                                    <img src="http://web_khoa_hoc.com/images/avatar/avatar.jpg" alt="">
+                                </div>
+                                <div class="comment-name">
+                                    <p>
+                                        {{ $rate->name }}
+                                    </p>
+                                    @for ($i = 0; $i < $rate->rate; $i++)
+                                        <i class="mdi mdi-star" style="color: rgb(230, 29, 29); font-size: 19px; margin-right: -3px"></i>
+                                    @endfor
+                                </div>
+                            </div>
+                            <div class="conten-comment">
+                                {{ $rate->comment }}
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+                
+                {{-- List môn học --}}
             </div>
         </div>
     </div>
