@@ -66,7 +66,7 @@
                     <i class="fa-solid fa-user-pen"></i>
                     Đánh giá: 
                     @if ($courses->rate_course != 0)
-                        {{ $courses->rate_course }} <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
+                        {{ round($courses->rate_course,2) }} <i class="fa-solid fa-star" style="color: rgb(230, 83, 39);"></i>
                     @else
                         Chưa có lượt đánh giá
                     @endif

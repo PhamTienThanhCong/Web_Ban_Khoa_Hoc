@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class homeViewController extends Controller
 {
-    public function course(){
+    public function course(Request $request){
+        $search = $request->get('keyword');
         $course = course::query()
             ->select('courses.*','admins.name as name_admin',DB::raw('COUNT(lessons.courses_id) as number_lesson'))
             ->join('admins', 'courses.id_admin', '=', 'admins.id')
             ->leftJoin('lessons' , 'courses.id', '=', 'lessons.courses_id')
             ->where('courses.type', '=', '2')
+            ->where('courses.name', 'like', '%'. $search .'%')
             ->groupBy('courses.id')
             ->paginate(12);;
         return view('content.user.course',[

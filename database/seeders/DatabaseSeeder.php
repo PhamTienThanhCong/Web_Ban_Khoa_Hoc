@@ -7,6 +7,7 @@ use App\Models\admin;
 use App\Models\user;
 use App\Models\course;
 use App\Models\lesson;
+use App\Models\order;
 use App\Models\question;
 
 class DatabaseSeeder extends Seeder
@@ -23,10 +24,11 @@ class DatabaseSeeder extends Seeder
         // user::factory(1200)->create();
         // lesson::factory(1000)->create();
         // question::factory(2000)->create();
-        $this->call([
+        order::factory(2000)->create();
+        // $this->call([
             // QuestionSeeder::class,
-            ResultSeeder::class,
+            // ResultSeeder::class,
             // AnswerSeeder::class,
-        ]);
+        // ]);
     }
 }
