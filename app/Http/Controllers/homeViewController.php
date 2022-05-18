@@ -185,6 +185,13 @@ class homeViewController extends Controller
         return view('content.user.myCart');
     }
 
+    public function updateViewHistory($course, $number_update){
+        $view =  DB::table('view_histories')
+            ->where('users_id', session()->get('id'))
+            ->where('courses_id', $course)
+            ->update(['number_view' => $number_update]);
+    }
+
     public function learnCourse($course_id, $lesson_id){
         $course_check = View_history::query()
                 ->select('number_view')
@@ -210,6 +217,7 @@ class homeViewController extends Controller
             'number_learn'  => $course_check->number_view,
         ]);
     }
+
     public function next_lesson($course_id, $lesson_id){
         $course_check = View_history::query()
                 ->select('number_view')
@@ -235,7 +243,11 @@ class homeViewController extends Controller
         if (count($questions)==0){
             return redirect()->route('home.learnCourse', [$course_id, $lesson_id+2]);
         }
+        return view('content.user.answerLesson',[
+            
+        ]);
     }
+
     public function view_question($course_id, $lesson_id){
         
     }

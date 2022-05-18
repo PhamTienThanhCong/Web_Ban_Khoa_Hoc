@@ -1,0 +1,61 @@
+.title-lesson{
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 30px
+}
+
+.questions{
+    margin: auto;
+    margin-top: 20px;
+    width: 500px;
+    border: 1px solid rgba(180, 163, 163, 0.568);
+    border-radius: 10px;
+    display: block;
+    overflow: hidden;
+}
+.all-questions{
+    width: 700px;
+    margin: auto;
+}
+.name-question{
+    border-bottom: 1px solid rgba(180, 163, 163, 0.568);
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: rgba(104, 126, 124, 0.082);
+}
+
+.name-answers{
+    padding: 10px 20px;
+}
+
+.one-answer {
+    margin-top: 7px;
+}
+
+.one-answer label{
+    margin-left: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.one-answer input{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    transform: translateY(1px);
+}
+
+.btn-submit{
+    width: 100%;
+    border: none !important;
+    padding: 8px 0px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: rgb(53, 169, 236);
+    transition: all 0.25s;
+}
+
+.btn-submit:hover{
+    background-color: rgb(8, 98, 150);
+}
