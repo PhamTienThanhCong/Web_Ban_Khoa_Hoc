@@ -24,11 +24,12 @@ class DatabaseSeeder extends Seeder
         // user::factory(1200)->create();
         // lesson::factory(1000)->create();
         // question::factory(2000)->create();
-        order::factory(2000)->create();
-        // $this->call([
+        // order::factory(2000)->create();
+        $this->call([
             // QuestionSeeder::class,
             // ResultSeeder::class,
             // AnswerSeeder::class,
-        // ]);
+            // ViewHistorySeeder::class,
+        ]);
     }
 }

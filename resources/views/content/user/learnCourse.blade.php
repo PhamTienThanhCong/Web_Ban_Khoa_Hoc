@@ -22,7 +22,7 @@
                 <iframe width="100%" height="100%" src="{{ $lessons[$lesson_id]->link }}" ></iframe>
             </div>
             <div class="list_lesson">
-                <a href="">
+                <a href="{{ route('home.nextLesson',[$course_id,$lesson_id]) }}">
                     <button class="btn-next-lesson">
                         Bài kế tiếp
                     </button>

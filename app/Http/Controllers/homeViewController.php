@@ -197,4 +197,10 @@ class homeViewController extends Controller
             'lesson_id' => $lesson_id,
         ]);
     }
+    public function next_lesson($course_id, $lesson_id){
+        return redirect()->route('home.learnCourse',[$course_id, $lesson_id+2]);
+    }
+    public function view_question($course_id, $lesson_id){
+        
+    }
 }

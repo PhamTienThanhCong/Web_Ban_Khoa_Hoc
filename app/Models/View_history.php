@@ -9,4 +9,9 @@ class lview_history extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = [
+        'users_id',
+        'courses_id',
+        'number_view',
+    ];
 }

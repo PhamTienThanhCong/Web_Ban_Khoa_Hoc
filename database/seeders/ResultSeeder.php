@@ -15,7 +15,7 @@ class ResultSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create('vi_VN');
-        for ($i = 3001; $i < 5001; $i++) {
+        for ($i = 1; $i < 5001; $i++) {
             $total = $faker->numberBetween(10,20);
             $true = $faker->numberBetween(0,$total);
             $false = $total - $true;
