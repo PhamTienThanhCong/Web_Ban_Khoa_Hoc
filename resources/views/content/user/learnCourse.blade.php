@@ -22,7 +22,7 @@
                 <iframe width="100%" height="100%" src="{{ $lessons[$lesson_id]->link }}" ></iframe>
             </div>
             <div class="list_lesson">
-                <a href="{{ route('home.nextLesson',[$course_id,$lesson_id]) }}">
+                <a href="{{ route('home.nextLesson',[$course_id,$lesson_id+1]) }}">
                     <button class="btn-next-lesson">
                         Bài kế tiếp
                     </button>
@@ -30,7 +30,7 @@
                 <ul class="list_lesson_view">
                     @for ($i = 0; $i < count($lessons); $i++)
                         <li class="lessons">
-                            @if ($i <=  $lesson_id)
+                            @if ($i <  $number_learn)
                                 <a href="{{ route('home.learnCourse', [$course_id,$i+1]) }}" style="text-decoration: none; color: black;">
                                     Bài {{$i + 1}}: {{ $lessons[$i]->name }}
                                 </a>
@@ -40,11 +40,11 @@
                                 </a>
                             @endif
                             <span class="icon-check">
-                                @if ($i <  $lesson_id)
-                                    <i class="fa-solid fa-check"></i>    
-                                @elseif ($i ==  $lesson_id)
+                                @if ($i ==  $lesson_id)
                                     <i class="fa-solid fa-eye"></i>
-                                @elseif ($i >  $lesson_id)
+                                @elseif ($i + 1 <=  $number_learn)
+                                    <i class="fa-solid fa-check"></i>    
+                                @elseif ($i + 1 >  $number_learn)
                                     <i class="fa-solid fa-exclamation"></i>
                                 @endif
                             </span>
