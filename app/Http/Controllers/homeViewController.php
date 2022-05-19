@@ -244,11 +244,49 @@ class homeViewController extends Controller
             return redirect()->route('home.learnCourse', [$course_id, $lesson_id+2]);
         }
         return view('content.user.answerLesson',[
-            
+            'course_id' => $course_id,
+            'lesson'    => $lessons[$lesson_id - 1],
+            'questions' => $questions,
         ]);
     }
 
-    public function view_question($course_id, $lesson_id){
-        
+    public function check_answer(Request $request,$course_id, $lesson_id){
+        $questions = question::query()
+                ->select('questions.id', 'questions.question', 'questions.type', 'answers.answer', 'answers.id as id_answer', 'answers.check')
+                ->leftJoin('answers', 'questions.id', 'answers.questions_id')
+                ->where('lessons_id', '=', $request->get('id_lesson'))
+                ->get();
+        $id_question = 0;
+        $number_question = 0;
+        $number_false = 0;
+        $check_false = true;
+        foreach ($questions as $question) {
+            if ($id_question != $question->id) {
+                $id_question = $question->id;
+                $number_question++;
+                if ($check_false == false) {
+                    $number_false ++;
+                }else{
+
+                }
+                $check_false = true;
+            }
+            if ($question->type == 1){
+                if (($request->get("a$question->id_answer") == '' && $question->check == 1) || ($request->get("a$question->id_answer") == 'on' && $question->check == 0)){
+                    $check_false = false;
+                }
+            }
+            if ($question->type == 2){
+                if (($request->get("$question->id") == $question->id_answer) && ($question->check == 0)){
+                    $check_false = false;
+                }
+            }
+        }
+        if ($check_false == false) {
+            $number_false ++;
+        }else{
+
+        }
+        dd($number_false);
     }
 }

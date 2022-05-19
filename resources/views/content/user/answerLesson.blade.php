@@ -18,74 +18,51 @@
 <div class="grid">
     <div class="grid__row">
         <div class="title-lesson">
-            Bài học: gì gì đó
+            Bài: {{ $lesson->name }}
         </div>
-        <div class="all-questions">
-            <div class="questions">
-                <div class="name-question">
-                    Câu 1: câu gì đó
+        <form method="post" action="{{ route('home.checkAnswer',[$course_id, $lesson->id]) }}" class="all-questions">'
+            <input type="hidden" name="id_lesson" value="{{ $lesson->id }}">
+            @csrf
+            <?php
+                $id_question = 0;
+                $number_answer = 1;
+                $number_question = 1;
+            ?>
+            <div><div>
+            @foreach ($questions as $question)
+                @if ($question->id != $id_question)
+                    </div></div>
+                    <div class="questions">
+                        <div class="name-question">
+                            Câu {{ $number_question++ }}: {{ $question->question }}
+                        </div>
+                    <?php
+                        $id_question = $question->id;
+                        $number_answer = 1;
+                    ?>
+                    <div class="name-answers">
+                @endif
+                <div class="one-answer">
+                    @if ($question->type == 1)
+                        <input type="checkbox" id="{{ $question->id_answer }}" name="a{{ $question->id_answer }}">
+                    @elseif ($question->type == 2)
+                        <input type="radio" id="{{ $question->id_answer }}" name="{{ $question->id }}" value="{{ $question->id_answer }}">
+                    @endif
+                    <label for="{{ $question->id_answer }}">
+                        Câu {{ $number_answer++ }}:
+                        {{ $question->answer }} 
+                    </label>
                 </div>
-                <div class="name-answers">
-                    <div class="one-answer">
-                        <input type="checkbox">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                    <div class="one-answer">
-                        <input type="radio">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                    <div class="one-answer">
-                        <input type="checkbox">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="questions">
-                <div class="name-question">
-                    Câu 1: câu gì đó
-                </div>
-                <div class="name-answers">
-                    <div class="one-answer">
-                        <input type="checkbox">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                    <div class="one-answer">
-                        <input type="radio">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                    <div class="one-answer">
-                        <input type="checkbox">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
+                @endforeach
                 </div>
             </div>
 
-            <div class="questions">
-                <div class="name-question">
-                    Câu 1: câu gì đó
-                </div>
-                <div class="name-answers">
-                    <div class="one-answer">
-                        <input type="checkbox">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                    <div class="one-answer">
-                        <input type="radio">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                    <div class="one-answer">
-                        <input type="checkbox">
-                        <label for="">Câu 1: câu gì đó</label>
-                    </div>
-                </div>
-            </div>
             <div class="questions">
                 <button class="btn-submit">
                     Nộp bài
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 @stop

@@ -106,7 +106,7 @@ Route::group([
     Route::post('/khoa-hoc/ma-{course_id}/danh-gia', [homeViewController::class, 'ratingCourse'])->name('home.ratingCourse');
     Route::get('/khoa-hoc/xem-khoa-{course_id}/bai-{lesson_id?}', [homeViewController::class, 'learnCourse'])->name('home.learnCourse');
     Route::get('/khoa-hoc/xem-khoa-{course_id}/bai-{lesson_id}/bai-ke-tiep', [homeViewController::class, 'next_lesson'])->name('home.nextLesson');
-    Route::get('/khoa-hoc/xem-khoa-{course_id}/bai-{lesson_id}/tra-loi-cau-hoi', [homeViewController::class, 'view_question'])->name('home.viewQuestion');
+    Route::post('/khoa-hoc/xem-khoa-{course_id}/bai-{lesson_id}/kiem-tra-cau-tra-loi', [homeViewController::class, 'check_answer'])->name('home.checkAnswer');
 });
 
 Route::get('/khoa-hoc', [homeViewController::class , 'course'])->name('home.course');
