@@ -130,7 +130,7 @@
                     </td>
                     @if ($check == 3)
                     <th>
-                        <a href="">
+                        <a href="{{ route('home.learnCourse',[$courses->id, $index + 1]) }}">
                             Xem ngay
                         </a>
                     </th>

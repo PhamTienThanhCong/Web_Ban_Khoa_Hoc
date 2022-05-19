@@ -7,6 +7,7 @@ use App\Models\View_history;
 use App\Models\lesson;
 use App\Models\order;
 use App\Models\question;
+use App\Models\result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -186,10 +187,28 @@ class homeViewController extends Controller
     }
 
     public function updateViewHistory($course, $number_update){
-        $view =  DB::table('view_histories')
-            ->where('users_id', session()->get('id'))
-            ->where('courses_id', $course)
-            ->update(['number_view' => $number_update]);
+        $number_lesson = course::query()
+            ->select(DB::raw('COUNT(lessons.id) as number_lesson'))
+            ->leftJoin('lessons' , 'courses.id', 'lessons.courses_id')
+            ->where('courses.id', '=', $course)
+            ->groupBy('courses.id')
+            ->first();
+        if ($number_lesson->number_lesson >= $number_update){
+            $view =  DB::table('view_histories')
+                ->where('users_id', session()->get('id'))
+                ->where('courses_id', $course)
+                ->update(['number_view' => $number_update]);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateResult($question_id,$true_number,$false_number){
+        $result = result::find($question_id);
+        $result->number_true += $true_number;
+        $result->number_false += $false_number;
+        $result->save();
     }
 
     public function learnCourse($course_id, $lesson_id){
@@ -229,7 +248,7 @@ class homeViewController extends Controller
         }elseif ($course_check->number_view < $lesson_id){
             return redirect()->route('home.learnCourse', [$course_id, $course_check->number_view]);
         }elseif ($course_check->number_view > $lesson_id){
-            return redirect()->route('home.learnCourse', [$course_id, $lesson_id+2]);
+            return redirect()->route('home.learnCourse', [$course_id, $lesson_id+1]);
         }
         $lessons = lesson::query()
                 ->where('lessons.courses_id', '=', $course_id)
@@ -241,10 +260,14 @@ class homeViewController extends Controller
                 ->where('lessons_id', '=', $lessons[$lesson_id - 1]->id)
                 ->get();
         if (count($questions)==0){
+            if ($this->updateViewHistory($course_id, $lesson_id+1) == false){
+                return redirect()->route('home.doneCourse', $course_id);
+            }
             return redirect()->route('home.learnCourse', [$course_id, $lesson_id+2]);
         }
         return view('content.user.answerLesson',[
             'course_id' => $course_id,
+            'lesson_id' => $lesson_id,
             'lesson'    => $lessons[$lesson_id - 1],
             'questions' => $questions,
         ]);
@@ -260,14 +283,15 @@ class homeViewController extends Controller
         $number_question = 0;
         $number_false = 0;
         $check_false = true;
-        foreach ($questions as $question) {
+        foreach ($questions as $index=>$question) {
             if ($id_question != $question->id) {
                 $id_question = $question->id;
                 $number_question++;
                 if ($check_false == false) {
                     $number_false ++;
-                }else{
-
+                    $this->updateResult($questions[$index-1]->id, 0, 1);
+                }elseif($index > 0){
+                    $this->updateResult($questions[$index-1]->id, 1, 0);
                 }
                 $check_false = true;
             }
@@ -284,9 +308,41 @@ class homeViewController extends Controller
         }
         if ($check_false == false) {
             $number_false ++;
+            $this->updateResult($questions[count($questions)-1]->id, 0, 1);
         }else{
-
+            $this->updateResult($questions[count($questions)-1]->id, 1, 0);
         }
-        dd($number_false);
+        if ($number_false < $number_question - $number_false){
+            if ($this->updateViewHistory($course_id, $lesson_id+1) == false){
+                return redirect()->route('home.doneCourse', $course_id);
+            }
+        }
+        return view('content.user.resultAnswer',[
+            'course_id'     => $course_id,
+            'lesson_id'     => $lesson_id,
+            'true_number'   => $number_question - $number_false,
+            'false_number'  => $number_false,
+        ]);
     }
+
+    public function done_course($course_id){
+        $courses = course::query()
+            ->select('courses.*','admins.name as name_admin',DB::raw('COUNT(lessons.id) as number_lesson'))
+            ->join('admins', 'courses.id_admin', '=', 'admins.id')
+            ->leftJoin('lessons' , 'courses.id', 'lessons.courses_id')
+            ->where('courses.id', '=', $course_id)
+            ->groupBy('courses.id')
+            ->first();
+        $view =  View_history::query()
+            ->where('users_id', session()->get('id'))
+            ->where('courses_id', $course_id)
+            ->first();
+        if ($courses->number_lesson <  $view->number_view){
+            return redirect()->route('home.learnCourse',[$course_id, $courses->number_lesson]);
+        }
+        return view('content.user.doneCourse',[
+            'course' => $courses,
+        ]);
+    }
+
 }

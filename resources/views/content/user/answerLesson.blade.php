@@ -20,7 +20,7 @@
         <div class="title-lesson">
             Bài: {{ $lesson->name }}
         </div>
-        <form method="post" action="{{ route('home.checkAnswer',[$course_id, $lesson->id]) }}" class="all-questions">'
+        <form method="post" action="{{ route('home.checkAnswer',[$course_id, $lesson_id]) }}" class="all-questions">'
             <input type="hidden" name="id_lesson" value="{{ $lesson->id }}">
             @csrf
             <?php
