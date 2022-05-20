@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
@@ -47,6 +48,14 @@ class userController extends Controller
         return redirect()->route('home.course');
     }
     public function myAccount(){
-        return view('content.user.myAccount');
+        $user = user::query()
+            ->select('users.email', DB::raw('COUNT(orders.id) as number_buy'), DB::raw('AVG(orders.price_buy) as total_price'))
+            ->leftJoin('orders', 'users.id', 'orders.users_id')
+            ->where('users.id', '=', session()->get('id'))
+            ->groupBy('users.id')
+            ->first();
+        return view('content.user.myAccount',[
+            'user' => $user,
+        ]);
     }
 }

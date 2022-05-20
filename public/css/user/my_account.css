@@ -1,0 +1,55 @@
+.form-info{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
+.avatar-preview{
+    display: inline-block;
+    width: 160px;
+}
+.avatar{
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgb(226, 19, 19);
+    overflow: hidden;
+}
+.avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.content-infor{
+    display: inline-block;
+    margin-top: 15px;
+}
+.name-infor{
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.infor-content{
+    font-size: 16px;
+}
+.infor-content p{
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+.action{
+    margin-top: 20px;
+}
+.action button{
+    outline: none;
+    border: none;
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    border-radius: 13px;
+    font-size: 16px;
+    background-color: rgba(45, 141, 231, 0.596);
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+.action button:hover{
+    transform: scale(0.95);
+}
