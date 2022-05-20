@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 20, 2022 lúc 02:14 AM
+-- Thời gian đã tạo: Th5 20, 2022 lúc 02:42 AM
 -- Phiên bản máy phục vụ: 5.7.33
 -- Phiên bản PHP: 7.4.19
 
@@ -25486,8 +25486,7 @@ INSERT INTO `orders` (`id`, `users_id`, `courses_id`, `price_buy`, `rate`, `comm
 (1999, 834, 91, 481642, 3.00, 'Thiều Lục Mi đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
 (2000, 132, 186, 138123, 5.00, 'Cô. Trần Hảo Nga đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
 (2001, 390, 44, 759331, 2.00, 'Em. Nhữ Kiều Loan đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
-(2002, 794, 179, 315635, 1.00, 'Bửu Phi Tuyết đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
-(2003, 1199, 2, 466210, NULL, NULL, '2022-05-19 02:02:04', '2022-05-19 02:02:04');
+(2002, 794, 179, 315635, 1.00, 'Bửu Phi Tuyết đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41');
 
 -- --------------------------------------------------------
 
@@ -38917,7 +38916,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2004;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2005;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

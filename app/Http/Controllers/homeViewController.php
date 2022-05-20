@@ -131,6 +131,12 @@ class homeViewController extends Controller
                 'courses_id' => $course->id,
                 'price_buy'  => $course->price,
             ]);
+            View_history::query()
+            ->create([
+                'users_id'  => session()->get('id'),
+                'courses_id' => $course->id,
+                'number_view'  => 1,
+            ]);
         }
 
         $id = session()->get('id_course') == null ? [] : session()->get('id_course');
