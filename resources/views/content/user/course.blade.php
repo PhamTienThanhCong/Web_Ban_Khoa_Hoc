@@ -15,7 +15,7 @@
 
 @section('content')
     <img class="main-img" width="95%" height="350px"
-        src="https://scontent.fhan2-2.fna.fbcdn.net/v/t1.15752-9/277114640_1666431013724170_5404558021918161449_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=grUPfb2vV3UAX_V3vRE&_nc_ht=scontent.fhan2-2.fna&oh=03_AVKkfphCFlpUJkl163-OpncIR1jxWpcxRH-9zdaKaWkfxw&oe=628364ED"
+        src="https://th.bing.com/th/id/R.509f2760a9955ef5d20d2c37a2e03d83?rik=0TubJc1s9uxbNA&pid=ImgRaw&r=0"
         alt="">
     <div class="grid">
         <div class="grid__row">
