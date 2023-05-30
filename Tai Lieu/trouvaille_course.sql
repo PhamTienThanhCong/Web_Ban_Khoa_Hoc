@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 20, 2022 lúc 02:42 AM
+-- Thời gian đã tạo: Th5 30, 2023 lúc 08:56 AM
 -- Phiên bản máy phục vụ: 5.7.33
 -- Phiên bản PHP: 7.4.19
 
@@ -45,8 +45,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `image`, `description`, `password`, `token`, `lever`, `created_at`, `updated_at`) VALUES
-(1, 'Bé Công', 'congphamtienthanh@gmail.com', 'avatar.jpg', 'bé là nhất\r\nđược chưa', '$2y$10$IWIKS8FHf/b6ltdjLW4WLubF0OSj0vgR8fCzqqy3gXKyT91s/VCEe', '59f3608d3f6577dc339384516df100f7', 2, '2022-05-17 00:29:31', '2022-05-18 02:08:17'),
-(2, 'cong pham', 'congj2school@gmail.com', 'avatar.jpg', 'tôi là bạn của sếp', '$2y$10$Li9vv3shd.Jl2mPLicGuNuIp0FZ5pgZ2YLXFrl7dHsa9b9RN975Tm', '21ef57ffcc7347c2d0bf6ee47f8f4b14', 1, '2022-05-17 00:29:48', '2022-05-17 00:53:20'),
+(1, 'Bé Công', 'admin@gmail.com', 'avatar.jpg', 'bé là nhất\r\nđược chưa', '$2y$10$IWIKS8FHf/b6ltdjLW4WLubF0OSj0vgR8fCzqqy3gXKyT91s/VCEe', '59f3608d3f6577dc339384516df100f7', 2, '2022-05-17 00:29:31', '2022-05-18 02:08:17'),
+(2, 'cong pham', 'cong@gmail.com', 'avatar.jpg', 'tôi là bạn của sếp', '$2y$10$Li9vv3shd.Jl2mPLicGuNuIp0FZ5pgZ2YLXFrl7dHsa9b9RN975Tm', '21ef57ffcc7347c2d0bf6ee47f8f4b14', 1, '2022-05-17 00:29:48', '2022-05-17 00:53:20'),
 (3, 'Cát Liễu', 'nhan68@dao.com', 'avatar.jpg', 'Nam quia corrupti officia recusandae. Consequatur tempore voluptatum amet enim omnis voluptate voluptate. Eos voluptas sed vitae ab et eligendi. Debitis error voluptatem animi illum suscipit asperiores.', '$2y$10$7jgwqrsl7U2RdjtZH.kSG.AJPsLiAHFpmRu89iQRtssobr7GS8uva', '89f66d1ab30ee22c2e66948945518657', 1, '2022-05-17 00:38:10', '2022-05-17 00:38:10'),
 (4, 'Phong Xa', 'mach.truc@lo.name.vn', 'avatar.jpg', 'Inventore dolore totam sequi voluptatibus nihil quasi sit. Et itaque exercitationem dolorem et tempora molestias. Voluptatem nobis sunt quaerat delectus. Iste ut ullam maiores necessitatibus necessitatibus. Est excepturi et dolor dolor similique porro veritatis.', '$2y$10$DBDBkL1LUB2aMUxYunWIT.Toso7jsuLq5dHfjdGesNEVBRzg0/IOm', '2d8b138284ee3b02c209cda43af2c3e6', 1, '2022-05-17 00:38:10', '2022-05-17 00:38:10'),
 (5, 'Đoan Thái', 'lan.lac@nhu.name.vn', 'avatar.jpg', 'Consequuntur dolores sed quod unde sed est ut. Non ut laborum ratione ut. Mollitia officia ut ut illo debitis rerum a. At voluptas delectus molestias alias et quod sit. Omnis perferendis animi consequatur pariatur facere aliquam quas corrupti.', '$2y$10$.K1Ii7LXRxEWYQBSDTiefu.TCuH6bgXjUmAz71s1GkP1kOerEr8tm', 'aa08aaf3e2b39d9bad69ce32293b1623', 4, '2022-05-17 00:38:10', '2022-05-17 01:29:18'),
@@ -25486,7 +25486,8 @@ INSERT INTO `orders` (`id`, `users_id`, `courses_id`, `price_buy`, `rate`, `comm
 (1999, 834, 91, 481642, 3.00, 'Thiều Lục Mi đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
 (2000, 132, 186, 138123, 5.00, 'Cô. Trần Hảo Nga đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
 (2001, 390, 44, 759331, 2.00, 'Em. Nhữ Kiều Loan đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
-(2002, 794, 179, 315635, 1.00, 'Bửu Phi Tuyết đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41');
+(2002, 794, 179, 315635, 1.00, 'Bửu Phi Tuyết đã mua và trải nghiệm', '2022-05-17 20:09:41', '2022-05-17 20:09:41'),
+(2005, 1200, 2, 466210, NULL, NULL, '2023-05-30 01:51:47', '2023-05-30 01:51:47');
 
 -- --------------------------------------------------------
 
@@ -33866,7 +33867,7 @@ INSERT INTO `results` (`id`, `questions_id`, `number_true`, `number_false`) VALU
 (3317, 3317, 9, 1),
 (3318, 3318, 10, 1),
 (3319, 3319, 2, 12),
-(3320, 3320, 8, 9),
+(3320, 3320, 9, 9),
 (3321, 3321, 2, 12),
 (3322, 3322, 13, 2),
 (3323, 3323, 2, 9),
@@ -36771,7 +36772,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `image`, `password`, `token`, `creat
 (1195, 'Thoại Ma', 'nghiem63@yahoo.com', 'avatar.png', '$2y$10$ew2a9s54UdSFAEfg.eCIieBiNcPhxR4i73qA5ZWPHufkxTPMgUy/m', '5181677eeb26ffe7a03b187f161b0f18', '2022-05-17 00:41:02', '2022-05-17 00:41:02'),
 (1196, 'Hưng Hạ', 'ttong@du.com', 'avatar.png', '$2y$10$NPGx8EYefNzBceoFjeil6O/NdDZHSy15.2fWtNnlFLcnkO9w6iZVi', 'cf026d6b1e1ebbb95161bbbf68febddd', '2022-05-17 00:41:02', '2022-05-17 00:41:02'),
 (1197, 'Uyên Hồng', 'an76@pho.edu.vn', 'avatar.png', '$2y$10$3r.Ib4jnj7nBXCiHZuSCgen1N9Eca4Sbcg9hhDQxFZCotUxYs4V7m', 'bba98ff195997f21b1817f19de6d2ce6', '2022-05-17 00:41:02', '2022-05-17 00:41:02'),
-(1199, 'cong pham', 'congphamtienthanh@gmail.com', 'avatar.png', '$2y$10$yPDXycYvdsAWHZrhhDfIn.9/9IHI/S9IqTbtdOWtrytBF8zdkLBNC', '905be57c35e9bf61fc76183281a1dc12', '2022-05-17 19:43:35', '2022-05-17 19:43:35');
+(1199, 'cong pham', 'congphamtienthanh@gmail.com', 'avatar.png', '$2y$10$yPDXycYvdsAWHZrhhDfIn.9/9IHI/S9IqTbtdOWtrytBF8zdkLBNC', '905be57c35e9bf61fc76183281a1dc12', '2022-05-17 19:43:35', '2022-05-17 19:43:35'),
+(1200, 'cong', 'cong@gmail.com', 'avatar.png', '$2y$10$ImD6FQk86nJFGJypr24buO6nwmKrUpZHcomBePzopfrjALGzS8ucS', 'd499cb28caa40fde9862f619cb9c32a5', '2023-05-30 01:49:20', '2023-05-30 01:49:20');
 
 -- --------------------------------------------------------
 
@@ -38792,7 +38794,8 @@ INSERT INTO `view_histories` (`id`, `users_id`, `courses_id`, `number_view`) VAL
 (1999, 834, 91, 1),
 (2000, 132, 186, 1),
 (2001, 390, 44, 1),
-(2002, 794, 179, 1);
+(2002, 794, 179, 1),
+(2003, 1200, 2, 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -38916,7 +38919,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2005;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2006;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -38940,13 +38943,13 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1200;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1201;
 
 --
 -- AUTO_INCREMENT cho bảng `view_histories`
 --
 ALTER TABLE `view_histories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2003;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2004;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

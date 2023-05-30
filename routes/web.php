@@ -118,4 +118,6 @@ Route::get('/khoa-hoc/ma-{course_id}/huy-dat-hang', [homeViewController::class ,
 
 Route::get('/gio-hang', [homeViewController::class , 'myCart'])->name('home.myCart');
 
+Route::get('/', [homeViewController::class , 'course'])->name('home.course');
+
 // User

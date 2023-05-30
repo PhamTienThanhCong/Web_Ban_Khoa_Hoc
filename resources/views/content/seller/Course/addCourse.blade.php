@@ -40,7 +40,7 @@
                 <div class="content">
                     <div class="img-pre">
                         <img id="img-preview"
-                            src="https://image.thanhnien.vn/w1024/Uploaded/2022/xdrkxrvekx/2021_10_12/picture1-3031.png"
+                            src="{{ asset('images/bg.png') }}"
                             alt="" />
                     </div>
                     <br />
